@@ -67,13 +67,14 @@
     /* === HERO / LOGO — edit sizes here === */
     .pill.hero-badge{ margin:0 auto 6px; }
     .hero-icon{
-      width:180px;       /* <-- change this to 200px if you want it even bigger */
-      height:180px;
-      margin:0 auto 0;   /* no extra space above/below the logo */
-      border-radius:50%;
-      display:block;
-      line-height:0;
-    }
+  width:180px;       /* make it 200px if you want bigger */
+  height:auto;       /* keep aspect ratio */
+  margin:0 auto;     /* center, no extra space */
+  border-radius:0;   /* <-- was 50%, remove the circular mask */
+  display:block;
+  line-height:0;
+  object-fit:contain; /* safety: never crop */
+}
     .typing-row{ display:block; margin-top:4px; } /* gap before the typing line */
 
     /* Typing */
@@ -94,7 +95,7 @@
       .hero{padding:48px 14px 20px}
       h1{font-size: clamp(28px, 9vw, 44px); line-height:1.06; margin:8px 0 0}
       .pill{padding:6px 10px; font-size: 12px}
-      .hero-icon{width:96px; height:96px; margin:0 auto 0} /* mobile logo size */
+      .hero-icon{ width:96px; height:auto; margin:0 auto; border-radius:0; }
       .lead{font-size: 15px; margin-top: 12px}
       .links{flex-direction: column; align-items: stretch}
       .btn{width:100%; justify-content: center; min-height:44px}
@@ -142,27 +143,6 @@ h1{
   .pill.hero-badge{ margin: 0 auto 0; }
   .hero-icon{ margin: 0 auto 0; }
   .typing-row{ margin-top: 0; }
-}
-
-    /* Crop extra whitespace inside the SVG box */
-.hero-icon{
-  margin: 0 auto 0;        /* no external space */
-  display: block;
-  line-height: 0;
-  /* tune these two percentages until it feels perfect */
-  clip-path: inset(12% 0 10% 0);  /* top right bottom left */
-}
-
-.pill.hero-badge{ margin: 0 auto 0; }
-h1{ margin: 0; }
-.typing-row{ margin-top: 0; }
-
-/* Optional: trim section padding too */
-.hero{ padding-top: 40px; padding-bottom: 18px; }
-
-@media (max-width:640px){
-  .hero{ padding-top: 36px; padding-bottom: 16px; }
-  .hero-icon{ clip-path: inset(12% 0 10% 0); }
 }
 
 
