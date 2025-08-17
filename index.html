@@ -36,6 +36,9 @@
     .gradient{background: linear-gradient(135deg, var(--brand), var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent}
     .lead{font-size: clamp(16px, 2.2vw, 22px); color: var(--muted); max-width: 820px; margin: 12px auto 0}
 
+    .hero-icon{display:block;width:56px;height:56px;border-radius:12px;margin:16px auto 8px} 
+    .typing-row{display:block;margin-top:14px}
+
     /* Typing */
     .typing{font-weight:800; letter-spacing: .5px}
     .cursor{display:inline-block;width:.6ch; background:currentColor; opacity:.9; animation:blink 1s steps(1,end) infinite}
@@ -46,6 +49,29 @@
     .links{display:flex; gap:12px; flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none}
     .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#07111e;font-weight:800}
+      /* ===== Mobile & reduced-motion tweaks ===== */
+    @media (max-width: 640px){
+      .nav{padding: calc(10px + env(safe-area-inset-top)) 14px 10px}
+      .brand img{width:24px;height:24px}
+      .hero{padding: 96px 16px 38px}
+      h1{font-size: clamp(28px, 9vw, 44px); line-height:1.06; margin: 8px 0}
+      .pill{padding:6px 10px; font-size: 12px}
+      .hero-icon{width:44px; height:44px; border-radius:10px; margin:14px auto 6px}
+      .lead{font-size: 15px; margin-top: 10px}
+      .links{flex-direction: column; align-items: stretch}
+      .btn{width:100%; justify-content: center; min-height:44px}
+      .ring::before{width:120vmax; height:120vmax; filter: blur(18px)}
+      .noise{opacity:.06}
+      /* Disable spotlight for perf on small screens */
+      .spotlight{display:none}
+      footer{padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .ring::before{animation:none}
+      .bg::before{animation:none}
+      .spotlight{display:none}
+    }
   </style>
 </head>
 <body>
@@ -62,11 +88,13 @@
   <main class="wrap">
     <section class="hero">
       <div class="pill" style="margin:0 auto 14px">We back your <strong style="margin-left:6px">agentic future</strong></div>
+
+      <img class="hero-icon" src="assets/logo.png" alt="Conversy logo"/>
       <h1>
-        <span class="gradient">Conversy AI</span><br/>
-        <span class="typing" id="typing"></span><span class="cursor">&nbsp;</span>
+        <span class="gradient">Conversy</span>
+        <span class="typing-row"><span class="typing" id="typing"></span><span class="cursor">&nbsp;</span></span>
       </h1>
-      <p class="lead">AI agents for service bookings & product sales from spreadsheet to live chatbot in minutes. Payments, calendars, and WhatsApp built in.</p>
+      <p class="lead">AI agents for service bookings & product sales — from spreadsheet to live chatbot in minutes. Payments, calendars, and WhatsApp built in.</p>
       <!-- Marquee removed by request -->
     </section>
 
