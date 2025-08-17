@@ -109,6 +109,41 @@
       .bg::before{animation:none}
       .spotlight{display:none}
     }
+
+    /* --- tighten space around the logo --- */
+.pill.hero-badge{        /* the “agentic future” pill */
+  margin: 0 auto 0;      /* no gap below the pill */
+}
+
+.hero-icon{              /* your logo image */
+  margin: 0 auto 0;      /* remove space above/below */
+  display: block;        /* kills inline baseline gap */
+  line-height: 0;        /* extra safety */
+}
+
+h1{
+  margin: 0;             /* headline hugs the logo */
+}
+
+.typing-row{
+  margin-top: 0;         /* no extra gap before typing line */
+}
+
+/* trim section padding a bit (optional) */
+.hero{
+  padding-top: 44px;     /* was 52px */
+  padding-bottom: 20px;  /* was 24px */
+}
+
+/* mobile too */
+@media (max-width:640px){
+  .hero{ padding-top: 40px; padding-bottom: 18px; }
+  h1{ margin: 0; }
+  .pill.hero-badge{ margin: 0 auto 0; }
+  .hero-icon{ margin: 0 auto 0; }
+  .typing-row{ margin-top: 0; }
+}
+
   </style>
 </head>
 <body>
