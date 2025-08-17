@@ -3,114 +3,159 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Conversy — We’re building something awesome</title>
-  <meta name="description" content="Conversy — Under construction. AI Agents that turn conversations into conversions." />
+  <title>Conversy — Coming Soon</title>
+  <meta name="description" content="Conversy — Agentic AI that turns conversations into conversions. Coming soon." />
   <meta name="theme-color" content="#0b0f19" />
-  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="icon" href="assets/favicon.ico" />
   <style>
     :root{
-      --bg:#0b0f19; --text:#eef2ff; --muted:#9aa4b2; --brand:#6ee7ff; --brand-2:#8b5cf6;
+      --bg:#070a12; --panel:#0d1220; --text:#eaf2ff; --muted:#9aa4b2;
+      --brand:#6ee7ff; --brand2:#8b5cf6; --ok:#22c55e;
     }
     html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial}
     *{box-sizing:border-box}
-    /* ===== Background video ===== */
-    .video-bg{position:fixed;inset:0;overflow:hidden;z-index:-2}
-    .video-bg video{min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.38) saturate(1.1);animation:slowzoom 40s ease-in-out infinite alternate;transform-origin:center}
-    .overlay{position:fixed;inset:0;background:radial-gradient(1200px 420px at 50% 10%, rgba(110,231,255,.18), transparent 60%), linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.65)); z-index:-1}
-    /* ===== Center card ===== */
-    .wrap{min-height:100%;display:grid;place-items:center;padding:28px}
-    .card{position:relative;width:100%;max-width:820px;padding:28px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);background:linear-gradient(180deg, rgba(12,18,30,.55), rgba(12,18,30,.55)) padding-box, linear-gradient(135deg, rgba(110,231,255,.35), rgba(139,92,246,.35)) border-box;border:1px solid transparent} 
-    .card::after{content:"";position:absolute;inset:-10px;border-radius:inherit;z-index:-1;background:radial-gradient(60% 60% at 50% 0%, rgba(110,231,255,.12), transparent), radial-gradient(60% 60% at 85% 85%, rgba(139,92,246,.10), transparent);filter:blur(22px)}
-    .row{display:flex;align-items:center;gap:14px}
-    .logo{width:40px;height:40px;border-radius:10px}
-    h1{font-size:clamp(26px,6vw,44px);line-height:1.05;margin:6px 0 10px}
-    .muted{color:var(--muted)}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(142,97,255,.18);border:1px solid rgba(142,97,255,.35);color:#d6ccff;font-weight:700;font-size:12px}
-    /* ===== Typing ===== */
-    .typing{font-weight:800;display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 200%;animation:shimmer 5s ease infinite}
-    .cursor{display:inline-block;width:1ch;background:currentColor;opacity:.9;animation:blink 1s steps(1,end) infinite}
+
+    /* ===== Scene background (Pioneer-style vibes) ===== */
+    .bg{position:fixed;inset:0;overflow:hidden;z-index:-3}
+    .bg::before{content:"";position:absolute;inset:-20%;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(110,231,255,.10), transparent 60%),
+        radial-gradient(1000px 500px at 80% 20%, rgba(139,92,246,.12), transparent 60%),
+        radial-gradient(900px 500px at 20% 80%, rgba(34,197,94,.08), transparent 60%);
+      filter: blur(20px);
+      animation: floatHue 18s ease-in-out infinite alternate;
+    }
+    .ring{position:fixed;inset:-10%; z-index:-2; display:grid; place-items:center; pointer-events:none}
+    .ring::before{content:""; width:140vmax; height:140vmax; border-radius:50%;
+      background: conic-gradient(from 0deg, rgba(110,231,255,.12), rgba(139,92,246,.12), rgba(110,231,255,.12));
+      filter: blur(24px) saturate(120%); animation: spin 40s linear infinite; opacity:.75}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:-1;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.8"/></svg>');
+      mix-blend-mode: overlay;
+    }
+    @keyframes spin{to{transform:rotate(1turn)}}
+    @keyframes floatHue{0%{transform:translateY(-2%)}100%{transform:translateY(2%)}}
+
+    /* ===== Spotlight follows cursor ===== */
+    .spotlight{position:fixed;inset:0; pointer-events:none; z-index:-1;
+      background: radial-gradient(300px 300px at var(--mx,50%) var(--my,50%), rgba(110,231,255,.12), transparent 60%);
+      transition: background-position .08s linear;
+    }
+
+    /* ===== Layout ===== */
+    .wrap{min-height:100%;display:grid;grid-template-rows:1fr auto;}
+
+    /* Header */
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;position:fixed;width:100%;top:0;left:0;background:linear-gradient(180deg, rgba(7,10,18,.7), transparent);backdrop-filter: blur(6px)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand img{width:28px;height:28px;border-radius:8px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(13,18,32,.55)}
+
+    /* Hero */
+    .hero{display:grid;place-items:center;padding:120px 20px 60px;text-align:center}
+    h1{font-size: clamp(36px, 7vw, 84px); line-height: 1.02; margin: 10px 0}
+    .gradient{background: linear-gradient(135deg, var(--brand), var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .lead{font-size: clamp(16px, 2.2vw, 22px); color: var(--muted); max-width: 820px; margin: 12px auto 0}
+
+    /* Typing */
+    .typing{font-weight:800; letter-spacing: .5px}
+    .cursor{display:inline-block;width:.6ch; background:currentColor; opacity:.9; animation:blink 1s steps(1,end) infinite}
     @keyframes blink{50%{opacity:0}}
-    @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    @keyframes slowzoom{0%{transform:scale(1)}100%{transform:scale(1.06)}}
-    @media (prefers-reduced-motion: reduce){ .video-bg video{animation:none} .typing{animation:none} .btn,.btn.primary{transition:none} }}
-    /* Footer links */
-    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background-position .4s ease}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));background-size:200% 200%;background-position:0% 50%;color:#07111e;font-weight:800}
-    .btn.primary:hover{background-position:100% 50%;box-shadow:0 0 0 8px rgba(110,231,255,.12),0 8px 20px rgba(0,0,0,.45);transform:translateY(-1px)}
-    .btn:hover{box-shadow:0 0 0 8px rgba(255,255,255,.06),0 8px 20px rgba(0,0,0,.45);transform:translateY(-1px)}
-    .fine{font-size:12px;color:var(--muted);margin-top:14px}
+
+    /* Marquee */
+    .marquee{overflow:hidden; mask: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); margin-top: 36px}
+    .marquee .track{display:flex; gap: 34px; align-items:center; white-space: nowrap; animation: scroll 26s linear infinite}
+    .logo{height:22px; opacity:.8; filter: grayscale(1) contrast(1.1)}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* Footer */
+    footer{padding:26px 20px; display:flex; justify-content:space-between; align-items:center; color: var(--muted)}
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#07111e;font-weight:800}
   </style>
 </head>
 <body>
-  <!-- Background Video -->
-  <div class="video-bg" aria-hidden="true">
-    <!-- Replace /assets/bg.webm & /assets/bg.mp4 with your files; add a poster image for faster first paint -->
-    <video autoplay loop muted playsinline preload="auto" poster="/assets/bg-poster.jpg">
-      <source src="/assets/bg.webm" type="video/webm" />
-      <source src="/assets/bg.mp4" type="video/mp4" />
-    </video>
-  </div>
-  <div class="overlay" aria-hidden="true"></div>
+  <div class="bg"></div>
+  <div class="ring"></div>
+  <div class="noise"></div>
+  <div class="spotlight"></div>
+
+  <header class="nav">
+    <div class="brand"><img src="assets/logo.png" alt="Conversy"/> Conversy</div>
+    <span class="pill">Coming soon • Q4</span>
+  </header>
 
   <main class="wrap">
-    <section class="card">
-      <div class="row">
-        <img class="logo" src="/assets/logo.png" alt="Conversy logo"/>
-        <span class="badge">Under Construction</span>
-      </div>
+    <section class="hero">
+      <div class="pill" style="margin:0 auto 14px">We back your <strong style="margin-left:6px">agentic future</strong></div>
       <h1>
-        Conversy — <span id="typing" class="typing" aria-live="polite"></span><span class="cursor" aria-hidden="true">&nbsp;</span>
+        <span class="gradient">Conversy</span><br/>
+        <span class="typing" id="typing"></span><span class="cursor">&nbsp;</span>
       </h1>
-      <p class="muted">We’re crafting an agentic AI platform for startups & SMBs. Launching soon. Stay tuned!</p>
+      <p class="lead">AI agents for service bookings & product sales — from spreadsheet to live chatbot in minutes. Payments, calendars, and WhatsApp built in.</p>
+
+      <!-- marquee logos (replace srcs) -->
+      <div class="marquee" aria-hidden="true">
+        <div class="track">
+          <img class="logo" src="assets/partners/aws.svg" alt="AWS"/>
+          <img class="logo" src="assets/partners/stripe.svg" alt="Stripe"/>
+          <img class="logo" src="assets/partners/google.svg" alt="Google"/>
+          <img class="logo" src="assets/partners/twilio.svg" alt="Twilio"/>
+          <img class="logo" src="assets/partners/calendly.svg" alt="Calendly"/>
+          <img class="logo" src="assets/partners/zapier.svg" alt="Zapier"/>
+          <!-- duplicate for seamless loop -->
+          <img class="logo" src="assets/partners/aws.svg" alt="AWS"/>
+          <img class="logo" src="assets/partners/stripe.svg" alt="Stripe"/>
+          <img class="logo" src="assets/partners/google.svg" alt="Google"/>
+          <img class="logo" src="assets/partners/twilio.svg" alt="Twilio"/>
+          <img class="logo" src="assets/partners/calendly.svg" alt="Calendly"/>
+          <img class="logo" src="assets/partners/zapier.svg" alt="Zapier"/>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Conversy</div>
       <div class="links">
-        <a class="btn primary" href="mailto:coreteam@conversyai.com">Contact us</a>
+        <a class="btn primary" href="mailto:coreteam@conversyai.com">Join waitlist</a>
         <a class="btn" href="https://www.linkedin.com/company/conversyai/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://www.instagram.com/conversy_ai/" target="_blank" rel="noopener">Instagram</a>
       </div>
-      <div class="fine">© <span id="year"></span> Conversy. All rights reserved.</div>
-    </section>
+    </footer>
   </main>
 
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Word-by-word typing animation
+    // Spotlight follows mouse / touch
+    const spot = document.querySelector('.spotlight');
+    const setPos = (x,y)=>{ spot.style.setProperty('--mx', x+'px'); spot.style.setProperty('--my', y+'px'); };
+    window.addEventListener('mousemove', e=> setPos(e.clientX, e.clientY));
+    window.addEventListener('touchmove', e=> { if(e.touches?.[0]) setPos(e.touches[0].clientX, e.touches[0].clientY); }, {passive:true});
+
+    // Typing (letter-by-letter)
     const phrases = [
-      'AI Agents that turn conversations into conversions',
-      'Bookings, payments & notifications — on autopilot',
-      'From a simple spreadsheet to a live chatbot URL'
+      'backs builders who ship.',
+      'turns conversations into conversions.',
+      'automates bookings, payments, and reminders.'
     ];
-    const el = document.getElementById('typing');
-
-    let p = 0, w = 0, typing = true;
-    const SPEED = 140;        // ms per char when typing
-    const PAUSE = 1600;      // pause at ends
-    const ERASE = 80;        // ms per char when deleting
-
+    const out = document.getElementById('typing');
+    let p=0, i=0, dir=1; // dir: 1 typing, -1 deleting
+    const TYPE=60, HOLD=1500, ERASE=30;
     function tick(){
-      const words = phrases[p].split(' ');
-      const target = words.slice(0, w).join(' ');
-      el.textContent = target;
-
-      if(typing){
-        if(w < words.length){
-          w++;
-          setTimeout(tick, SPEED * Math.max(1, words[w-1]?.length / 3));
-        } else {
-          typing = false;
-          setTimeout(tick, PAUSE);
-        }
+      const text = phrases[p];
+      if(dir>0){
+        i++;
+        out.textContent = text.slice(0,i);
+        if(i < text.length) return setTimeout(tick, TYPE);
+        dir = -1; return setTimeout(tick, HOLD);
       } else {
-        if(w > 0){
-          w--;
-          setTimeout(tick, ERASE * Math.max(1, words[w]?.length / 3));
-        } else {
-          typing = true;
-          p = (p + 1) % phrases.length;
-          setTimeout(tick, 400);
-        }
+        i--;
+        out.textContent = text.slice(0,i);
+        if(i>0) return setTimeout(tick, ERASE);
+        dir = 1; p = (p+1)%phrases.length; return setTimeout(tick, 400);
       }
     }
     tick();
