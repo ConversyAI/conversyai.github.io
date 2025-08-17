@@ -8,50 +8,29 @@
   <meta name="theme-color" content="#0b0f19" />
   <link rel="icon" href="assets/favicon.ico" />
   <style>
-    :root{
-      --bg:#070a12; --panel:#0d1220; --text:#eaf2ff; --muted:#9aa4b2;
-      --brand:#6ee7ff; --brand2:#8b5cf6; --ok:#22c55e;
-    }
+    :root{ --bg:#070a12; --panel:#0d1220; --text:#eaf2ff; --muted:#9aa4b2; --brand:#6ee7ff; --brand2:#8b5cf6; --ok:#22c55e; }
     html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial}
     *{box-sizing:border-box}
 
-    /* ===== Scene background (Pioneer-style vibes) ===== */
+    /* ===== Ambient background ===== */
     .bg{position:fixed;inset:0;overflow:hidden;z-index:-3}
-    .bg::before{content:"";position:absolute;inset:-20%;
-      background:
-        radial-gradient(1200px 600px at 50% 0%, rgba(110,231,255,.10), transparent 60%),
-        radial-gradient(1000px 500px at 80% 20%, rgba(139,92,246,.12), transparent 60%),
-        radial-gradient(900px 500px at 20% 80%, rgba(34,197,94,.08), transparent 60%);
-      filter: blur(20px);
-      animation: floatHue 18s ease-in-out infinite alternate;
-    }
+    .bg::before{content:"";position:absolute;inset:-20%;background:radial-gradient(1200px 600px at 50% 0%, rgba(110,231,255,.10), transparent 60%),radial-gradient(1000px 500px at 80% 20%, rgba(139,92,246,.12), transparent 60%),radial-gradient(900px 500px at 20% 80%, rgba(34,197,94,.08), transparent 60%);filter: blur(20px);animation: floatHue 18s ease-in-out infinite alternate}
     .ring{position:fixed;inset:-10%; z-index:-2; display:grid; place-items:center; pointer-events:none}
-    .ring::before{content:""; width:140vmax; height:140vmax; border-radius:50%;
-      background: conic-gradient(from 0deg, rgba(110,231,255,.12), rgba(139,92,246,.12), rgba(110,231,255,.12));
-      filter: blur(24px) saturate(120%); animation: spin 40s linear infinite; opacity:.75}
-    .noise{position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:-1;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.8"/></svg>');
-      mix-blend-mode: overlay;
-    }
+    .ring::before{content:""; width:140vmax; height:140vmax; border-radius:50%; background: conic-gradient(from 0deg, rgba(110,231,255,.12), rgba(139,92,246,.12), rgba(110,231,255,.12)); filter: blur(24px) saturate(120%); animation: spin 40s linear infinite; opacity:.75}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:-1;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.8"/></svg>');mix-blend-mode: overlay}
     @keyframes spin{to{transform:rotate(1turn)}}
     @keyframes floatHue{0%{transform:translateY(-2%)}100%{transform:translateY(2%)}}
 
-    /* ===== Spotlight follows cursor ===== */
-    .spotlight{position:fixed;inset:0; pointer-events:none; z-index:-1;
-      background: radial-gradient(300px 300px at var(--mx,50%) var(--my,50%), rgba(110,231,255,.12), transparent 60%);
-      transition: background-position .08s linear;
-    }
+    /* Spotlight follows cursor */
+    .spotlight{position:fixed;inset:0; pointer-events:none; z-index:-1; background: radial-gradient(300px 300px at var(--mx,50%) var(--my,50%), rgba(110,231,255,.12), transparent 60%); transition: background-position .08s linear}
 
-    /* ===== Layout ===== */
-    .wrap{min-height:100%;display:grid;grid-template-rows:1fr auto;}
-
-    /* Header */
+    /* Layout */
+    .wrap{min-height:100%;display:grid;grid-template-rows:1fr auto}
     .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;position:fixed;width:100%;top:0;left:0;background:linear-gradient(180deg, rgba(7,10,18,.7), transparent);backdrop-filter: blur(6px)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800}
     .brand img{width:28px;height:28px;border-radius:8px}
     .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(13,18,32,.55)}
 
-    /* Hero */
     .hero{display:grid;place-items:center;padding:120px 20px 60px;text-align:center}
     h1{font-size: clamp(36px, 7vw, 84px); line-height: 1.02; margin: 10px 0}
     .gradient{background: linear-gradient(135deg, var(--brand), var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent}
@@ -61,12 +40,6 @@
     .typing{font-weight:800; letter-spacing: .5px}
     .cursor{display:inline-block;width:.6ch; background:currentColor; opacity:.9; animation:blink 1s steps(1,end) infinite}
     @keyframes blink{50%{opacity:0}}
-
-    /* Marquee */
-    .marquee{overflow:hidden; mask: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); margin-top: 36px}
-    .marquee .track{display:flex; gap: 34px; align-items:center; white-space: nowrap; animation: scroll 26s linear infinite}
-    .logo{height:22px; opacity:.8; filter: grayscale(1) contrast(1.1)}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
     /* Footer */
     footer{padding:26px 20px; display:flex; justify-content:space-between; align-items:center; color: var(--muted)}
@@ -90,29 +63,11 @@
     <section class="hero">
       <div class="pill" style="margin:0 auto 14px">We back your <strong style="margin-left:6px">agentic future</strong></div>
       <h1>
-        <span class="gradient">Conversy</span><br/>
+        <span class="gradient">Conversy AI</span><br/>
         <span class="typing" id="typing"></span><span class="cursor">&nbsp;</span>
       </h1>
       <p class="lead">AI agents for service bookings & product sales — from spreadsheet to live chatbot in minutes. Payments, calendars, and WhatsApp built in.</p>
-
-      <!-- marquee logos (replace srcs) -->
-      <div class="marquee" aria-hidden="true">
-        <div class="track">
-          <img class="logo" src="assets/partners/aws.svg" alt="AWS"/>
-          <img class="logo" src="assets/partners/stripe.svg" alt="Stripe"/>
-          <img class="logo" src="assets/partners/google.svg" alt="Google"/>
-          <img class="logo" src="assets/partners/twilio.svg" alt="Twilio"/>
-          <img class="logo" src="assets/partners/calendly.svg" alt="Calendly"/>
-          <img class="logo" src="assets/partners/zapier.svg" alt="Zapier"/>
-          <!-- duplicate for seamless loop -->
-          <img class="logo" src="assets/partners/aws.svg" alt="AWS"/>
-          <img class="logo" src="assets/partners/stripe.svg" alt="Stripe"/>
-          <img class="logo" src="assets/partners/google.svg" alt="Google"/>
-          <img class="logo" src="assets/partners/twilio.svg" alt="Twilio"/>
-          <img class="logo" src="assets/partners/calendly.svg" alt="Calendly"/>
-          <img class="logo" src="assets/partners/zapier.svg" alt="Zapier"/>
-        </div>
-      </div>
+      <!-- Marquee removed by request -->
     </section>
 
     <footer>
