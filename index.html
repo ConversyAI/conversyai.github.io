@@ -144,6 +144,28 @@ h1{
   .typing-row{ margin-top: 0; }
 }
 
+    /* Crop extra whitespace inside the SVG box */
+.hero-icon{
+  margin: 0 auto 0;        /* no external space */
+  display: block;
+  line-height: 0;
+  /* tune these two percentages until it feels perfect */
+  clip-path: inset(12% 0 10% 0);  /* top right bottom left */
+}
+
+.pill.hero-badge{ margin: 0 auto 0; }
+h1{ margin: 0; }
+.typing-row{ margin-top: 0; }
+
+/* Optional: trim section padding too */
+.hero{ padding-top: 40px; padding-bottom: 18px; }
+
+@media (max-width:640px){
+  .hero{ padding-top: 36px; padding-bottom: 16px; }
+  .hero-icon{ clip-path: inset(12% 0 10% 0); }
+}
+
+
   </style>
 </head>
 <body>
