@@ -3,350 +3,110 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Conversy — AI Agents that Turn Conversations into Conversions</title>
-  <meta name="description" content="Conversy is an AI-powered platform for startups and SMBs: automate chats, bookings, and payments with agentic AI chatbots." />
+  <title>Conversy — We’re building something awesome</title>
+  <meta name="description" content="Conversy — Under construction. AI Agents that turn conversations into conversions." />
   <meta name="theme-color" content="#0b0f19" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="Conversy — AI Agents that Turn Conversations into Conversions" />
-  <meta property="og:description" content="Automate customer chats, bookings, and payments in minutes." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/og-cover.png" />
-  <meta property="og:url" content="https://conversyai.com" />
-  <!-- Icons -->
   <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <style>
-    /* ====== Design tokens ====== */
-    :root {
-      --bg: #0b0f19;          /* near-black */
-      --panel: #121827;       /* dark panel */
-      --muted: #9aa4b2;       /* gray text */
-      --text: #eef2ff;        /* near-white */
-      --brand: #6ee7ff;       /* cyan */
-      --brand-2: #8b5cf6;     /* violet */
-      --ok: #22c55e;          /* green */
-      --warn: #eab308;        /* yellow */
-      --danger: #ef4444;      /* red */
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --code: #0d1321;
-      --code-border: #20283a;
-      --maxw: 1160px;
+    :root{
+      --bg:#0b0f19; --text:#eef2ff; --muted:#9aa4b2; --brand:#6ee7ff; --brand-2:#8b5cf6;
     }
-    @media (prefers-color-scheme: light) {
-      :root{ --bg:#ffffff; --panel:#f5f7fb; --text:#0b0f19; --muted:#5b6472; --code:#0f172a; --code-border:#e2e8f0; }
-      header.nav { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
-    }
-    html,body{ height:100%; background: var(--bg); color: var(--text); font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;}
-    *{ box-sizing: border-box }
-    a{ color: inherit; text-decoration: none }
-    .container{ max-width: var(--maxw); margin: 0 auto; padding: 0 20px }
-    .btn{ display:inline-flex; gap:10px; align-items:center; padding: 12px 18px; border-radius: 999px; background: linear-gradient(135deg,var(--brand),var(--brand-2)); color:#07111e; font-weight:700; box-shadow: var(--shadow); }
-    .btn.secondary{ background: transparent; color: var(--text); border:1px solid rgba(255,255,255,.15)}
-    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background: rgba(142, 97, 255, .15); color:#d6ccff; border:1px solid rgba(142,97,255,.35); font-weight:600; font-size:12px }
-    .muted{ color: var(--muted) }
-    .grid{ display:grid; gap:24px }
-    /* ====== Header ====== */
-    header.nav{ position: sticky; top:0; z-index: 50; background: rgba(11,15,25,.7); backdrop-filter: blur(8px); }
-    nav .row{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0 }
-    nav .brand{ display:flex; gap:10px; align-items:center; font-weight:800 }
-    nav .brand img{ width:28px; height:28px; border-radius:8px }
-    nav .links{ display:flex; gap:18px; align-items:center }
-    nav .links a{ color: var(--muted) }
-    nav .cta{ display:flex; gap:10px }
-    /* ====== Hero ====== */
-    .hero{ padding: 64px 0 24px; position:relative; overflow:hidden }
-    .hero .backdrop{ position:absolute; inset:-10% -20% auto -20%; height:360px; background: radial-gradient(1200px 360px at 50% 0%, rgba(110,231,255,.18), transparent 60%), radial-gradient(900px 300px at 40% 0%, rgba(139,92,246,.22), transparent 60%); filter: blur(30px); pointer-events:none }
-    .hero h1{ font-size: clamp(32px, 7vw, 56px); line-height: 1.05; margin: 14px 0 }
-    .hero p{ font-size: clamp(16px, 2.2vw, 20px); color: var(--muted) }
-    .hero .actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:22px }
-    .hero .panel{ margin-top: 32px; background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 60%); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow) }
-    .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding: 10px 12px; border-radius: 12px; background: var(--code); border:1px solid var(--code-border); color:#cbd5e1 }
-    /* ====== Trust bar ====== */
-    .trust{ padding: 30px 0 }
-    .trust .row{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; justify-content:center; opacity:.8 }
-    .trust img{ height:22px; filter: grayscale(1) contrast(1.1) }
-    /* ====== Features ====== */
-    .section{ padding: 64px 0 }
-    .section h2{ font-size: clamp(24px, 4.5vw, 36px); margin-bottom: 12px }
-    .cards{ grid-template-columns: repeat(auto-fit, minmax(240px,1fr)) }
-    .card{ background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); min-height: 164px }
-    .card h3{ margin: 6px 0 8px; font-size: 18px }
-    .chip{ display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,.18); border-radius: 999px; padding:6px 10px; font-size:12px; color: var(--muted) }
-    .icon{ width:28px; height:28px; display:inline-grid; place-items:center; border-radius:10px; background: linear-gradient(135deg, rgba(110,231,255,.2), rgba(139,92,246,.2)); border:1px solid rgba(255,255,255,.18) }
-    /* ====== Code demo ====== */
-    .codewrap{ background: var(--code); border:1px solid var(--code-border); border-radius: var(--radius); overflow:hidden }
-    .codebar{ display:flex; gap:8px; align-items:center; padding:10px 12px; background: #0b1220; border-bottom:1px solid var(--code-border) }
-    .dot{ width:10px; height:10px; border-radius:999px; background:#ef4444 }
-    .dot:nth-child(2){ background:#eab308 }
-    .dot:nth-child(3){ background:#22c55e }
-    pre{ margin:0; padding:16px; font-size: 13px; line-height: 1.6; color:#d1e7ff; overflow:auto }
-    code .k{ color:#93c5fd }
-    code .s{ color:#f9a8d4 }
-    code .c{ color:#94a3b8 }
-    code .p{ color:#e2e8f0 }
-    /* ====== Metrics / Integrations ====== */
-    .stats{ display:grid; grid-template-columns: repeat(3,1fr); gap:12px }
-    .stat{ background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 18px; text-align:center }
-    .stat b{ font-size: 28px }
-    .logos{ display:flex; gap:14px; flex-wrap:wrap; align-items:center }
-    .logos img{ height:28px; filter: grayscale(1) opacity(.8) }
-    /* ====== FAQ ====== */
-    details{ background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 14px 16px }
-    details+details{ margin-top: 12px }
-    details summary{ cursor:pointer; font-weight: 700 }
-    /* ====== Footer ====== */
-    footer{ padding: 40px 0 60px; border-top:1px solid rgba(255,255,255,.08); color: var(--muted) }
-    .footgrid{ display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px }
-    .footgrid a{ color: var(--muted) }
-    .copyright{ margin-top: 20px; font-size: 14px }
-    @media (max-width: 860px){ .stats{ grid-template-columns:1fr; } .footgrid{ grid-template-columns:1fr 1fr; } }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial}
+    *{box-sizing:border-box}
+    /* ===== Background video ===== */
+    .video-bg{position:fixed;inset:0;overflow:hidden;z-index:-2}
+    .video-bg video{min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.38) saturate(1.1)}
+    .overlay{position:fixed;inset:0;background:radial-gradient(1200px 420px at 50% 10%, rgba(110,231,255,.18), transparent 60%), linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.65)); z-index:-1}
+    /* ===== Center card ===== */
+    .wrap{min-height:100%;display:grid;place-items:center;padding:28px}
+    .card{width:100%;max-width:820px;border:1px solid rgba(255,255,255,.08);background:rgba(12,18,30,.55);backdrop-filter:blur(10px);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .row{display:flex;align-items:center;gap:14px}
+    .logo{width:40px;height:40px;border-radius:10px}
+    h1{font-size:clamp(26px,6vw,44px);line-height:1.05;margin:6px 0 10px}
+    .muted{color:var(--muted)}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(142,97,255,.18);border:1px solid rgba(142,97,255,.35);color:#d6ccff;font-weight:700;font-size:12px}
+    /* ===== Typing ===== */
+    .typing{font-weight:800;display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .cursor{display:inline-block;width:1ch;background:currentColor;opacity:.9;animation:blink 1s steps(1,end) infinite}
+    @keyframes blink{50%{opacity:0}}
+    /* Footer links */
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#07111e;font-weight:800}
+    .fine{font-size:12px;color:var(--muted);margin-top:14px}
   </style>
 </head>
 <body>
-  <!-- ====== NAV ====== -->
-  <header class="nav">
-    <div class="container">
-      <nav class="row">
-        <a class="brand" href="#">
-          <img src="/assets/logo.png" alt="Conversy logo" /> Conversy
-        </a>
-        <div class="links">
-          <a href="#features">Features</a>
-          <a href="#docs">Docs</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="cta">
-          <a class="btn secondary" href="#login">Log in</a>
-          <a class="btn" href="#get-started">Get Started</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <!-- Background Video -->
+  <div class="video-bg" aria-hidden="true">
+    <!-- Replace /assets/bg.webm & /assets/bg.mp4 with your files; add a poster image for faster first paint -->
+    <video autoplay loop muted playsinline preload="auto" poster="/assets/bg-poster.jpg">
+      <source src="/assets/bg.webm" type="video/webm" />
+      <source src="/assets/bg.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="overlay" aria-hidden="true"></div>
 
-  <!-- ====== HERO ====== -->
-  <section class="hero">
-    <div class="backdrop"></div>
-    <div class="container">
-      <span class="badge">New • Agentic Workflows + WhatsApp & Stripe</span>
-      <h1>AI Agents that turn <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">conversations</span> into conversions.</h1>
-      <p>Spin up a branded chatbot that books services, sells products, and sends notifications — from a simple spreadsheet upload. No code. Deployed in minutes.</p>
-      <div class="actions">
-        <a class="btn" href="#get-started">Create your bot</a>
-        <a class="btn secondary" href="#demo">See live demo</a>
-      </div>
-      <div class="panel kbd" style="margin-top:24px">
-        <span class="muted" style="margin-right:10px">Try in terminal</span>
-        curl https://api.conversyai.com/create \
-        -H "Authorization: Bearer <key>" \
-        -d '{"name":"Salon Bliss","module":"service-booking"}'
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== TRUST BAR ====== -->
-  <section class="trust">
-    <div class="container">
+  <main class="wrap">
+    <section class="card">
       <div class="row">
-        <img src="/assets/logos/aws.svg" alt="AWS" />
-        <img src="/assets/logos/stripe.svg" alt="Stripe" />
-        <img src="/assets/logos/google.svg" alt="Google" />
-        <img src="/assets/logos/twilio.svg" alt="Twilio" />
-        <img src="/assets/logos/calendly.svg" alt="Calendly" />
+        <img class="logo" src="/assets/logo.png" alt="Conversy logo"/>
+        <span class="badge">Under Construction</span>
       </div>
-    </div>
-  </section>
+      <h1>
+        Conversy — <span id="typing" class="typing" aria-live="polite"></span><span class="cursor" aria-hidden="true">&nbsp;</span>
+      </h1>
+      <p class="muted">We’re crafting an agentic AI platform for startups & SMBs. Launching soon. Stay tuned!</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:hello@conversyai.com">Contact us</a>
+        <a class="btn" href="https://www.linkedin.com/company/conversyai" target="_blank" rel="noopener">Follow on LinkedIn</a>
+      </div>
+      <div class="fine">© <span id="year"></span> Conversy. All rights reserved.</div>
+    </section>
+  </main>
 
-  <!-- ====== FEATURES ====== -->
-  <section id="features" class="section">
-    <div class="container">
-      <h2>Purpose-built for services and product selling</h2>
-      <p class="muted">Upload a spreadsheet → get a working, branded chatbot URL you can share on web or WhatsApp.</p>
-      <div class="grid cards" style="margin-top:18px">
-        <article class="card">
-          <div class="icon">🧠</div>
-          <h3>Natural Language Intelligence</h3>
-          <p class="muted">Understands messy questions, typos, and intent. Guides users with smart follow‑ups.</p>
-          <div class="chip">LLMs + RAG</div>
-        </article>
-        <article class="card">
-          <div class="icon">📅</div>
-          <h3>Real‑time Bookings</h3>
-          <p class="muted">Checks availability via Google Calendar or Calendly, applies location rules, books instantly.</p>
-          <div class="chip">Service module</div>
-        </article>
-        <article class="card">
-          <div class="icon">🛒</div>
-          <h3>Sell Products</h3>
-          <p class="muted">Answers product questions, recommends bundles, validates stock, and collects payment.</p>
-          <div class="chip">Product module</div>
-        </article>
-        <article class="card">
-          <div class="icon">💳</div>
-          <h3>Payments & Invoices</h3>
-          <p class="muted">Stripe or Razorpay checkout with receipts and status webhooks. Tax‑ready exports.</p>
-          <div class="chip">Stripe • Razorpay</div>
-        </article>
-        <article class="card">
-          <div class="icon">📲</div>
-          <h3>WhatsApp & Email</h3>
-          <p class="muted">Send confirmations, reminders, and order updates automatically with templated messages.</p>
-          <div class="chip">Twilio • SMTP</div>
-        </article>
-        <article class="card">
-          <div class="icon">⚙️</div>
-          <h3>Agentic Workflows</h3>
-          <p class="muted">Decides next actions, recovers from errors, and executes API calls to finish the job.</p>
-          <div class="chip">Rules + Tools + AI</div>
-        </article>
-      </div>
-    </div>
-  </section>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- ====== CODE DEMO ====== -->
-  <section id="demo" class="section">
-    <div class="container">
-      <div class="grid" style="grid-template-columns: 1.1fr 1fr; align-items:center">
-        <div>
-          <h2>Drop in your spreadsheet. We do the rest.</h2>
-          <p class="muted">Conversy parses your services/products, FAQs, and policies, then spins up a branded chatbot URL like <strong>conversyai.in/salon123</strong>.</p>
-          <div class="logos" style="margin-top:12px">
-            <img src="/assets/logos/xlsx.svg" alt="Excel" />
-            <img src="/assets/logos/csv.svg" alt="CSV" />
-            <img src="/assets/logos/json.svg" alt="JSON" />
-          </div>
-        </div>
-        <div class="codewrap">
-          <div class="codebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:8px;color:#93c5fd">conversy.config.yaml</span></div>
-<pre><code><span class="c"># Minimal setup</span>
-<span class="k">project</span>: conversy
-<span class="k">module</span>: service-booking
-<span class="k">branding</span>:
-  name: Salon Bliss
-  color: "#6ee7ff"
-<span class="k">data_sources</span>:
-  - type: csv
-    path: services.csv
-  - type: csv
-    path: providers.csv
-<span class="k">integrations</span>:
-  calendar: google
-  payments: stripe
-  messaging: twilio
-</code></pre>
-        </div>
-      </div>
-    </div>
-  </section>
+    // Word-by-word typing animation
+    const phrases = [
+      'AI Agents that turn conversations into conversions',
+      'Bookings, payments & notifications — on autopilot',
+      'From a simple spreadsheet to a live chatbot URL'
+    ];
+    const el = document.getElementById('typing');
 
-  <!-- ====== METRICS / INTEGRATIONS ====== -->
-  <section class="section" id="metrics">
-    <div class="container">
-      <div class="stats">
-        <div class="stat"><b>5 min</b><div class="muted">to first bot</div></div>
-        <div class="stat"><b>+38%</b><div class="muted">more bookings</div></div>
-        <div class="stat"><b>-60%</b><div class="muted">support load</div></div>
-      </div>
-      <div style="height:24px"></div>
-      <div class="logos">
-        <span class="chip">Google Calendar</span>
-        <span class="chip">Calendly</span>
-        <span class="chip">Stripe</span>
-        <span class="chip">Razorpay</span>
-        <span class="chip">Twilio WhatsApp</span>
-        <span class="chip">Zapier & Webhooks</span>
-      </div>
-    </div>
-  </section>
+    let p = 0, w = 0, typing = true;
+    const SPEED = 60;        // ms per char when typing
+    const PAUSE = 1200;      // pause at ends
+    const ERASE = 30;        // ms per char when deleting
 
-  <!-- ====== PRICING CALLOUT ====== -->
-  <section id="pricing" class="section">
-    <div class="container">
-      <div class="grid" style="grid-template-columns: 1.2fr 1fr; gap: 18px">
-        <div class="card">
-          <h3>Free until you launch</h3>
-          <p class="muted">Build your bot, test privately, and invite your team. Pay only when you go live.</p>
-          <ul class="muted" style="margin:12px 0 0 18px; line-height:1.9">
-            <li>✔ 1 chatbot URL</li>
-            <li>✔ 1,000 messages / mo</li>
-            <li>✔ Spreadsheet upload</li>
-            <li>✔ Basic WhatsApp & email</li>
-          </ul>
-          <div style="margin-top:16px"><a class="btn" href="#get-started">Start free</a></div>
-        </div>
-        <div class="card">
-          <h3>Pro</h3>
-          <p class="muted">For growing teams with payments, bookings, and analytics.</p>
-          <ul class="muted" style="margin:12px 0 0 18px; line-height:1.9">
-            <li>✔ All Free features</li>
-            <li>✔ Stripe/Razorpay checkout</li>
-            <li>✔ Google Calendar & Calendly</li>
-            <li>✔ Custom webhooks & Zapier</li>
-          </ul>
-          <div style="margin-top:16px"><a class="btn secondary" href="#contact">Contact sales</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    function tick(){
+      const words = phrases[p].split(' ');
+      const target = words.slice(0, w).join(' ');
+      el.textContent = target;
 
-  <!-- ====== FAQ ====== -->
-  <section id="faq" class="section">
-    <div class="container">
-      <h2>Frequently asked questions</h2>
-      <details>
-        <summary>How do I deploy on my domain?</summary>
-        <p class="muted">Use GitHub Pages or Vercel for this static site. For your chatbot, we provision a unique URL and let you add a CNAME to use your domain.</p>
-      </details>
-      <details>
-        <summary>Do I need a database?</summary>
-        <p class="muted">For the static marketing site, no. For Conversy bots, we store your data securely and expose read/write endpoints.</p>
-      </details>
-      <details>
-        <summary>Can I embed the bot on my website?</summary>
-        <p class="muted">Yes. Copy the embed snippet from the dashboard and paste it into your site. It’s a lightweight iframe/web component.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
-  <footer>
-    <div class="container">
-      <div class="footgrid">
-        <div>
-          <div class="brand" style="font-weight:800; display:flex; gap:10px; align-items:center">
-            <img src="/assets/logo.png" alt="logo" style="width:28px; height:28px; border-radius:8px"/> Conversy
-          </div>
-          <p class="muted" style="margin-top:10px; max-width:520px">Agentic AI chatbots for services and product sellers. Automate chats, bookings, and payments — from a spreadsheet.</p>
-        </div>
-        <div>
-          <b>Product</b>
-          <ul style="list-style:none; padding:0; margin:8px 0; line-height:1.9">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#docs">Docs</a></li>
-          </ul>
-        </div>
-        <div>
-          <b>Company</b>
-          <ul style="list-style:none; padding:0; margin:8px 0; line-height:1.9">
-            <li><a href="#about">About</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <b>Legal</b>
-          <ul style="list-style:none; padding:0; margin:8px 0; line-height:1.9">
-            <li><a href="#terms">Terms</a></li>
-            <li><a href="#privacy">Privacy</a></li>
-            <li><a href="#cookies">Cookies</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">© <span id="year"></span> Conversy — All rights reserved.</div>
-    </div>
-    <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
-  </footer>
+      if(typing){
+        if(w < words.length){
+          w++;
+          setTimeout(tick, SPEED * Math.max(1, words[w-1]?.length / 3));
+        } else {
+          typing = false;
+          setTimeout(tick, PAUSE);
+        }
+      } else {
+        if(w > 0){
+          w--;
+          setTimeout(tick, ERASE * Math.max(1, words[w]?.length / 3));
+        } else {
+          typing = true;
+          p = (p + 1) % phrases.length;
+          setTimeout(tick, 400);
+        }
+      }
+    }
+    tick();
+  </script>
 </body>
 </html>
