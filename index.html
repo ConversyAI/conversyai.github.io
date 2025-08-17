@@ -58,8 +58,9 @@
       </h1>
       <p class="muted">We’re crafting an agentic AI platform for startups & SMBs. Launching soon. Stay tuned!</p>
       <div class="links">
-        <a class="btn primary" href="mailto:hello@conversyai.com">Contact us</a>
-        <a class="btn" href="https://www.linkedin.com/company/conversyai" target="_blank" rel="noopener">Follow on LinkedIn</a>
+        <a class="btn primary" href="mailto:coreteam@conversyai.com">Contact us</a>
+        <a class="btn" href="https://www.linkedin.com/company/conversyai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://www.instagram.com/conversy_ai/" target="_blank" rel="noopener">Instagram</a>
       </div>
       <div class="fine">© <span id="year"></span> Conversy. All rights reserved.</div>
     </section>
@@ -78,9 +79,9 @@
     const el = document.getElementById('typing');
 
     let p = 0, w = 0, typing = true;
-    const SPEED = 60;        // ms per char when typing
-    const PAUSE = 1200;      // pause at ends
-    const ERASE = 30;        // ms per char when deleting
+    const SPEED = 140;        // ms per char when typing
+    const PAUSE = 1600;      // pause at ends
+    const ERASE = 80;        // ms per char when deleting
 
     function tick(){
       const words = phrases[p].split(' ');
