@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conversy — We’re building something awesome</title>
-  <meta name="description" content="Conversy - Under construction. AI Agents that turn conversations into conversions." />
+  <meta name="description" content="Conversy — Under construction. AI Agents that turn conversations into conversions." />
   <meta name="theme-color" content="#0b0f19" />
   <link rel="icon" href="/assets/favicon.ico" />
   <style>
@@ -15,24 +15,30 @@
     *{box-sizing:border-box}
     /* ===== Background video ===== */
     .video-bg{position:fixed;inset:0;overflow:hidden;z-index:-2}
-    .video-bg video{min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.38) saturate(1.1)}
+    .video-bg video{min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.38) saturate(1.1);animation:slowzoom 40s ease-in-out infinite alternate;transform-origin:center}
     .overlay{position:fixed;inset:0;background:radial-gradient(1200px 420px at 50% 10%, rgba(110,231,255,.18), transparent 60%), linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.65)); z-index:-1}
     /* ===== Center card ===== */
     .wrap{min-height:100%;display:grid;place-items:center;padding:28px}
-    .card{width:100%;max-width:820px;border:1px solid rgba(255,255,255,.08);background:rgba(12,18,30,.55);backdrop-filter:blur(10px);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .card{position:relative;width:100%;max-width:820px;padding:28px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);background:linear-gradient(180deg, rgba(12,18,30,.55), rgba(12,18,30,.55)) padding-box, linear-gradient(135deg, rgba(110,231,255,.35), rgba(139,92,246,.35)) border-box;border:1px solid transparent} 
+    .card::after{content:"";position:absolute;inset:-10px;border-radius:inherit;z-index:-1;background:radial-gradient(60% 60% at 50% 0%, rgba(110,231,255,.12), transparent), radial-gradient(60% 60% at 85% 85%, rgba(139,92,246,.10), transparent);filter:blur(22px)}
     .row{display:flex;align-items:center;gap:14px}
     .logo{width:40px;height:40px;border-radius:10px}
     h1{font-size:clamp(26px,6vw,44px);line-height:1.05;margin:6px 0 10px}
     .muted{color:var(--muted)}
     .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(142,97,255,.18);border:1px solid rgba(142,97,255,.35);color:#d6ccff;font-weight:700;font-size:12px}
     /* ===== Typing ===== */
-    .typing{font-weight:800;display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .typing{font-weight:800;display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 200%;animation:shimmer 5s ease infinite}
     .cursor{display:inline-block;width:1ch;background:currentColor;opacity:.9;animation:blink 1s steps(1,end) infinite}
     @keyframes blink{50%{opacity:0}}
+    @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes slowzoom{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+    @media (prefers-reduced-motion: reduce){ .video-bg video{animation:none} .typing{animation:none} .btn,.btn.primary{transition:none} }}
     /* Footer links */
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#07111e;font-weight:800}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background-position .4s ease}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));background-size:200% 200%;background-position:0% 50%;color:#07111e;font-weight:800}
+    .btn.primary:hover{background-position:100% 50%;box-shadow:0 0 0 8px rgba(110,231,255,.12),0 8px 20px rgba(0,0,0,.45);transform:translateY(-1px)}
+    .btn:hover{box-shadow:0 0 0 8px rgba(255,255,255,.06),0 8px 20px rgba(0,0,0,.45);transform:translateY(-1px)}
     .fine{font-size:12px;color:var(--muted);margin-top:14px}
   </style>
 </head>
@@ -54,7 +60,7 @@
         <span class="badge">Under Construction</span>
       </div>
       <h1>
-        Conversy AI — <span id="typing" class="typing" aria-live="polite"></span><span class="cursor" aria-hidden="true">&nbsp;</span>
+        Conversy — <span id="typing" class="typing" aria-live="polite"></span><span class="cursor" aria-hidden="true">&nbsp;</span>
       </h1>
       <p class="muted">We’re crafting an agentic AI platform for startups & SMBs. Launching soon. Stay tuned!</p>
       <div class="links">
@@ -73,7 +79,7 @@
     // Word-by-word typing animation
     const phrases = [
       'AI Agents that turn conversations into conversions',
-      'Bookings, payments & notifications on autopilot',
+      'Bookings, payments & notifications — on autopilot',
       'From a simple spreadsheet to a live chatbot URL'
     ];
     const el = document.getElementById('typing');
