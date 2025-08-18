@@ -165,7 +165,7 @@
     }
     .brand{display:flex;align-items:center;gap:10px;font-weight:800}
     .brand img{width:28px;height:28px;border-radius:8px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:14px 16px;border-radius:999px;
       border:1px solid rgba(255,255,255,.14);background:rgba(13,18,32,.55)}
 
     .hero{display:grid;place-items:center;padding:52px 16px 24px;text-align:center}
@@ -174,7 +174,9 @@
     .lead{font-size: clamp(16px, 2.2vw, 22px); color: var(--muted); max-width: 820px; margin: 18px auto 0}
 
     /* === HERO / LOGO === */
-    .pill.hero-badge{ margin:0 auto 6px; }
+    .pill.hero-badge{ 
+      /* margin:0 auto 6px;  */
+    }
     .hero-icon{
       width:180px;
       height:auto;
@@ -193,9 +195,9 @@
 
     /* Footer */
     footer{padding:26px 20px; display:flex; justify-content:space-between; align-items:center; color: var(--muted)}
-    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .links{display:flex; gap:12px;}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--text);text-decoration:none}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#07111e;font-weight:800}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#07111e;font-weight:800;white-space: nowrap}
 
     /* ===== Carousel - Transparent Overlay Effect ===== */
     .carousel {
