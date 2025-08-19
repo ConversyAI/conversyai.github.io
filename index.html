@@ -332,6 +332,22 @@ img { max-width: 100%; height: auto; }
 
 /* 7) Safety: prevent long words from pushing layout */
 h1, .lead, .pill, .btn { word-wrap: break-word; overflow-wrap: anywhere; }
+/* === Footer button adjustments for small screens === */
+@media (max-width: 640px) {
+  .links {
+    gap: 6px;              /* tighter spacing */
+  }
+  .btn {
+    padding: 8px 10px;     /* smaller tap target */
+    font-size: 13px;
+    min-height: 38px;      /* a bit shorter */
+    border-radius: 20px;   /* less pill-like */
+  }
+  .btn.primary {
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
 
   </style>
 </head>
