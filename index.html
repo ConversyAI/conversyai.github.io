@@ -289,6 +289,50 @@
       .spotlight{animation:none}
       .noise{animation:none}
     }
+    /* ===== MOBILE/TABLET SCROLL FIXES ===== */
+
+/* 1) Never allow horizontal overflow */
+html, body { overflow-x: hidden; }
+
+/* 2) Make all full‑screen decorative layers clip inside the viewport */
+.bg, .particles, .ring, .cosmic-orbs, .noise, .spotlight {
+  position: fixed;
+  inset: 0;              /* lock to viewport edges */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;      /* prevent spill causing side scroll */
+}
+
+/* Keep the spinning ring large but clipped */
+.ring::before { width: 110vmax; height: 110vmax; }
+
+/* 3) Images should never exceed their container width */
+img { max-width: 100%; height: auto; }
+
+/* 4) Make the main layout and nav immune to tiny overflow blips */
+.wrap, .nav { overflow-x: clip; }
+
+/* 5) Carousel: ensure the moving track doesn’t create page-width expansion */
+.carousel { overflow: hidden; }
+.carousel-track {
+  width: max-content;            /* track is only as wide as its images */
+  will-change: transform;
+  animation: scroll 20s linear infinite;
+}
+@keyframes scroll {
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-50%,0,0); }
+}
+
+/* 6) Tighter assets on small screens to avoid accidental overflow */
+@media (max-width: 768px) {
+  .carousel { width: 100%; border-radius: 10px; padding: 12px 14px; }
+  .carousel-track img { width: 96px; height: 28px; margin: 0 6px; }
+}
+
+/* 7) Safety: prevent long words from pushing layout */
+h1, .lead, .pill, .btn { word-wrap: break-word; overflow-wrap: anywhere; }
+
   </style>
 </head>
 <body>
