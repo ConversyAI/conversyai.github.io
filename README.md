@@ -5,39 +5,36 @@ Landing page for Conversy AI - Agentic AI that turns conversations into conversi
 ## 🌐 Live Site
 [www.conversyai.com](https://www.conversyai.com) (or conversyai.github.io)
 
-## 📁 Repository Structure
+## 🌿 Branch Structure
 
+This repository uses git branches to manage different versions:
+
+### `main` Branch - **LIVE PRODUCTION SITE** 🟢
 ```
 conversyai.github.io/
-├── index.html                 # 🟢 CURRENT LIVE SITE (original static page)
-├── assets/                    # Assets for live site
-├── CNAME                      # Domain configuration
-│
-├── conversy-app/              # 🆕 NEW REACT APP (not yet deployed)
-│   ├── src/
-│   ├── public/
-│   ├── README.md             # Setup instructions
-│   ├── FIREBASE_SETUP.md     # Firebase configuration guide
-│   └── DEPLOYMENT.md         # Deployment instructions
-│
-└── original-static-site/      # 📦 BACKUP of original files
-    ├── index.html
-    ├── assets/
-    └── BACKUP_INFO.md
+├── index.html       ← Currently live at www.conversyai.com
+├── assets/          ← Live site assets
+├── CNAME           ← Domain configuration
+└── README.md
 ```
-
-## 🚀 Current Status
-
-### Live Site (Active)
-- **Location**: `index.html` in root directory
+- **Status**: ✅ Active and live
 - **Type**: Static HTML/CSS/JS
-- **Status**: ✅ Currently active and live
 - **URL**: https://www.conversyai.com
 
-### New React App (Development)
-- **Location**: `conversy-app/` folder
+### `new_version_static_page` Branch - **DEVELOPMENT** 🔨
+```
+conversyai.github.io/
+├── conversy-app/              ← New React application
+│   ├── src/components/
+│   ├── public/assets/
+│   ├── README.md
+│   ├── FIREBASE_SETUP.md
+│   └── DEPLOYMENT.md
+├── WORKFLOW.md               ← Git workflow guide
+└── README.md
+```
+- **Status**: 🔨 Development/testing
 - **Type**: React + Vite + Tailwind CSS + Firebase
-- **Status**: 🔨 Built and ready to deploy
 - **Features**:
   - Full responsive design
   - Animated counters with Firebase
@@ -46,79 +43,151 @@ conversyai.github.io/
   - Visitor tracking
   - Team, Services, About sections
 
-## 🔄 To Deploy New React App
+---
 
-1. **Configure Firebase**
-   ```bash
-   cd conversy-app
-   # Follow instructions in FIREBASE_SETUP.md
-   ```
+## 🚀 Quick Start for Development
 
-2. **Test Locally**
-   ```bash
-   npm run dev
-   ```
-
-3. **Build for Production**
-   ```bash
-   npm run build
-   ```
-
-4. **Deploy to GitHub Pages**
-   ```bash
-   # Copy build files to root
-   cp -r dist/* ../
-
-   # Commit and push
-   git add .
-   git commit -m "Deploy new React website"
-   git push origin main
-   ```
-
-   **⚠️ Warning**: This will replace your current live site!
-
-For detailed instructions, see [conversy-app/DEPLOYMENT.md](conversy-app/DEPLOYMENT.md)
-
-## 📦 Backup
-
-Original static site files are backed up in `original-static-site/` folder.
-
-To restore original site if needed:
+### Switch to Development Branch
 ```bash
-cp original-static-site/index.html .
+git checkout new_version_static_page
+```
+
+### Work on New React App
+```bash
+cd conversy-app
+npm install
+npm run dev
+```
+
+### Make Changes and Commit
+```bash
 git add .
-git commit -m "Restore original site"
+git commit -m "Your changes"
+git push origin new_version_static_page
+```
+
+---
+
+## 📖 Why This Structure?
+
+### ❓ Why are files in root on `main` branch?
+**GitHub Pages requires `index.html` in the root directory** to serve your site. It can't serve from subdirectories for user/org pages.
+
+### ❓ Why use branches instead of folders?
+**Branches are the proper git way to manage versions:**
+- ✅ No duplicate files
+- ✅ Full version history
+- ✅ Easy to switch back and forth
+- ✅ Can compare changes with `git diff`
+- ✅ Live site is always safe on `main`
+- ✅ Can restore instantly: `git checkout main`
+
+**Folders would mean:**
+- ❌ Cluttered repository
+- ❌ Duplicate files
+- ❌ Not properly version controlled
+- ❌ Confusing structure
+
+---
+
+## 🔄 Deployment Process
+
+When you're ready to make the new React app live:
+
+### 1. Build the App
+```bash
+git checkout new_version_static_page
+cd conversy-app
+npm run build
+```
+
+### 2. Deploy to Main Branch
+```bash
+git checkout main
+cp -r conversy-app/dist/* .
+git add .
+git commit -m "Deploy new React website"
 git push origin main
 ```
 
+**⚠️ This replaces your live site!**
+
+For detailed instructions, see:
+- [conversy-app/DEPLOYMENT.md](conversy-app/DEPLOYMENT.md)
+- [WORKFLOW.md](WORKFLOW.md)
+
+---
+
+## 🛡️ Safety & Backup
+
+### Your Original Site is Safe
+- Preserved in `main` branch git history
+- Can view all previous versions with `git log`
+- Can restore any version with `git checkout`
+
+### To Restore Original Site
+```bash
+# View history
+git log
+
+# Restore to specific commit
+git checkout <commit-hash> -- index.html assets/
+
+# Or revert recent changes
+git revert HEAD
+```
+
+---
+
 ## 🛠️ Tech Stack
 
-### Current Site (Live)
-- HTML
-- CSS
-- Vanilla JavaScript
+### Current Live Site (`main` branch)
+- Static HTML/CSS/JavaScript
+- Animated background with particles
+- Coming soon landing page
 
-### New App (Ready to Deploy)
-- React 19
-- Vite
-- Tailwind CSS 4
-- Framer Motion
-- Firebase (Firestore + Analytics)
-- React CountUp
-- React Intersection Observer
+### New React App (`new_version_static_page` branch)
+- **Frontend**: React 19, Vite, Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Backend**: Firebase (Firestore + Analytics)
+- **Features**: CountUp animations, Intersection Observer
+- **Build**: Optimized for production with code splitting
+
+---
 
 ## 📚 Documentation
 
-- [New App Setup Guide](conversy-app/README.md)
-- [Firebase Setup Guide](conversy-app/FIREBASE_SETUP.md)
-- [Deployment Guide](conversy-app/DEPLOYMENT.md)
-- [Original Site Backup Info](original-static-site/BACKUP_INFO.md)
+- **[WORKFLOW.md](WORKFLOW.md)** - Git branch workflow guide
+- **[conversy-app/README.md](conversy-app/README.md)** - React app setup
+- **[conversy-app/FIREBASE_SETUP.md](conversy-app/FIREBASE_SETUP.md)** - Firebase configuration
+- **[conversy-app/DEPLOYMENT.md](conversy-app/DEPLOYMENT.md)** - Deployment guide
+
+---
+
+## 📋 Development Checklist
+
+Before deploying the new site:
+
+- [ ] Configure Firebase (see FIREBASE_SETUP.md)
+- [ ] Update Firebase credentials in `src/firebase.js`
+- [ ] Test locally with `npm run dev`
+- [ ] Build successfully with `npm run build`
+- [ ] Test production build with `npm run preview`
+- [ ] Update content (team, services, testimonials)
+- [ ] Verify all links work
+- [ ] Test on mobile devices
+- [ ] Deploy to `main` branch
+
+---
 
 ## 🔗 Links
 
-- Website: [www.conversyai.com](https://www.conversyai.com)
-- LinkedIn: [linkedin.com/company/conversyai](https://www.linkedin.com/company/conversyai)
-- Instagram: [@conversyai](https://instagram.com/conversyai)
+- **Website**: [www.conversyai.com](https://www.conversyai.com)
+- **LinkedIn**: [linkedin.com/company/conversyai](https://www.linkedin.com/company/conversyai)
+- **Instagram**: [@conversyai](https://instagram.com/conversyai)
+- **GitHub Repo**: [github.com/ConversyAI/conversyai.github.io](https://github.com/ConversyAI/conversyai.github.io)
+
+---
 
 ## 📄 License
 
@@ -126,4 +195,11 @@ git push origin main
 
 ---
 
-**Note**: The repository currently contains both the live static site (root files) and the new React app (conversy-app folder). The Next.js folder has been removed as it's not needed.
+## 💡 Quick Tips
+
+- Work on `new_version_static_page` for development
+- `main` branch = live site (don't edit directly)
+- Use `git checkout <branch>` to switch between versions
+- See [WORKFLOW.md](WORKFLOW.md) for complete git workflow
+
+**Your live site on `main` branch is safe and will not be affected until you explicitly deploy!** 🛡️
