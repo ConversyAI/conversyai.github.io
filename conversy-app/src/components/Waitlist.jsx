@@ -56,10 +56,10 @@ const Waitlist = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
             Join the Waitlist
           </h2>
-          <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+          <p className="text-brand-muted text-base max-w-2xl mx-auto">
             Be among the first to experience the future of AI-powered business automation. Get early access and exclusive benefits.
           </p>
         </motion.div>
@@ -154,7 +154,7 @@ const Waitlist = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-brand-bg font-bold text-lg hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-brand-bg font-bold text-base hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">

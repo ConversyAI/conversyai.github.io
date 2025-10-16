@@ -77,10 +77,10 @@ const Team = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
             Meet Our Team
           </h2>
-          <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+          <p className="text-brand-muted text-base max-w-2xl mx-auto">
             Passionate builders committed to transforming business automation
           </p>
         </motion.div>
@@ -144,10 +144,10 @@ const Team = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mb-12"
         >
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 text-brand-text">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-4 text-brand-text">
             Advisory Panel
           </h3>
-          <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+          <p className="text-brand-muted text-base max-w-2xl mx-auto">
             Guided by industry leaders and innovators
           </p>
         </motion.div>

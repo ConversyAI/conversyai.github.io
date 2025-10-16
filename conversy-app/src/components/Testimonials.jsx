@@ -88,10 +88,10 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
             What Our Users Say
           </h2>
-          <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+          <p className="text-brand-muted text-base max-w-2xl mx-auto">
             Real feedback from businesses already using Conversy AI
           </p>
         </motion.div>
@@ -117,7 +117,7 @@ const Testimonials = () => {
                   </div>
 
                   {/* Content */}
-                  <p className="text-brand-text text-lg sm:text-xl mb-6 flex-grow">
+                  <p className="text-brand-text text-base sm:text-lg mb-6 flex-grow">
                     "{testimonials[currentIndex].content}"
                   </p>
 
@@ -139,7 +139,23 @@ const Testimonials = () => {
                       </h4>
                       <p className="text-brand-muted text-sm">
                         {testimonials[currentIndex].role}
+                        {testimonials[currentIndex].Company && (
+                          <span> • {testimonials[currentIndex].Company}</span>
+                        )}
                       </p>
+                      {testimonials[currentIndex].website && (
+                        <a
+                          href={testimonials[currentIndex].website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-brand-primary text-xs hover:text-brand-secondary transition-colors inline-flex items-center gap-1 mt-1"
+                        >
+                          Visit Website
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

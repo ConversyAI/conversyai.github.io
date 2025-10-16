@@ -1,6 +1,5 @@
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import { doc, setDoc, getDoc, increment, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase';
+import { trackPageVisit } from '../firebase';
 
 // Storage keys
 const STORAGE_KEYS = {
@@ -30,7 +29,7 @@ export const getVisitorId = async () => {
 
     return visitorId;
   } catch (error) {
-    console.error('Error getting visitor ID:', error);
+    console.log('Error getting visitor ID:', error.message);
     // Fallback to random ID if fingerprinting fails
     const fallbackId = `visitor_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     localStorage.setItem(STORAGE_KEYS.VISITOR_ID, fallbackId);
@@ -61,6 +60,7 @@ export const isNewSession = () => {
 
 /**
  * Track unique visitor and page view
+ * This function is non-blocking and will not throw errors
  */
 export const trackVisitor = async () => {
   try {
@@ -69,7 +69,7 @@ export const trackVisitor = async () => {
     const isFirst = isFirstVisit();
     const isNewSess = isNewSession();
 
-    // Update local storage
+    // Update local storage first (always works)
     if (isFirst) {
       localStorage.setItem(STORAGE_KEYS.FIRST_VISIT, now.toString());
     }
@@ -78,59 +78,12 @@ export const trackVisitor = async () => {
     const visitCount = parseInt(localStorage.getItem(STORAGE_KEYS.VISIT_COUNT) || '0', 10) + 1;
     localStorage.setItem(STORAGE_KEYS.VISIT_COUNT, visitCount.toString());
 
-    // Update Firebase stats
-    const statsRef = doc(db, 'stats', 'main');
-    const statsDoc = await getDoc(statsRef);
-
-    if (statsDoc.exists()) {
-      const updates = {
-        totalPageViews: increment(1),
-        lastUpdated: serverTimestamp(),
-      };
-
-      // Only increment unique visitors on first visit
-      if (isFirst) {
-        updates.uniqueVisitors = increment(1);
-      }
-
-      await setDoc(statsRef, updates, { merge: true });
-    } else {
-      // Create initial stats document
-      await setDoc(statsRef, {
-        uniqueVisitors: 1,
-        totalPageViews: 1,
-        linkedinFollowers: 0,
-        waitlistCount: 0,
-        lastUpdated: serverTimestamp(),
-      });
-    }
-
-    // Track individual visitor data (optional, for detailed analytics)
-    if (isFirst || isNewSess) {
-      const visitorRef = doc(db, 'visitors', visitorId);
-      const visitorDoc = await getDoc(visitorRef);
-
-      if (visitorDoc.exists()) {
-        // Update existing visitor
-        await setDoc(visitorRef, {
-          lastVisit: serverTimestamp(),
-          visitCount: increment(1),
-          sessions: increment(isNewSess ? 1 : 0),
-        }, { merge: true });
-      } else {
-        // New visitor
-        await setDoc(visitorRef, {
-          firstVisit: serverTimestamp(),
-          lastVisit: serverTimestamp(),
-          visitCount: 1,
-          sessions: 1,
-          visitorId: visitorId,
-          userAgent: navigator.userAgent,
-          language: navigator.language,
-          platform: navigator.platform,
-          screenResolution: `${window.screen.width}x${window.screen.height}`,
-        });
-      }
+    // Try to track in Firebase (may fail silently)
+    try {
+      await trackPageVisit(visitorId, isFirst, isNewSess);
+    } catch (firebaseError) {
+      // Firebase tracking failed, but local tracking succeeded
+      console.log('Firebase tracking skipped:', firebaseError.message);
     }
 
     return {
@@ -140,7 +93,7 @@ export const trackVisitor = async () => {
       visitCount,
     };
   } catch (error) {
-    console.error('Error tracking visitor:', error);
+    console.log('Error tracking visitor:', error.message);
     return null;
   }
 };

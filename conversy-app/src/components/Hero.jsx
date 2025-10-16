@@ -39,50 +39,93 @@ const Hero = () => {
   }, [displayedText, isDeleting, currentPhraseIndex, phrases]);
 
   const integrationIcons = [
-    { src: '/assets/stripe-icon.svg', alt: 'Stripe' },
-    { src: '/assets/razorpay-icon.svg', alt: 'Razorpay' },
-    { src: '/assets/telegram-icon.svg', alt: 'Telegram' },
-    { src: '/assets/wa-whatsapp-icon.svg', alt: 'WhatsApp' },
-    { src: '/assets/google-calendar-icon.svg', alt: 'Google Calendar' },
+    { src: 'assets/stripe-icon.svg', alt: 'Stripe' },
+    { src: 'assets/razorpay-icon.svg', alt: 'Razorpay' },
+    { src: 'assets/telegram-icon.svg', alt: 'Telegram' },
+    { src: 'assets/wa-whatsapp-icon.svg', alt: 'WhatsApp' },
+    { src: 'assets/google-calendar-icon.svg', alt: 'Google Calendar' },
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-32">
       <div className="max-w-5xl mx-auto text-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-block mb-6"
+          className="inline-block mb-8"
         >
-          <span className="px-4 py-2 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-sm text-brand-muted">
-            Coming soon • Q4
+          <span className="px-5 py-2.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-base text-white font-medium">
+            We back your agentic future
           </span>
         </motion.div>
 
-        {/* Main Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight"
+        {/* Center Logo - Animated Bot */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="flex flex-col items-center mb-6"
         >
-          <span className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_3s_ease_infinite]">
-            Conversy AI
-          </span>
-        </motion.h1>
+          <motion.div
+            animate={{
+              y: [0, -15, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative"
+          >
+            <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 backdrop-blur-sm flex items-center justify-center">
+              <img
+                src="assets/Logo SVG.svg"
+                alt="Conversy AI Bot"
+                className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain drop-shadow-lg"
+              />
+            </div>
+            <motion.div
+              className="absolute inset-0 rounded-full"
+              animate={{
+                boxShadow: [
+                  '0 0 30px rgba(110, 231, 255, 0.2)',
+                  '0 0 60px rgba(110, 231, 255, 0.4)',
+                  '0 0 30px rgba(110, 231, 255, 0.2)',
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
+
+          {/* Conversy AI text below logo */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mt-6 leading-tight"
+          >
+            <span className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_3s_ease_infinite]">
+              Conversy AI
+            </span>
+          </motion.h1>
+        </motion.div>
 
         {/* Typing Animation Subheading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-2xl sm:text-3xl md:text-4xl text-brand-text mb-4 h-20 sm:h-24 flex items-center justify-center"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-xl sm:text-2xl md:text-3xl text-white font-bold mb-6 h-16 sm:h-20 flex items-center justify-center"
         >
-          <span className="font-light">
+          <span className="font-bold">
             {displayedText}
-            <span className="inline-block w-1 h-8 sm:h-10 ml-1 bg-brand-primary animate-pulse"></span>
+            <span className="animate-pulse">|</span>
           </span>
         </motion.div>
 
@@ -90,71 +133,35 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-lg sm:text-xl text-brand-muted max-w-3xl mx-auto mb-8"
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="text-base sm:text-lg md:text-xl text-white max-w-4xl mx-auto mb-10 font-light"
         >
-          AI Business agent for service bookings & product sales from spreadsheet to live chatbot in minutes
+          AI Business agent for service bookings & product sales from spreadsheet to live chatbot in minutes.
         </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-        >
-          <a
-            href="#waitlist"
-            className="px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-brand-bg font-bold text-lg hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 w-full sm:w-auto"
-          >
-            Join Waitlist
-          </a>
-          <a
-            href="#about"
-            className="px-8 py-4 bg-transparent border-2 border-brand-primary/50 rounded-full text-brand-text font-bold text-lg hover:border-brand-primary hover:bg-brand-primary/10 transition-all duration-200 w-full sm:w-auto"
-          >
-            Learn More
-          </a>
-        </motion.div>
 
         {/* Integration Icons Carousel */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="relative overflow-hidden"
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="relative overflow-hidden mb-12"
         >
-          <p className="text-brand-muted text-sm mb-4">Integrates with your favorite tools</p>
-          <div className="flex justify-center gap-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+          <p className="text-white text-sm mb-6 font-medium">Integrates with your favorite tools</p>
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 mb-12">
             {integrationIcons.map((icon, index) => (
               <motion.img
                 key={index}
                 src={icon.src}
                 alt={icon.alt}
-                className="h-10 sm:h-12 w-auto"
-                whileHover={{ scale: 1.2, filter: 'grayscale(0%)' }}
+                className="h-12 sm:h-14 md:h-16 w-auto"
+                whileHover={{ scale: 1.2 }}
                 transition={{ duration: 0.2 }}
               />
             ))}
           </div>
         </motion.div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-brand-primary/50 rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-2 bg-brand-primary rounded-full"></div>
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

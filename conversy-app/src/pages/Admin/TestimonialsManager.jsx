@@ -9,13 +9,15 @@ const TestimonialsManager = ({ testimonials, onUpdate }) => {
   const [formData, setFormData] = useState({
     name: '',
     role: '',
+    Company: '',
+    website: '',
     content: '',
     rating: 5,
     image: '',
   });
 
   const resetForm = () => {
-    setFormData({ name: '', role: '', content: '', rating: 5, image: '' });
+    setFormData({ name: '', role: '', Company: '', website: '', content: '', rating: 5, image: '' });
     setIsAdding(false);
     setEditingId(null);
   };
@@ -52,6 +54,8 @@ const TestimonialsManager = ({ testimonials, onUpdate }) => {
     setFormData({
       name: testimonial.name,
       role: testimonial.role,
+      Company: testimonial.Company || '',
+      website: testimonial.website || '',
       content: testimonial.content,
       rating: testimonial.rating || 5,
       image: testimonial.image || '',
@@ -108,7 +112,29 @@ const TestimonialsManager = ({ testimonials, onUpdate }) => {
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                     required
                     className="w-full px-4 py-3 bg-brand-bg border border-brand-primary/30 rounded-lg text-brand-text focus:outline-none focus:border-brand-primary"
-                    placeholder="CEO, Company Name"
+                    placeholder="CEO"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-brand-text font-medium mb-2">Company (optional)</label>
+                  <input
+                    type="text"
+                    value={formData.Company}
+                    onChange={(e) => setFormData({ ...formData, Company: e.target.value })}
+                    className="w-full px-4 py-3 bg-brand-bg border border-brand-primary/30 rounded-lg text-brand-text focus:outline-none focus:border-brand-primary"
+                    placeholder="Sans Makeover"
+                  />
+                </div>
+                <div>
+                  <label className="block text-brand-text font-medium mb-2">Website (optional)</label>
+                  <input
+                    type="url"
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    className="w-full px-4 py-3 bg-brand-bg border border-brand-primary/30 rounded-lg text-brand-text focus:outline-none focus:border-brand-primary"
+                    placeholder="https://example.com"
                   />
                 </div>
               </div>
@@ -174,7 +200,18 @@ const TestimonialsManager = ({ testimonials, onUpdate }) => {
                   )}
                   <div className="flex-1">
                     <h4 className="text-brand-text font-bold text-lg">{testimonial.name}</h4>
-                    <p className="text-brand-primary text-sm mb-2">{testimonial.role}</p>
+                    <p className="text-brand-primary text-sm mb-1">
+                      {testimonial.role}
+                      {testimonial.Company && <span className="text-brand-muted"> • {testimonial.Company}</span>}
+                    </p>
+                    {testimonial.website && (
+                      <a href={testimonial.website} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-primary hover:text-brand-secondary transition-colors inline-flex items-center gap-1 mb-2">
+                        {testimonial.website}
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
                     <p className="text-brand-muted text-sm mb-2">{testimonial.content}</p>
                     <div className="flex gap-1">
                       {[...Array(testimonial.rating || 5)].map((_, i) => (

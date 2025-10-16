@@ -107,10 +107,10 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
             Our Services
           </h2>
-          <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+          <p className="text-brand-muted text-base max-w-2xl mx-auto">
             Everything you need to automate your business operations and boost conversions
           </p>
         </motion.div>
@@ -131,7 +131,7 @@ const Services = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-brand-text mb-3">
+                <h3 className="text-xl font-bold text-brand-text mb-3">
                   {service.title}
                 </h3>
 
@@ -176,7 +176,7 @@ const Services = () => {
         >
           <a
             href="#waitlist"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-brand-bg font-bold text-lg hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-brand-bg font-bold text-base hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200"
           >
             Get Started Today
           </a>

@@ -61,15 +61,15 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
             About Conversy AI
           </h2>
-          <p className="text-brand-text text-lg sm:text-xl max-w-3xl mx-auto mb-6 leading-relaxed">
+          <p className="text-brand-text text-base sm:text-lg max-w-3xl mx-auto mb-6 leading-relaxed">
             We're on a mission to empower small and medium businesses with enterprise-grade AI automation.
             Born from the frustration of complex booking systems and missed opportunities, Conversy AI makes
             it possible to go from spreadsheet to live AI agent in minutes.
           </p>
-          <p className="text-brand-muted text-lg max-w-3xl mx-auto">
+          <p className="text-brand-muted text-base max-w-3xl mx-auto">
             We believe that powerful AI should be accessible to everyone, not just tech giants. That's why
             we're building tools that anyone can use, regardless of technical expertise.
           </p>
@@ -122,7 +122,7 @@ const About = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-20"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold text-center text-brand-text mb-12">
+          <h3 className="text-xl sm:text-2xl font-bold text-center text-brand-text mb-12">
             Our Core Values
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -150,7 +150,7 @@ const About = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h3 className="text-2xl sm:text-3xl font-bold text-center text-brand-text mb-12">
+          <h3 className="text-xl sm:text-2xl font-bold text-center text-brand-text mb-12">
             Our Journey
           </h3>
           <div className="max-w-3xl mx-auto">
