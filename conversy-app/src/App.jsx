@@ -9,12 +9,13 @@ import Testimonials from './components/Testimonials';
 import Team from './components/Team';
 import Waitlist from './components/Waitlist';
 import Footer from './components/Footer';
-import { trackPageVisit } from './firebase';
+import { trackVisitor } from './utils/analytics';
 
 function App() {
   useEffect(() => {
-    // Track page visit when app loads
-    trackPageVisit();
+    // Track unique visitor (only counts first-time visitors)
+    // and page views properly
+    trackVisitor();
   }, []);
 
   return (

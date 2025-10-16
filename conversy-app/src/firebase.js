@@ -62,7 +62,7 @@ export const getInterviews = async (limitCount = 10) => {
   }
 };
 
-// Get stats (LinkedIn followers, page views, waitlist count)
+// Get stats (LinkedIn followers, unique visitors, page views, waitlist count)
 export const getStats = async () => {
   try {
     const statsDoc = await getDoc(doc(db, COLLECTIONS.STATS, 'main'));
@@ -71,14 +71,16 @@ export const getStats = async () => {
     }
     return {
       linkedinFollowers: 0,
-      pageViews: 0,
+      uniqueVisitors: 0,
+      totalPageViews: 0,
       waitlistCount: 0
     };
   } catch (error) {
     console.error('Error getting stats:', error);
     return {
       linkedinFollowers: 0,
-      pageViews: 0,
+      uniqueVisitors: 0,
+      totalPageViews: 0,
       waitlistCount: 0
     };
   }
