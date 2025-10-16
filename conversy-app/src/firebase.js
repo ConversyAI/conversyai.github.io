@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, increment, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, increment, doc, setDoc, getDoc, deleteDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 
 // TODO: Replace with your Firebase config
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
 
 // Collections
@@ -126,4 +128,106 @@ export const updateLinkedInCount = async (count) => {
   }
 };
 
-export { db, analytics };
+// ==================== ADMIN FUNCTIONS ====================
+
+// Authentication
+export const loginAdmin = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return { success: true, user: userCredential.user };
+  } catch (error) {
+    console.error('Error logging in:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const logoutAdmin = async () => {
+  try {
+    await signOut(auth);
+    return { success: true };
+  } catch (error) {
+    console.error('Error logging out:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const getCurrentUser = () => {
+  return auth.currentUser;
+};
+
+export const onAuthChange = (callback) => {
+  return onAuthStateChanged(auth, callback);
+};
+
+// Update all stats
+export const updateStats = async (stats) => {
+  try {
+    const statsRef = doc(db, COLLECTIONS.STATS, 'main');
+    await setDoc(statsRef, {
+      ...stats,
+      lastUpdated: serverTimestamp()
+    }, { merge: true });
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating stats:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+// Get all waitlist entries
+export const getAllWaitlist = async () => {
+  try {
+    const q = query(collection(db, COLLECTIONS.WAITLIST), orderBy('timestamp', 'desc'));
+    const querySnapshot = await getDocs(q);
+    const waitlist = [];
+    querySnapshot.forEach((doc) => {
+      waitlist.push({ id: doc.id, ...doc.data() });
+    });
+    return waitlist;
+  } catch (error) {
+    console.error('Error getting waitlist:', error);
+    return [];
+  }
+};
+
+// Add testimonial/interview
+export const addInterview = async (interview) => {
+  try {
+    const docRef = await addDoc(collection(db, COLLECTIONS.INTERVIEWS), {
+      ...interview,
+      createdAt: serverTimestamp()
+    });
+    return { success: true, id: docRef.id };
+  } catch (error) {
+    console.error('Error adding interview:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+// Update testimonial/interview
+export const updateInterview = async (id, interview) => {
+  try {
+    const interviewRef = doc(db, COLLECTIONS.INTERVIEWS, id);
+    await updateDoc(interviewRef, {
+      ...interview,
+      updatedAt: serverTimestamp()
+    });
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating interview:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+// Delete testimonial/interview
+export const deleteInterview = async (id) => {
+  try {
+    await deleteDoc(doc(db, COLLECTIONS.INTERVIEWS, id));
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting interview:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+export { db, auth, analytics };

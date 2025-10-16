@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 import Hero from './components/Hero';
@@ -9,6 +10,7 @@ import Testimonials from './components/Testimonials';
 import Team from './components/Team';
 import Waitlist from './components/Waitlist';
 import Footer from './components/Footer';
+import Admin from './pages/Admin';
 import { trackVisitor } from './utils/analytics';
 
 function App() {
@@ -19,22 +21,35 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
-      <AnimatedBackground />
-      <Navbar />
+    <Router>
+      <Routes>
+        {/* Admin Route */}
+        <Route path="/admin" element={<Admin />} />
 
-      <main>
-        <Hero />
-        <Stats />
-        <About />
-        <Services />
-        <Testimonials />
-        <Team />
-        <Waitlist />
-      </main>
+        {/* Main Website */}
+        <Route
+          path="/"
+          element={
+            <div className="relative min-h-screen">
+              <AnimatedBackground />
+              <Navbar />
 
-      <Footer />
-    </div>
+              <main>
+                <Hero />
+                <Stats />
+                <About />
+                <Services />
+                <Testimonials />
+                <Team />
+                <Waitlist />
+              </main>
+
+              <Footer />
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
