@@ -44,7 +44,8 @@ const Navbar = () => {
               <img
                 src="assets/logo.png"
                 alt="Conversy AI"
-                className="h-8 sm:h-10 w-auto"
+                className="h-8 sm:h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                style={{ filter: 'drop-shadow(0 0 15px rgba(110, 231, 255, 0.15))' }}
               />
             </motion.a>
             <span className="hidden md:inline-block px-3 py-1.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-xs text-white font-medium whitespace-nowrap">

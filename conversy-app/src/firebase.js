@@ -108,22 +108,49 @@ export const getAllWaitlist = async () => {
 export const getInterviews = async (limitCount = 10) => {
   try {
     if (!db) throw new Error('Firebase not initialized');
-    
-    const q = query(
-      collection(db, COLLECTIONS.INTERVIEWS),
-      orderBy('createdAt', 'desc'),
-      limit(limitCount)
-    );
-    const querySnapshot = await getDocs(q);
+
+    console.log('🔍 Fetching interviews from Firestore...');
+
+    // Get all documents from interviews collection
+    const collectionRef = collection(db, COLLECTIONS.INTERVIEWS);
+    const querySnapshot = await getDocs(collectionRef);
+
+    console.log(`📊 Found ${querySnapshot.size} documents in interviews collection`);
+
+    if (querySnapshot.size === 0) {
+      console.log('⚠️ No documents found in interviews collection');
+      return [];
+    }
+
+    // Convert to array and sort by createdAt if it exists
     const interviews = [];
-    
     querySnapshot.forEach((doc) => {
       interviews.push({ id: doc.id, ...doc.data() });
     });
-    
-    return interviews;
+
+    // Sort by createdAt descending (newest first)
+    interviews.sort((a, b) => {
+      if (a.createdAt && b.createdAt) {
+        // Handle Firestore Timestamp objects
+        const aTime = a.createdAt.seconds || a.createdAt;
+        const bTime = b.createdAt.seconds || b.createdAt;
+        return bTime - aTime;
+      }
+      return 0;
+    });
+
+    // Apply limit
+    const limitedInterviews = limitCount > 0 ? interviews.slice(0, limitCount) : interviews;
+
+    console.log(`✅ Successfully fetched ${limitedInterviews.length} interviews`);
+    if (limitedInterviews.length > 0) {
+      console.log('📄 Sample interview:', limitedInterviews[0]);
+    }
+
+    return limitedInterviews;
   } catch (error) {
-    console.log('Error getting interviews:', error.message);
+    console.log('❌ Error getting interviews:', error.message);
+    console.log('Error details:', error);
     return [];
   }
 };

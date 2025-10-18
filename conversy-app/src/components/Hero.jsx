@@ -73,34 +73,92 @@ const Hero = () => {
               y: [0, -15, 0],
             }}
             transition={{
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="relative"
+            className="relative group"
           >
-            <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 backdrop-blur-sm flex items-center justify-center">
-              <img
-                src="assets/Logo SVG.svg"
-                alt="Conversy AI Bot"
-                className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain drop-shadow-lg"
-              />
-            </div>
-            <motion.div
-              className="absolute inset-0 rounded-full"
+            {/* Outer glow ring */}
+            {/* <motion.div
+              className="absolute inset-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full"
               animate={{
                 boxShadow: [
-                  '0 0 30px rgba(110, 231, 255, 0.2)',
-                  '0 0 60px rgba(110, 231, 255, 0.4)',
-                  '0 0 30px rgba(110, 231, 255, 0.2)',
+                  '0 0 40px 10px rgba(110, 231, 255, 0.2), 0 0 80px 20px rgba(139, 92, 246, 0.1)',
+                  '0 0 60px 15px rgba(110, 231, 255, 0.3), 0 0 100px 25px rgba(139, 92, 246, 0.2)',
+                  '0 0 40px 10px rgba(110, 231, 255, 0.2), 0 0 80px 20px rgba(139, 92, 246, 0.1)',
                 ],
               }}
               transition={{
-                duration: 2,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+            /> */}
+
+            {/* Rotating gradient ring */}
+            <motion.div
+              className="absolute inset-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full opacity-30"
+              style={{
+                background: 'conic-gradient(from 0deg, rgba(110, 231, 255, 0.3), rgba(139, 92, 246, 0.3), rgba(110, 231, 255, 0.3))',
+                filter: 'blur(20px)',
+              }}
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear"
+              }}
             />
+
+            {/* Main logo container */}
+            <div className="">
+              {/* Animated gradient background */}
+              <motion.div
+                className="absolute inset-0 opacity-20"
+                style={{
+                  background: 'radial-gradient(circle at center, rgba(110, 231, 255, 0.2), transparent 70%)',
+                }}
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.2, 0.3, 0.2],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+
+              {/* Logo */}
+              <motion.img
+                src="assets/Logo SVG.svg"
+                alt="Conversy AI Bot"
+                className="relative z-10 w-36 h-36 sm:w-44 sm:h-44 md:w-56 md:h-56 object-contain"
+                style={{ filter: 'drop-shadow(0 0 30px rgba(110, 231, 255, 0.4))' }}
+                whileHover={{
+                  scale: 1.05,
+                  filter: 'drop-shadow(0 0 40px rgba(110, 231, 255, 0.6))',
+                }}
+                transition={{ duration: 0.3 }}
+              />
+
+              {/* Sparkle effect */}
+              {/* <motion.div
+                className="absolute top-6 right-8 w-2 h-2 bg-brand-primary rounded-full"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              /> */}
+            </div>
           </motion.div>
 
           {/* Conversy AI text below logo */}

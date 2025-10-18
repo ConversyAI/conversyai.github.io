@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Custom theme configuration */
+@theme {
+  --color-brand-bg: #0b0f19;
+  --color-brand-panel: #0d1220;
+  --color-brand-text: #eaf2ff;
+  --color-brand-muted: #9aa4b2;
+  --color-brand-primary: #6ee7ff;
+  --color-brand-secondary: #8b5cf6;
+}
+
 /* ===== ANIMATED SPACE BACKGROUND ===== */
 
 /* Base background layer */

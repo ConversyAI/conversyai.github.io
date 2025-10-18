@@ -37,7 +37,8 @@ const AdminLogin = ({ onLoginSuccess }) => {
             <img
               src="/assets/logo.png"
               alt="Conversy AI"
-              className="h-16 mx-auto mb-4"
+              className="h-16 mx-auto mb-4 opacity-90 hover:opacity-100 transition-opacity duration-300"
+              style={{ filter: 'drop-shadow(0 0 20px rgba(110, 231, 255, 0.2))' }}
             />
             <h1 className="text-3xl font-extrabold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
               Admin Panel
