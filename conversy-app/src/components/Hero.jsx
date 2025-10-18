@@ -97,7 +97,7 @@ const Hero = () => {
             /> */}
 
             {/* Rotating gradient ring */}
-            <motion.div
+            {/* <motion.div
               className="absolute inset-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full opacity-30"
               style={{
                 background: 'conic-gradient(from 0deg, rgba(110, 231, 255, 0.3), rgba(139, 92, 246, 0.3), rgba(110, 231, 255, 0.3))',
@@ -111,12 +111,12 @@ const Hero = () => {
                 repeat: Infinity,
                 ease: "linear"
               }}
-            />
+            /> */}
 
             {/* Main logo container */}
             <div className="">
               {/* Animated gradient background */}
-              <motion.div
+              {/* <motion.div
                 className="absolute inset-0 opacity-20"
                 style={{
                   background: 'radial-gradient(circle at center, rgba(110, 231, 255, 0.2), transparent 70%)',
@@ -130,7 +130,7 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-              />
+              /> */}
 
               {/* Logo */}
               <motion.img
