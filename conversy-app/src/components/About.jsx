@@ -30,7 +30,7 @@ const About = () => {
         </svg>
       ),
       title: 'Innovation',
-      description: 'We leverage cutting-edge AI to solve real business problems.',
+      description: 'We leverage cutting-edge Agentic AI to solve real business problems.',
     },
     {
       icon: (
@@ -44,10 +44,10 @@ const About = () => {
   ];
 
   const milestones = [
-    { year: '2024 Q1', event: 'Company Founded' },
-    { year: '2024 Q2', event: 'First Beta Launch' },
-    { year: '2024 Q3', event: '100+ Early Adopters' },
-    { year: '2024 Q4', event: 'Public Launch' },
+    { year: '2025 Q4', event: 'Company Founded' },
+    { year: '2026 Q1', event: 'First Beta Launch' },
+    { year: '2026 Q2', event: '100+ Early Adopters' },
+    { year: '2026 Q3', event: 'Public Launch' },
   ];
 
   return (
@@ -90,6 +90,7 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-brand-text mb-4">Our Mission</h3>
             <p className="text-brand-muted leading-relaxed">
+              To empower every small business, entrepreneur, and digital brand with an intelligent, always-on assistant that turns conversations into meaningful connections, measurable impact, and sustainable growth - no coding, no complexity, just results.
               To democratize AI-powered business automation and help every business turn conversations
               into conversions effortlessly.
             </p>
@@ -109,6 +110,7 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-brand-text mb-4">Our Vision</h3>
             <p className="text-brand-muted leading-relaxed">
+              To make intelligent, personalized customer engagement accessible to every small business in the world.
               A world where every business, regardless of size, can leverage intelligent AI agents
               to grow, scale, and delight their customers.
             </p>

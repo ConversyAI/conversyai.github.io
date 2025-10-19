@@ -6,10 +6,10 @@ import { getStats } from '../firebase';
 
 const Stats = () => {
   const [stats, setStats] = useState({
-    linkedinFollowers: 1250,
+    linkedinFollowers: 43,
     uniqueVisitors: 0,
     totalPageViews: 0,
-    waitlistCount: 387,
+    waitlistCount: 5,
   });
 
   const [ref, inView] = useInView({
@@ -21,10 +21,10 @@ const Stats = () => {
     const fetchStats = async () => {
       const data = await getStats();
       setStats({
-        linkedinFollowers: data.linkedinFollowers || 1250,
+        linkedinFollowers: data.linkedinFollowers || 43,
         uniqueVisitors: data.uniqueVisitors || 0,
         totalPageViews: data.totalPageViews || 0,
-        waitlistCount: data.waitlistCount || 387,
+        waitlistCount: data.waitlistCount || 5,
       });
     };
 

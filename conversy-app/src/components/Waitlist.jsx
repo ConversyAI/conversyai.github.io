@@ -196,7 +196,7 @@ const Waitlist = () => {
           className="text-center mt-8"
         >
           <p className="text-brand-muted text-sm">
-            Join <span className="text-brand-primary font-bold">387+</span> businesses already on the waitlist
+            Join <span className="text-brand-primary font-bold">5+</span> businesses already on the waitlist
           </p>
         </motion.div>
       </div>

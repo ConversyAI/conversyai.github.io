@@ -86,7 +86,7 @@ const Footer = () => {
             <ul className="space-y-2 text-brand-muted">
               <li>
                 <a href="mailto:hello@conversyai.com" className="hover:text-brand-primary transition-colors">
-                  hello@conversyai.com
+                 coreteam@conversyai.com
                 </a>
               </li>
               <li>

@@ -226,7 +226,7 @@ export const getStats = async () => {
       linkedinFollowers: 1250,
       uniqueVisitors: 0,
       totalPageViews: 0,
-      waitlistCount: 387
+      waitlistCount: 5
     };
   }
 };
@@ -275,8 +275,8 @@ export const trackPageVisit = async (visitorId, isFirstVisit, isNewSession) => {
       await setDoc(statsRef, {
         uniqueVisitors: 1,
         totalPageViews: 1,
-        linkedinFollowers: 1250,
-        waitlistCount: 387,
+        linkedinFollowers: 43,
+        waitlistCount: 5,
         lastUpdated: serverTimestamp(),
       });
     }

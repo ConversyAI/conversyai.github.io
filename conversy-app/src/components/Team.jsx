@@ -6,63 +6,70 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: 'Alex Rivera',
+      name: 'Jermiah Jerome',
       role: 'CEO & Co-Founder',
-      image: 'https://i.pravatar.cc/300?img=33',
-      bio: 'Former AI lead at Google. Stanford CS graduate.',
+      image: '/assets/Jermiah.jpeg',
+      bio: 'Former Assistant Product Manager  at HSBC. NIT Trichy and Emlyon Business School graduate.',
       linkedin: '#',
       twitter: '#',
     },
     {
-      name: 'Priya Sharma',
+      name: 'Ajay Pradeep',
       role: 'CTO & Co-Founder',
-      image: 'https://i.pravatar.cc/300?img=20',
+      image: '/assets/Ajay.jpeg',
       bio: 'Built scalable systems at Amazon and Meta.',
       linkedin: '#',
       twitter: '#',
     },
     {
-      name: 'Marcus Chen',
-      role: 'Head of Product',
-      image: 'https://i.pravatar.cc/300?img=15',
+      name: 'Cyril Rayan',
+      role: 'CMO & Co-Founder',
+      image: '/assets/cyril.png',
       bio: 'Product leader from Stripe. Y Combinator alumni.',
       linkedin: '#',
       twitter: '#',
     },
     {
-      name: 'Sophie Laurent',
-      role: 'Head of Design',
-      image: 'https://i.pravatar.cc/300?img=9',
+      name: 'Thamimul Ansari',
+      role: 'Founding Engineer - Full Stack',
+      image: '/assets/Thamimul.jpeg',
       bio: 'Award-winning designer. Previously at Airbnb.',
       linkedin: '#',
       twitter: '#',
     },
+    {
+      name: 'Abubakar Aliyu',
+      role: 'Founding Engineer - AI',
+      image: '/assets/Abubakar.jpeg',
+      bio: 'Full-stack developer with a passion for AI.',
+      linkedin: '#',
+      twitter: '#'}
   ];
 
   const advisors = [
     {
-      name: 'Dr. James Wilson',
+      name: 'Zack',
+      role: 'Legal Advisor',
+      company: 'CEO at GoodLegal.fr',
+      image: '/assets/Zack.jpeg',
+    },
+    {
+      name: 'Sruthi',
       role: 'AI Advisor',
-      company: 'MIT Professor',
-      image: 'https://i.pravatar.cc/300?img=60',
+      company: 'AI Engineer at itemis',
+      image: '/assets/Sruthi.jpeg',
     },
     {
-      name: 'Lisa Chen',
-      role: 'Business Advisor',
-      company: 'Ex-VP at Salesforce',
-      image: 'https://i.pravatar.cc/300?img=32',
+      name: 'Marc',
+      role: 'AI Advisor',
+      company: 'CEO at TryBlend.ai',
+      image: '/assets/Marc.jpeg',
     },
     {
-      name: 'Raj Patel',
-      role: 'Technical Advisor',
-      company: 'Former CTO, Uber',
-      image: 'https://i.pravatar.cc/300?img=68',
-    },
-    {
-      name: 'Emma Thompson',
-      role: 'Growth Advisor',
-      company: 'Ex-CMO at HubSpot',
-      image: 'https://i.pravatar.cc/300?img=24',
+      name: 'Neelesh',
+      role: 'Marketing Advisor',
+      company: 'Marketing Manager at Nucleon Security',
+      image: '/assets/Neelesh.jpeg',
     },
   ];
 

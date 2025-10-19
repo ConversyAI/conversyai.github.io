@@ -60,6 +60,7 @@ const Services = () => {
       description: 'Smart notification system via WhatsApp, Email, and SMS to reduce no-shows and keep customers engaged.',
       features: [
         'WhatsApp integration',
+        'Calendar integration',
         'Email & SMS alerts',
         'Custom timing',
         'Follow-up messages',
@@ -71,13 +72,14 @@ const Services = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
-      title: 'Analytics Dashboard',
-      description: 'Comprehensive insights into bookings, revenue, customer behavior, and conversion rates.',
+      title: 'Adaptive Revenue Engine',
+      description: 'Comprehensive insights and smart stratgies into bookings, revenue, customer behavior, potential leads, conversion rates and much more.',
       features: [
         'Real-time metrics',
         'Revenue tracking',
         'Customer analytics',
         'Performance reports',
+        "Smart growth strategies",
       ],
     },
     {
