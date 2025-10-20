@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { addToWaitlist } from '../firebase';
+import { addToWaitlist, getStats } from '../firebase';
 import siteConfig from '../config/siteConfig.json';
 
 const Waitlist = () => {
@@ -9,6 +9,24 @@ const Waitlist = () => {
   const [formData, setFormData] = useState({ name: '', email: '' });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [waitlistCount, setWaitlistCount] = useState(siteConfig.stats.waitlistCount || 5);
+
+  // Fetch real-time waitlist count
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const stats = await getStats();
+        if (stats && stats.waitlistCount !== undefined) {
+          setWaitlistCount(stats.waitlistCount);
+        }
+      } catch (error) {
+        console.log('Error fetching stats:', error);
+        // Use fallback from config if Firebase fails
+      }
+    };
+
+    fetchCount();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +44,16 @@ const Waitlist = () => {
           message: '🎉 Saving your information...',
         });
 
+        // Update local count immediately
+        setWaitlistCount(prev => prev + 1);
+
         // Redirect to Google Form after a short delay
         setTimeout(() => {
           // Open Google Form in a new tab
-          window.open(siteConfig.forms.waitlist, '_blank');
+          const googleFormUrl = siteConfig.forms?.waitlist;
+          if (googleFormUrl) {
+            window.open(googleFormUrl, '_blank');
+          }
 
           // Reset form and show final message
           setFormData({ name: '', email: '' });
@@ -40,13 +64,18 @@ const Waitlist = () => {
           setIsSubmitting(false);
         }, 1500);
       } else {
+        // More detailed error message
+        console.error('Waitlist error:', result.error);
         setStatus({
           type: 'error',
-          message: result.error || 'Something went wrong. Please try again.',
+          message: result.error === 'Missing or insufficient permissions.'
+            ? 'Missing or insufficient permissions. Please try again or contact support.'
+            : result.error || 'Something went wrong. Please try again.',
         });
         setIsSubmitting(false);
       }
     } catch (error) {
+      console.error('Waitlist submission error:', error);
       setStatus({
         type: 'error',
         message: 'Unable to join waitlist. Please try again later.',
@@ -217,7 +246,7 @@ const Waitlist = () => {
           className="text-center mt-8"
         >
           <p className="text-brand-muted text-sm">
-            Join <span className="text-brand-primary font-bold">5+</span> businesses already on the waitlist
+            Join <span className="text-brand-primary font-bold">{waitlistCount}+</span> businesses already on the waitlist
           </p>
         </motion.div>
       </div>
