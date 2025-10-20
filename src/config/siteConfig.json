@@ -12,6 +12,9 @@
     "twitter": null,
     "github": "https://github.com/ConversyAI"
   },
+  "forms": {
+    "waitlist": "https://docs.google.com/forms/d/e/1FAIpQLSfXbD9sMnnLLkgB6BYCT0AFP0940IixiKIRdb0pw9Zf8nZVJg/viewform"
+  },
   "stats": {
     "linkedinFollowers": 43,
     "linkedinViews": 250,

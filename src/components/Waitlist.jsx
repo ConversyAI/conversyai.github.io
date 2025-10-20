@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { addToWaitlist } from '../firebase';
+import siteConfig from '../config/siteConfig.json';
 
 const Waitlist = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -15,26 +16,41 @@ const Waitlist = () => {
     setStatus({ type: '', message: '' });
 
     try {
+      // First save to Firebase to update the count
       const result = await addToWaitlist(formData.email, formData.name);
 
       if (result.success) {
+        // Show success message briefly
         setStatus({
           type: 'success',
-          message: '🎉 Welcome aboard! Check your email for updates.',
+          message: '🎉 Saving your information...',
         });
-        setFormData({ name: '', email: '' });
+
+        // Redirect to Google Form after a short delay
+        setTimeout(() => {
+          // Open Google Form in a new tab
+          window.open(siteConfig.forms.waitlist, '_blank');
+
+          // Reset form and show final message
+          setFormData({ name: '', email: '' });
+          setStatus({
+            type: 'success',
+            message: '✅ Information saved! Please complete the detailed form in the new tab.',
+          });
+          setIsSubmitting(false);
+        }, 1500);
       } else {
         setStatus({
           type: 'error',
           message: result.error || 'Something went wrong. Please try again.',
         });
+        setIsSubmitting(false);
       }
     } catch (error) {
       setStatus({
         type: 'error',
         message: 'Unable to join waitlist. Please try again later.',
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -174,12 +190,17 @@ const Waitlist = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  Joining...
+                  Processing...
                 </span>
               ) : (
                 'Join Waitlist Now'
               )}
             </button>
+
+            {/* Note about Google Form */}
+            <p className="text-brand-muted text-xs text-center mt-2">
+              You'll be redirected to complete additional details after submission
+            </p>
           </form>
 
           {/* Privacy Note */}
