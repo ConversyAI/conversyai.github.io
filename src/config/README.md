@@ -118,26 +118,31 @@ The features section contains both simple highlights and detailed service descri
 
 ## Testimonials Configuration
 
-The testimonials section is used as a fallback when Firebase data is not available:
+The testimonials section includes both section headers and testimonial items:
 
 ```json
-"testimonials": [
-  {
-    "id": "unique-id",
-    "name": "Customer Name",
-    "role": "Job Title",
-    "Company": "Company Name",
-    "content": "Testimonial text here",
-    "rating": 5,
-    "website": "https://example.com" // Optional
-  }
-]
+"testimonials": {
+  "sectionTitle": "What Early Adopters Are Saying",
+  "sectionSubtitle": "Real voices from businesses joining us...",
+  "items": [
+    {
+      "id": "unique-id",
+      "name": "Customer Name",
+      "role": "Job Title",
+      "Company": "Company Name",
+      "content": "Testimonial text here",
+      "rating": 5,
+      "website": "https://example.com" // Optional
+    }
+  ]
+}
 ```
 
 **How Testimonials Work:**
 1. **Firebase First**: Component tries to fetch testimonials from Firebase `interviews` collection
 2. **Config Fallback**: If Firebase is empty/fails, uses testimonials from `siteConfig.json`
 3. **Default Message**: If both are empty, shows a single message about joining early adopters
+4. **Section Headers**: Title and subtitle are always read from config (customizable)
 
 ## Adding New Fields
 

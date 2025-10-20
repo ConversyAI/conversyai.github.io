@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { getInterviews } from '../firebase';
+import siteConfig from '../config/siteConfig.json';
 
 const Testimonials = () => {
   // Use empty array initially, will be populated from Firebase or config
@@ -22,9 +23,13 @@ const Testimonials = () => {
         if (interviews.length > 0) {
           console.log(`Loaded ${interviews.length} testimonials from Firebase`);
           setTestimonials(interviews);
+        } else if (siteConfig.testimonials?.items && siteConfig.testimonials.items.length > 0) {
+          // Use config testimonials as fallback
+          console.log('Using testimonials from config');
+          setTestimonials(siteConfig.testimonials.items);
         } else {
           // Only show a message if no data exists
-          console.log('No Firebase testimonials found yet');
+          console.log('No testimonials found');
           setTestimonials([
             {
               id: 'placeholder-1',
@@ -96,12 +101,10 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-            What Early Adopters Are Saying
+            {siteConfig.testimonials?.sectionTitle || 'What Early Adopters Are Saying'}
           </h2>
           <p className="text-brand-muted text-base max-w-2xl mx-auto">
-            Real voices from businesses joining us to uncover challenges, share stories, 
-  and shape the next generation of intelligent customer engagement — 
-  as we build Conversy AI together.
+            {siteConfig.testimonials?.sectionSubtitle || 'Real voices from businesses joining us to shape the future of AI automation.'}
           </p>
         </motion.div>
 
