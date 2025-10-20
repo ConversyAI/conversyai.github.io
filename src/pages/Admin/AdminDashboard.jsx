@@ -123,7 +123,7 @@ const AdminDashboard = ({ user, onLogout }) => {
               />
             )}
             {activeTab === 'waitlist' && (
-              <WaitlistViewer waitlist={waitlist} />
+              <WaitlistViewer waitlist={waitlist} onUpdate={fetchData} />
             )}
           </>
         )}

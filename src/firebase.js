@@ -101,22 +101,95 @@ export const addToWaitlist = async (email, name) => {
 export const getAllWaitlist = async () => {
   try {
     if (!db) throw new Error('Firebase not initialized');
-    
+
     const q = query(
-      collection(db, COLLECTIONS.WAITLIST), 
+      collection(db, COLLECTIONS.WAITLIST),
       orderBy('timestamp', 'desc')
     );
     const querySnapshot = await getDocs(q);
     const waitlist = [];
-    
+
     querySnapshot.forEach((doc) => {
       waitlist.push({ id: doc.id, ...doc.data() });
     });
-    
+
     return waitlist;
   } catch (error) {
     console.log('Error getting waitlist:', error.message);
     return [];
+  }
+};
+
+// Sync the waitlist count with the actual number of documents
+export const syncWaitlistCount = async () => {
+  try {
+    if (!db) throw new Error('Firebase not initialized');
+
+    // Get the actual count of waitlist documents
+    const waitlistSnapshot = await getDocs(collection(db, COLLECTIONS.WAITLIST));
+    const actualCount = waitlistSnapshot.size;
+
+    console.log(`Syncing waitlist count: ${actualCount} documents found`);
+
+    // Update the stats with the actual count
+    const statsRef = doc(db, COLLECTIONS.STATS, 'main');
+    await setDoc(statsRef, {
+      waitlistCount: actualCount,
+      lastUpdated: serverTimestamp(),
+      lastSync: serverTimestamp()
+    }, { merge: true });
+
+    return { success: true, count: actualCount };
+  } catch (error) {
+    console.log('Error syncing waitlist count:', error.message);
+    return { success: false, error: error.message };
+  }
+};
+
+// Delete a waitlist entry and automatically sync count
+export const deleteFromWaitlist = async (id) => {
+  try {
+    if (!db) throw new Error('Firebase not initialized');
+
+    // Delete the document
+    await deleteDoc(doc(db, COLLECTIONS.WAITLIST, id));
+
+    // Automatically sync the count after deletion
+    const syncResult = await syncWaitlistCount();
+
+    return {
+      success: true,
+      newCount: syncResult.success ? syncResult.count : null
+    };
+  } catch (error) {
+    console.log('Error deleting from waitlist:', error.message);
+    return { success: false, error: error.message };
+  }
+};
+
+// Delete multiple waitlist entries and sync count once
+export const bulkDeleteFromWaitlist = async (ids) => {
+  try {
+    if (!db) throw new Error('Firebase not initialized');
+
+    // Delete all documents
+    const deletePromises = ids.map(id =>
+      deleteDoc(doc(db, COLLECTIONS.WAITLIST, id))
+    );
+
+    await Promise.all(deletePromises);
+
+    // Sync count once after all deletions
+    const syncResult = await syncWaitlistCount();
+
+    return {
+      success: true,
+      deleted: ids.length,
+      newCount: syncResult.success ? syncResult.count : null
+    };
+  } catch (error) {
+    console.log('Error bulk deleting from waitlist:', error.message);
+    return { success: false, error: error.message };
   }
 };
 

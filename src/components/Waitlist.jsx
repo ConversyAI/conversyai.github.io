@@ -38,31 +38,40 @@ const Waitlist = () => {
       const result = await addToWaitlist(formData.email, formData.name);
 
       if (result.success) {
-        // Show success message briefly
+        // Show initial success message
         setStatus({
           type: 'success',
-          message: '🎉 Saving your information...',
+          message: '🎉 Welcome aboard! Opening Google Form for final step...',
         });
 
         // Update local count immediately
         setWaitlistCount(prev => prev + 1);
 
-        // Redirect to Google Form after a short delay
+        // Open Google Form with a small delay to show message
+        const googleFormUrl = siteConfig.forms?.waitlist;
+
         setTimeout(() => {
-          // Open Google Form in a new tab
-          const googleFormUrl = siteConfig.forms?.waitlist;
           if (googleFormUrl) {
+            // Open the Google Form
             window.open(googleFormUrl, '_blank');
+
+            // Show completion message
+            setStatus({
+              type: 'success',
+              message: '✅ Thank you! Please complete the Google Form in the new tab to finish your waitlist registration.',
+            });
+          } else {
+            console.error('Google Form URL not configured in siteConfig');
+            setStatus({
+              type: 'success',
+              message: '✅ You\'ve been added to the waitlist! We\'ll contact you soon.',
+            });
           }
 
-          // Reset form and show final message
+          // Reset form
           setFormData({ name: '', email: '' });
-          setStatus({
-            type: 'success',
-            message: '✅ Information saved! Please complete the detailed form in the new tab.',
-          });
           setIsSubmitting(false);
-        }, 1500);
+        }, 1000);
       } else {
         // More detailed error message
         console.error('Waitlist error:', result.error);

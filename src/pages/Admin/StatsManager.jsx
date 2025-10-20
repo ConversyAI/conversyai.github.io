@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { updateStats } from '../../firebase';
+import { updateStats, syncWaitlistCount } from '../../firebase';
 import toast from 'react-hot-toast';
 
 const StatsManager = ({ stats, onUpdate }) => {
@@ -10,6 +10,7 @@ const StatsManager = ({ stats, onUpdate }) => {
     productInterest: stats?.productInterest || 0,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +34,21 @@ const StatsManager = ({ stats, onUpdate }) => {
     }
 
     setIsSubmitting(false);
+  };
+
+  const handleSyncWaitlist = async () => {
+    setIsSyncing(true);
+
+    const result = await syncWaitlistCount();
+
+    if (result.success) {
+      toast.success(`Waitlist count synced! Count: ${result.count}`);
+      onUpdate(); // Refresh stats
+    } else {
+      toast.error('Failed to sync waitlist count');
+    }
+
+    setIsSyncing(false);
   };
 
   const statsInfo = [
@@ -76,10 +92,20 @@ const StatsManager = ({ stats, onUpdate }) => {
           <p className="text-2xl font-bold text-brand-text">{stats?.totalPageViews || 0}</p>
           <p className="text-xs text-brand-muted mt-1">Auto-tracked</p>
         </div>
-        <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-xl p-4">
+        <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-xl p-4 relative">
           <p className="text-brand-muted text-sm mb-1">Waitlist Members</p>
           <p className="text-2xl font-bold text-brand-text">{stats?.waitlistCount || 0}</p>
-          <p className="text-xs text-brand-muted mt-1">Auto-counted</p>
+          <div className="flex items-center justify-between mt-1">
+            <p className="text-xs text-brand-muted">Auto-counted</p>
+            <button
+              onClick={handleSyncWaitlist}
+              disabled={isSyncing}
+              className="text-xs px-2 py-1 bg-brand-primary/20 hover:bg-brand-primary/30 text-brand-primary rounded transition-colors disabled:opacity-50"
+              title="Sync with actual document count"
+            >
+              {isSyncing ? 'Syncing...' : 'Sync Count'}
+            </button>
+          </div>
         </div>
         <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-xl p-4">
           <p className="text-brand-muted text-sm mb-1">LinkedIn Followers</p>
@@ -130,6 +156,7 @@ const StatsManager = ({ stats, onUpdate }) => {
           <li>• <strong>Unique Visitors</strong> and <strong>Total Page Views</strong> are automatically tracked</li>
           <li>• Update <strong>LinkedIn stats</strong> manually from your LinkedIn analytics</li>
           <li>• <strong>Product Interest</strong> can be from surveys, demos, or contact form submissions</li>
+          <li>• Use <strong>Sync Count</strong> button to recalculate waitlist count after manual deletions</li>
           <li>• Changes appear on the website immediately after updating</li>
         </ul>
       </div>

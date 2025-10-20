@@ -4,49 +4,53 @@ import { useInView } from 'react-intersection-observer';
 import { getInterviews } from '../firebase';
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      role: 'CEO, TechStart Inc',
-      content: 'Conversy AI transformed how we handle customer bookings. Our conversion rate increased by 40% in just two months!',
-      image: 'https://i.pravatar.cc/150?img=1',
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: 'Michael Chen',
-      role: 'Founder, GrowthLabs',
-      content: 'The ease of setup was incredible. From spreadsheet to live chatbot in minutes. This is a game-changer for small businesses.',
-      image: 'https://i.pravatar.cc/150?img=13',
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: 'Emily Rodriguez',
-      role: 'Operations Manager, ServicePro',
-      content: 'We eliminated manual booking errors completely. The AI handles everything seamlessly, and our customers love it.',
-      image: 'https://i.pravatar.cc/150?img=5',
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: 'David Park',
-      role: 'Owner, Local Salon',
-      content: 'Automated reminders alone saved us hours every week. The payment integration is smooth and reliable.',
-      image: 'https://i.pravatar.cc/150?img=12',
-      rating: 5,
-    },
-  ]);
-
+  // Use empty array initially, will be populated from Firebase or config
+  const [testimonials, setTestimonials] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
     const fetchTestimonials = async () => {
-      const interviews = await getInterviews(10);
-      if (interviews.length > 0) {
-        setTestimonials(interviews);
+      try {
+        setIsLoading(true);
+        console.log('Fetching testimonials from Firebase...');
+
+        // Fetch from Firebase - this is the primary source
+        const interviews = await getInterviews(10);
+
+        if (interviews.length > 0) {
+          console.log(`Loaded ${interviews.length} testimonials from Firebase`);
+          setTestimonials(interviews);
+        } else {
+          // Only show a message if no data exists
+          console.log('No Firebase testimonials found yet');
+          setTestimonials([
+            {
+              id: 'placeholder-1',
+              name: 'Join Our Early Adopters',
+              role: 'Be Part of the Journey',
+              Company: 'Your Business',
+              content: 'We\'re actively conducting interviews with businesses to understand their needs and shape Conversy AI together. Share your story with us!',
+              rating: 5,
+              website: ''
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Error loading testimonials:', error);
+        // Show error state
+        setTestimonials([
+          {
+            id: 'error-1',
+            name: 'Loading Error',
+            role: 'Please Refresh',
+            content: 'Unable to load testimonials. Please refresh the page or try again later.',
+            rating: 5,
+          }
+        ]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -54,11 +58,14 @@ const Testimonials = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    // Only start carousel if we have testimonials
+    if (testimonials.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, [testimonials.length]);
 
   const goToSlide = (index) => {
@@ -99,7 +106,32 @@ const Testimonials = () => {
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
+          {/* Loading State */}
+          {isLoading && (
+            <div className="flex justify-center items-center h-[400px]">
+              <div className="text-brand-primary">
+                <svg className="animate-spin h-12 w-12" viewBox="0 0 24 24">
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    fill="none"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+              </div>
+            </div>
+          )}
+
           {/* Testimonial Cards Carousel */}
+          {!isLoading && testimonials.length > 0 && (
           <div className="relative h-[400px] sm:h-[350px]">
             <AnimatePresence mode="wait">
               <motion.div
@@ -164,8 +196,10 @@ const Testimonials = () => {
               </motion.div>
             </AnimatePresence>
           </div>
+          )}
 
-          {/* Navigation Dots */}
+          {/* Navigation Dots - Only show if we have multiple testimonials */}
+          {!isLoading && testimonials.length > 1 && (
           <div className="flex justify-center gap-3 mt-8">
             {testimonials.map((_, index) => (
               <button
@@ -180,6 +214,7 @@ const Testimonials = () => {
               />
             ))}
           </div>
+          )}
         </div>
       </div>
     </section>

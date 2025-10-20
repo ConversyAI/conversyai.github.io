@@ -222,5 +222,32 @@
         ]
       }
     ]
-  }
+  },
+  "testimonials": [
+    {
+      "id": "sanjna-1",
+      "name": "Sanjna",
+      "role": "Business Owner",
+      "Company": "Local Business",
+      "content": "Conversy AI has been instrumental in understanding our business needs. The team is incredibly responsive and their vision for AI automation aligns perfectly with what modern businesses need.",
+      "rating": 5,
+      "website": ""
+    },
+    {
+      "id": "early-adopter-2",
+      "name": "Early Adopter",
+      "role": "Founder",
+      "Company": "Tech Startup",
+      "content": "Being part of the early adopter program has given us valuable insights into the future of customer engagement. The potential for automation is immense.",
+      "rating": 5
+    },
+    {
+      "id": "early-adopter-3",
+      "name": "Business Participant",
+      "role": "Operations Manager",
+      "Company": "Service Company",
+      "content": "The interviews and feedback sessions have been incredibly valuable. It's rare to find a team so dedicated to understanding real business challenges before building solutions.",
+      "rating": 5
+    }
+  ]
 }

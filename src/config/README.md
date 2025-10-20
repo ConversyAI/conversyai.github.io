@@ -93,6 +93,7 @@ Each team member can have multiple social links. Set to `null` if not available:
 - **Hero.jsx** - Company tagline and description
 - **Footer.jsx** - Social media links
 - **Features.jsx** - Feature highlights
+- **Testimonials.jsx** - Customer testimonials and early adopter feedback
 
 ## Features/Services Configuration
 
@@ -114,6 +115,29 @@ The features section contains both simple highlights and detailed service descri
   ]
 }
 ```
+
+## Testimonials Configuration
+
+The testimonials section is used as a fallback when Firebase data is not available:
+
+```json
+"testimonials": [
+  {
+    "id": "unique-id",
+    "name": "Customer Name",
+    "role": "Job Title",
+    "Company": "Company Name",
+    "content": "Testimonial text here",
+    "rating": 5,
+    "website": "https://example.com" // Optional
+  }
+]
+```
+
+**How Testimonials Work:**
+1. **Firebase First**: Component tries to fetch testimonials from Firebase `interviews` collection
+2. **Config Fallback**: If Firebase is empty/fails, uses testimonials from `siteConfig.json`
+3. **Default Message**: If both are empty, shows a single message about joining early adopters
 
 ## Adding New Fields
 
