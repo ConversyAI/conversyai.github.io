@@ -7,9 +7,9 @@ service cloud.firestore {
       allow write: if true; // Allow updating stats for waitlist count
     }
 
-    // Allow anyone to add to waitlist (write only, no read for privacy)
+    // Allow anyone to add to waitlist and check for duplicates
     match /waitlist/{document=**} {
-      allow read: if request.auth != null; // Only authenticated users can read
+      allow read: if true; // Allow read for duplicate email checking
       allow create: if true; // Anyone can add to waitlist
       allow update: if false; // No updates allowed
       allow delete: if false; // No deletes allowed

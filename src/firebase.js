@@ -1,19 +1,20 @@
 import { initializeApp } from 'firebase/app';
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  getDocs, 
-  query, 
-  orderBy, 
-  limit, 
-  doc, 
-  setDoc, 
-  getDoc, 
-  deleteDoc, 
-  updateDoc, 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  doc,
+  setDoc,
+  getDoc,
+  deleteDoc,
+  updateDoc,
   serverTimestamp,
-  increment 
+  increment,
+  where
 } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
 import { 
@@ -59,21 +60,37 @@ export const COLLECTIONS = {
 export const addToWaitlist = async (email, name) => {
   try {
     if (!db) throw new Error('Firebase not initialized');
-    
+
+    // Check if email already exists in waitlist
+    const emailQuery = query(
+      collection(db, COLLECTIONS.WAITLIST),
+      where('email', '==', email.toLowerCase().trim())
+    );
+    const existingEntries = await getDocs(emailQuery);
+
+    if (!existingEntries.empty) {
+      return {
+        success: false,
+        error: 'This email is already on the waitlist! Check your inbox for updates.',
+        isDuplicate: true
+      };
+    }
+
+    // Add new entry with normalized email
     const docRef = await addDoc(collection(db, COLLECTIONS.WAITLIST), {
-      email,
-      name,
+      email: email.toLowerCase().trim(),
+      name: name.trim(),
       timestamp: serverTimestamp(),
       status: 'pending'
     });
-    
+
     // Update waitlist count
     const statsRef = doc(db, COLLECTIONS.STATS, 'main');
     await setDoc(statsRef, {
       waitlistCount: increment(1),
       lastUpdated: serverTimestamp()
     }, { merge: true });
-    
+
     return { success: true, id: docRef.id };
   } catch (error) {
     console.log('Error adding to waitlist:', error.message);

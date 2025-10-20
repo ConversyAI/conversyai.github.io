@@ -66,12 +66,21 @@ const Waitlist = () => {
       } else {
         // More detailed error message
         console.error('Waitlist error:', result.error);
-        setStatus({
-          type: 'error',
-          message: result.error === 'Missing or insufficient permissions.'
-            ? 'Missing or insufficient permissions. Please try again or contact support.'
-            : result.error || 'Something went wrong. Please try again.',
-        });
+
+        // Check if it's a duplicate email
+        if (result.isDuplicate) {
+          setStatus({
+            type: 'warning',
+            message: '📧 ' + result.error,
+          });
+        } else {
+          setStatus({
+            type: 'error',
+            message: result.error === 'Missing or insufficient permissions.'
+              ? 'Missing or insufficient permissions. Please try again or contact support.'
+              : result.error || 'Something went wrong. Please try again.',
+          });
+        }
         setIsSubmitting(false);
       }
     } catch (error) {
@@ -188,6 +197,8 @@ const Waitlist = () => {
                 className={`p-4 rounded-lg ${
                   status.type === 'success'
                     ? 'bg-green-500/10 border border-green-500/30 text-green-400'
+                    : status.type === 'warning'
+                    ? 'bg-yellow-500/10 border border-yellow-500/30 text-yellow-400'
                     : 'bg-red-500/10 border border-red-500/30 text-red-400'
                 }`}
               >
