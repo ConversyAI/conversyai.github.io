@@ -1,0 +1,223 @@
+{
+  "company": {
+    "name": "Conversy AI",
+    "tagline": "Transform Your Business with AI-Powered Automation",
+    "description": "Join our community of innovators and early adopters shaping the future of AI-powered business automation",
+    "website": "https://www.conversyai.com",
+    "email": "contact@conversyai.com"
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/company/conversyai",
+    "instagram": "https://www.instagram.com/conversy_ai/",
+    "twitter": null,
+    "github": "https://github.com/ConversyAI"
+  },
+  "stats": {
+    "linkedinFollowers": 43,
+    "linkedinViews": 250,
+    "instagramFollowers": 19,
+    "uniqueVisitors": 17,
+    "waitlistCount": 5
+  },
+  "team": {
+    "members": [
+      {
+        "name": "Jermiah Jerome",
+        "role": "CEO & Co-Founder",
+        "image": "/assets/jermiah.jpg",
+        "bio": "Former Assistant Product Manager at HSBC. NIT Trichy and Emlyon Business School graduate.",
+        "linkedin": "https://www.linkedin.com/in/jermiah-jerome/",
+        "twitter": null
+      },
+      {
+        "name": "Ajay Pradeep",
+        "role": "CTO & Co-Founder",
+        "image": "/assets/Ajay.jpg",
+        "bio": "Built scalable systems at Lawyer Conveyance System",
+        "linkedin": "https://www.linkedin.com/in/majaypradeep/",
+        "twitter": null
+      },
+      {
+        "name": "Cyril Rayan",
+        "role": "CMO & Co-Founder",
+        "image": "/assets/cyril.jpg",
+        "bio": "Product Marketing expert",
+        "linkedin": "https://www.linkedin.com/in/cyril-rayan-9b8432221/",
+        "twitter": null
+      },
+      {
+        "name": "Thamimul Ansari",
+        "role": "Founding Engineer - Full Stack",
+        "image": "/assets/Thamimul.jpg",
+        "bio": "Award-winning full-stack developer.",
+        "linkedin": "https://www.linkedin.com/in/thamimul-ansari-901177160/",
+        "twitter": null
+      },
+      {
+        "name": "Abubakar Aliyu",
+        "role": "Founding Engineer - AI",
+        "image": "/assets/Abubakar.jpg",
+        "bio": "Full-stack developer with a passion for AI.",
+        "linkedin": "https://www.linkedin.com/in/aliyu-abubakarr/",
+        "twitter": null
+      }
+    ],
+    "advisors": [
+      {
+        "name": "Zack",
+        "role": "Legal Advisor",
+        "company": "CEO at GoodLegal.fr",
+        "image": "/assets/Zack.jpeg"
+      },
+      {
+        "name": "Sruthi",
+        "role": "AI Advisor",
+        "company": "AI Engineer at itemis",
+        "image": "/assets/Sruthi.jpeg"
+      },
+      {
+        "name": "Marc",
+        "role": "AI Advisor",
+        "company": "CEO at TryBlend.ai",
+        "image": "/assets/Marc.jpeg"
+      },
+      {
+        "name": "Neelesh",
+        "role": "Marketing Advisor",
+        "company": "Marketing Manager at Nucleon Security",
+        "image": "/assets/Neelesh.jpeg"
+      }
+    ]
+  },
+  "features": {
+    "mainTitle": "Why Choose Conversy AI?",
+    "mainSubtitle": "Experience the next generation of business automation",
+    "mainItems": [
+      {
+        "title": "Natural Conversations",
+        "description": "Connect instantly via WhatsApp or Telegram - no downloads, no learning curve"
+      },
+      {
+        "title": "Smart Automation",
+        "description": "AI understands your needs and handles tasks autonomously"
+      },
+      {
+        "title": "Seamless Integration",
+        "description": "Works with your existing tools - Calendar, Payments, and more"
+      }
+    ],
+    "detailedFeatures": [
+      {
+        "id": "ai-chatbot",
+        "title": "AI Chatbot",
+        "description": "Intelligent conversational AI that handles customer queries, product recommendations, and service bookings 24/7.",
+        "icon": "chat",
+        "features": [
+          "Natural language processing",
+          "Multi-language support",
+          "Context-aware responses",
+          "Custom personality"
+        ]
+      },
+      {
+        "id": "smart-booking",
+        "title": "Smart Booking System",
+        "description": "Automated appointment scheduling with calendar integration, availability management, and instant confirmations.",
+        "icon": "calendar",
+        "features": [
+          "Real-time availability",
+          "Calendar sync",
+          "Buffer time management",
+          "Recurring appointments"
+        ]
+      },
+      {
+        "id": "payment-processing",
+        "title": "Payment Processing",
+        "description": "Secure payment integration with Stripe and Razorpay for seamless transactions and automatic invoicing.",
+        "icon": "payment",
+        "features": [
+          "Multiple payment methods",
+          "Secure checkout",
+          "Auto-invoicing",
+          "Refund management"
+        ]
+      },
+      {
+        "id": "automated-reminders",
+        "title": "Automated Reminders",
+        "description": "Smart notification system via WhatsApp, Email, and SMS to reduce no-shows and keep customers engaged.",
+        "icon": "bell",
+        "features": [
+          "WhatsApp integration",
+          "Calendar integration",
+          "Email & SMS alerts",
+          "Custom timing",
+          "Follow-up messages"
+        ]
+      },
+      {
+        "id": "adaptive-revenue",
+        "title": "Adaptive Revenue Engine",
+        "description": "Comprehensive insights and smart strategies into bookings, revenue, customer behavior, potential leads, conversion rates and much more.",
+        "icon": "chart",
+        "features": [
+          "Real-time metrics",
+          "Revenue tracking",
+          "Customer analytics",
+          "Performance reports",
+          "Smart growth strategies"
+        ]
+      },
+      {
+        "id": "spreadsheet-integration",
+        "title": "Spreadsheet Integration",
+        "description": "Connect your existing data from Google Sheets or Excel and go live in minutes without complex setup.",
+        "icon": "spreadsheet",
+        "features": [
+          "Google Sheets sync",
+          "Excel compatibility",
+          "Auto data refresh",
+          "No-code setup"
+        ]
+      }
+    ]
+  },
+  "pricing": {
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "$29",
+        "period": "month",
+        "features": [
+          "Up to 100 conversations/month",
+          "Basic scheduling",
+          "Email support"
+        ]
+      },
+      {
+        "name": "Professional",
+        "price": "$99",
+        "period": "month",
+        "popular": true,
+        "features": [
+          "Unlimited conversations",
+          "Advanced scheduling",
+          "Payment processing",
+          "Priority support"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Custom integrations",
+          "Dedicated support",
+          "SLA guarantee",
+          "Training & onboarding"
+        ]
+      }
+    ]
+  }
+}

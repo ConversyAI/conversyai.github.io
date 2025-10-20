@@ -49,7 +49,7 @@ const Navbar = () => {
               />
             </motion.a>
             <span className="hidden md:inline-block px-3 py-1.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-xs text-white font-medium whitespace-nowrap">
-              Coming soon • Q4
+              Coming soon 2026
             </span>
           </div>
 

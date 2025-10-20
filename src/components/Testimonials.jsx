@@ -89,10 +89,12 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-            What Our Users Say
+            What Early Adopters Are Saying
           </h2>
           <p className="text-brand-muted text-base max-w-2xl mx-auto">
-            Real feedback from businesses who want to use Conversy AI
+            Real voices from businesses joining us to uncover challenges, share stories, 
+  and shape the next generation of intelligent customer engagement — 
+  as we build Conversy AI together.
           </p>
         </motion.div>
 

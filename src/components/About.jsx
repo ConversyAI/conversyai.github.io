@@ -44,11 +44,13 @@ const About = () => {
   ];
 
   const milestones = [
-    { year: '2025 Q4', event: 'Company Founded' },
-    { year: '2026 Q1', event: 'First Beta Launch' },
-    { year: '2026 Q2', event: '100+ Early Adopters' },
-    { year: '2026 Q3', event: 'Public Launch' },
-  ];
+  { year: 'December 2025', event: 'MVP Finalization & Private Beta' },
+  { year: 'February 2026', event: 'MVP Launch (Conversy AI v1.0)' },
+  { year: 'April 2026', event: '1000+ Early Adopters & First Paying Users' },
+  { year: 'June 2026', event: 'Public Beta Launch & Growth to 10K Users' },
+  { year: 'August 2026', event: 'EMEA Expansion & Seed Round' },
+];
+
 
   return (
     <section id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">

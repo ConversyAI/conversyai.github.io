@@ -3,14 +3,15 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
 import { getStats } from '../firebase';
+import siteConfig from '../config/siteConfig.json';
 
 const Stats = () => {
   const [stats, setStats] = useState({
-    linkedinFollowers: 43,
-    uniqueVisitors: 17,
-    waitlistCount: 5,
-    linkedinViews: 250,
-    instagramFollowers: 28,
+    linkedinFollowers: siteConfig.stats.linkedinFollowers,
+    uniqueVisitors: siteConfig.stats.uniqueVisitors,
+    waitlistCount: siteConfig.stats.waitlistCount,
+    linkedinViews: siteConfig.stats.linkedinViews,
+    instagramFollowers: siteConfig.stats.instagramFollowers,
   });
 
   const [ref, inView] = useInView({
@@ -22,11 +23,11 @@ const Stats = () => {
     const fetchStats = async () => {
       const data = await getStats();
       setStats({
-        linkedinFollowers: data.linkedinFollowers || 43,
-        uniqueVisitors: data.uniqueVisitors || 17,
-        waitlistCount: data.waitlistCount || 5,
-        linkedinViews: data.linkedinViews || 250,
-        instagramFollowers: data.instagramFollowers || 18,
+        linkedinFollowers: data.linkedinFollowers || siteConfig.stats.linkedinFollowers,
+        uniqueVisitors: data.uniqueVisitors || siteConfig.stats.uniqueVisitors,
+        waitlistCount: data.waitlistCount || siteConfig.stats.waitlistCount,
+        linkedinViews: data.linkedinViews || siteConfig.stats.linkedinViews,
+        instagramFollowers: data.instagramFollowers || siteConfig.stats.instagramFollowers,
       });
     };
 
@@ -154,7 +155,7 @@ const Stats = () => {
           className="flex justify-center gap-6 mt-12 flex-wrap"
         >
           <a
-            href="https://www.linkedin.com/company/conversyai"
+            href={siteConfig.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-full hover:border-brand-primary/50 hover:shadow-lg hover:shadow-brand-primary/20 transition-all duration-300 text-white hover:text-brand-primary"
@@ -165,7 +166,7 @@ const Stats = () => {
             Follow us on LinkedIn
           </a>
           <a
-            href="https://www.instagram.com/conversy_ai/"
+            href={siteConfig.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-full hover:border-brand-primary/50 hover:shadow-lg hover:shadow-brand-primary/20 transition-all duration-300 text-white hover:text-brand-primary"
