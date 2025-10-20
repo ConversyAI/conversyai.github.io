@@ -39,8 +39,8 @@ const Hero = () => {
   }, [displayedText, isDeleting, currentPhraseIndex, phrases]);
 
   const integrationIcons = [
-    { src: 'assets/stripe-icon.svg', alt: 'Stripe' },
-    { src: 'assets/razorpay-icon.svg', alt: 'Razorpay' },
+    { src: 'assets/stripe.svg', alt: 'Stripe' },
+    { src: 'assets/razorpay.png', alt: 'Razorpay' },
     { src: 'assets/telegram-icon.svg', alt: 'Telegram' },
     { src: 'assets/wa-whatsapp-icon.svg', alt: 'WhatsApp' },
     { src: 'assets/google-calendar-icon.svg', alt: 'Google Calendar' },
