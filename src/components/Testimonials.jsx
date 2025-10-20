@@ -92,7 +92,7 @@ const Testimonials = () => {
             What Our Users Say
           </h2>
           <p className="text-brand-muted text-base max-w-2xl mx-auto">
-            Real feedback from businesses already using Conversy AI
+            Real feedback from businesses who want to use Conversy AI
           </p>
         </motion.div>
 

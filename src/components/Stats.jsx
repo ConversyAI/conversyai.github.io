@@ -26,7 +26,7 @@ const Stats = () => {
         uniqueVisitors: data.uniqueVisitors || 17,
         waitlistCount: data.waitlistCount || 5,
         linkedinViews: data.linkedinViews || 250,
-        instagramFollowers: data.instagramFollowers || 28,
+        instagramFollowers: data.instagramFollowers || 18,
       });
     };
 
