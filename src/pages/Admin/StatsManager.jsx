@@ -7,6 +7,7 @@ const StatsManager = ({ stats, onUpdate }) => {
   const [formData, setFormData] = useState({
     linkedinFollowers: stats?.linkedinFollowers || 0,
     linkedinPageViews: stats?.linkedinPageViews || 0,
+    instagramFollowers: stats?.instagramFollowers || 0,
     productInterest: stats?.productInterest || 0,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,6 +66,12 @@ const StatsManager = ({ stats, onUpdate }) => {
       icon: '👁️',
     },
     {
+      name: 'instagramFollowers',
+      label: 'Instagram Followers',
+      description: 'Total number of followers on your Instagram account',
+      icon: '📸',
+    },
+    {
       name: 'productInterest',
       label: 'Product Interest Count',
       description: 'Number of people who showed interest in your product',
@@ -81,7 +88,7 @@ const StatsManager = ({ stats, onUpdate }) => {
       </div>
 
       {/* Current Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-xl p-4">
           <p className="text-brand-muted text-sm mb-1">Unique Visitors</p>
           <p className="text-2xl font-bold text-brand-text">{stats?.uniqueVisitors || 0}</p>
@@ -110,6 +117,11 @@ const StatsManager = ({ stats, onUpdate }) => {
         <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-xl p-4">
           <p className="text-brand-muted text-sm mb-1">LinkedIn Followers</p>
           <p className="text-2xl font-bold text-brand-text">{stats?.linkedinFollowers || 0}</p>
+          <p className="text-xs text-brand-muted mt-1">Manual update</p>
+        </div>
+        <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-xl p-4">
+          <p className="text-brand-muted text-sm mb-1">Instagram Followers</p>
+          <p className="text-2xl font-bold text-brand-text">{stats?.instagramFollowers || 0}</p>
           <p className="text-xs text-brand-muted mt-1">Manual update</p>
         </div>
       </div>
@@ -154,10 +166,12 @@ const StatsManager = ({ stats, onUpdate }) => {
         <h4 className="text-brand-text font-medium mb-2">💡 Quick Tips</h4>
         <ul className="text-sm text-brand-muted space-y-1">
           <li>• <strong>Unique Visitors</strong> and <strong>Total Page Views</strong> are automatically tracked</li>
-          <li>• Update <strong>LinkedIn stats</strong> manually from your LinkedIn analytics</li>
+          <li>• Update <strong>LinkedIn stats</strong> manually from your LinkedIn analytics dashboard</li>
+          <li>• Update <strong>Instagram followers</strong> manually from your Instagram insights</li>
           <li>• <strong>Product Interest</strong> can be from surveys, demos, or contact form submissions</li>
           <li>• Use <strong>Sync Count</strong> button to recalculate waitlist count after manual deletions</li>
           <li>• Changes appear on the website immediately after updating</li>
+          <li>• For automatic updates, configure the API service in <code>src/services/socialMediaApi.js</code></li>
         </ul>
       </div>
     </div>

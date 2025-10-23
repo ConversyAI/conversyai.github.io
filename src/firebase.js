@@ -295,16 +295,18 @@ export const deleteInterview = async (id) => {
 export const getStats = async () => {
   try {
     if (!db) throw new Error('Firebase not initialized');
-    
+
     const statsDoc = await getDoc(doc(db, COLLECTIONS.STATS, 'main'));
-    
+
     if (statsDoc.exists()) {
       return statsDoc.data();
     }
-    
+
     // Return default values if document doesn't exist
     return {
       linkedinFollowers: 1250,
+      linkedinPageViews: 0,
+      instagramFollowers: 850,
       uniqueVisitors: 0,
       totalPageViews: 0,
       waitlistCount: 387
@@ -314,6 +316,8 @@ export const getStats = async () => {
     // Return default values on error
     return {
       linkedinFollowers: 1250,
+      linkedinPageViews: 0,
+      instagramFollowers: 850,
       uniqueVisitors: 0,
       totalPageViews: 0,
       waitlistCount: 5
