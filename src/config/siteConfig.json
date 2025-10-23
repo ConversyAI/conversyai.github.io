@@ -113,7 +113,7 @@
       {
         "id": "ai-chatbot",
         "title": "AI Chatbot",
-        "description": "Intelligent conversational AI that handles customer queries, product recommendations, and service bookings 24/7.",
+        "description": "Intelligent AI Busines Agent that handles customer queries, product recommendations, and service bookings 24/7.",
         "icon": "chat",
         "features": [
           "Natural language processing",
@@ -124,14 +124,14 @@
       },
       {
         "id": "smart-booking",
-        "title": "Smart Booking System",
-        "description": "Automated appointment scheduling with calendar integration, availability management, and instant confirmations.",
+        "title": "Smart Booking & Ordering System",
+        "description": "All-in-one system to automate bookings, manage orders, and track inventory in real time.",
         "icon": "calendar",
         "features": [
           "Real-time availability",
-          "Calendar sync",
-          "Buffer time management",
-          "Recurring appointments"
+          "Real-time scheduling & ordering",
+          "Calendar & Inventory sync",
+          "Recurring bookings"
         ]
       },
       {
@@ -166,10 +166,10 @@
         "icon": "chart",
         "features": [
           "Real-time metrics",
-          "Revenue tracking",
-          "Customer analytics",
-          "Performance reports",
-          "Smart growth strategies"
+          "Lead capture & conversion tracking",
+          "Consent-based behavior analytics",
+           "Performance & growth reports",
+          "Smart growth recommendations"
         ]
       },
       {

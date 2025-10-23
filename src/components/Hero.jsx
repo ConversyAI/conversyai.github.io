@@ -194,7 +194,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-base sm:text-lg md:text-xl text-white max-w-4xl mx-auto mb-10 font-light"
         >
-          AI Business agent for service bookings & product sales from spreadsheet to live chatbot in minutes.
+          AI Business Agent for service bookings & product sales from spreadsheet to live chatbot in minutes.
         </motion.p>
 
         {/* Integration Icons Carousel */}
