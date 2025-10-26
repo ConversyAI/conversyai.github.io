@@ -14,9 +14,9 @@ import Team from './components/Team';
 import Waitlist from './components/Waitlist';
 import Footer from './components/Footer';
 import Admin from './pages/Admin';
-
 // Analytics
 import { trackVisitor } from './utils/analytics';
+import PrivacyPolicy from './pages/Policy/Policy';
 
 function App() {
   useEffect(() => {
@@ -65,6 +65,9 @@ function App() {
       <Routes>
         {/* Admin Panel Route */}
         <Route path="/admin" element={<Admin />} />
+
+         {/* Admin Panel Route */}
+        <Route path="/privacy" element={<PrivacyPolicy/>} />
 
         {/* Main Website Route */}
         <Route

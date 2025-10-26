@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import StatsManager from './StatsManager';
 import TestimonialsManager from './TestimonialsManager';
 import WaitlistViewer from './WaitlistViewer';
+import PolicyManager from './PolicyManager';
 
 const AdminDashboard = ({ user, onLogout }) => {
   const [activeTab, setActiveTab] = useState('stats');
@@ -50,6 +51,7 @@ const AdminDashboard = ({ user, onLogout }) => {
     { id: 'stats', label: 'Stats', icon: '📊' },
     { id: 'testimonials', label: 'Testimonials', icon: '💬' },
     { id: 'waitlist', label: 'Waitlist', icon: '📋' },
+    { id: 'policy', label: 'Privacy Policy', icon: '📋' },
   ];
 
   return (
@@ -124,6 +126,9 @@ const AdminDashboard = ({ user, onLogout }) => {
             )}
             {activeTab === 'waitlist' && (
               <WaitlistViewer waitlist={waitlist} onUpdate={fetchData} />
+            )}
+            {activeTab === 'policy' && (
+              <PolicyManager policies={waitlist} onUpdate={fetchData} />
             )}
           </>
         )}

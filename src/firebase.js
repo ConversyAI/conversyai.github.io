@@ -52,7 +52,8 @@ export const COLLECTIONS = {
   WAITLIST: 'waitlist',
   INTERVIEWS: 'interviews',
   STATS: 'stats',
-  VISITORS: 'visitors'
+  VISITORS: 'visitors',
+  POLICY: 'policy'
 };
 
 // ===== Waitlist Functions =====
@@ -333,6 +334,65 @@ export const updateStats = async (stats) => {
     return { success: true };
   } catch (error) {
     console.log('Error updating stats:', error.message);
+    return { success: false, error: error.message };
+  }
+};
+
+// ===== Policy Functions =====
+
+export const getPolicy = async () => {
+  try {
+    if (!db) throw new Error('Firebase not initialized');
+
+    console.log('🔍 Fetching Policy from Firestore...');
+
+    // Get all documents from policy collection
+    const collectionRef = collection(db, COLLECTIONS.POLICY);
+    console.log('Collection Ref',collectionRef)
+
+    const querySnapshot = await getDocs(collectionRef);
+    console.log('QuerySnapshot',querySnapshot)
+
+    console.log(`📊 Found ${querySnapshot.size} documents in policy collection`);
+
+    if (querySnapshot.size === 0) {
+      console.log('⚠️ No documents found in policy collection');
+      return [];
+    }
+
+    return querySnapshot;
+  } catch (error) {
+    console.log('❌ Error getting policy:', error.message);
+    console.log('Error details:', error);
+    return [];
+  }
+};
+
+export const updatePolicy = async (id, interview) => {
+  try {
+    if (!db) throw new Error('Firebase not initialized');
+    
+    const interviewRef = doc(db, COLLECTIONS.INTERVIEWS, id);
+    await updateDoc(interviewRef, {
+      ...interview,
+      updatedAt: serverTimestamp()
+    });
+    
+    return { success: true };
+  } catch (error) {
+    console.log('Error updating interview:', error.message);
+    return { success: false, error: error.message };
+  }
+};
+
+export const deletePolicy = async (id) => {
+  try {
+    if (!db) throw new Error('Firebase not initialized');
+    
+    await deleteDoc(doc(db, COLLECTIONS.INTERVIEWS, id));
+    return { success: true };
+  } catch (error) {
+    console.log('Error deleting interview:', error.message);
     return { success: false, error: error.message };
   }
 };
