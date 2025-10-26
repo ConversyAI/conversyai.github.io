@@ -51,7 +51,7 @@ const AdminDashboard = ({ user, onLogout }) => {
     { id: 'stats', label: 'Stats', icon: '📊' },
     { id: 'testimonials', label: 'Testimonials', icon: '💬' },
     { id: 'waitlist', label: 'Waitlist', icon: '📋' },
-    { id: 'policy', label: 'Privacy Policy', icon: '📋' },
+    { id: 'policy', label: 'Privacy Policy', icon: '🔒' },
   ];
 
   return (
@@ -128,7 +128,7 @@ const AdminDashboard = ({ user, onLogout }) => {
               <WaitlistViewer waitlist={waitlist} onUpdate={fetchData} />
             )}
             {activeTab === 'policy' && (
-              <PolicyManager policies={waitlist} onUpdate={fetchData} />
+              <PolicyManager />
             )}
           </>
         )}
