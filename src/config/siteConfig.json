@@ -42,7 +42,7 @@
       },
       {
         "name": "Cyril Rayan",
-        "role": "Co-Founder & Head of Marketing",
+        "role": "Co-Founder & Head of Product Design and Marketing",
         "image": "/assets/cyril.jpg",
         "bio": "Product Marketing expert",
         "linkedin": "https://www.linkedin.com/in/cyril-rayan-9b8432221/",
@@ -68,25 +68,25 @@
     "advisors": [
       {
         "name": "Zack",
-        "role": "Legal Advisor",
+        "role": "Legal Expert",
         "company": "CEO at GoodLegal.fr",
         "image": "/assets/Zack.jpeg"
       },
       {
         "name": "Sruthi",
-        "role": "AI Advisor",
+        "role": "AI Expert",
         "company": "AI Engineer at itemis",
         "image": "/assets/Sruthi.jpeg"
       },
       {
         "name": "Marc",
-        "role": "AI Advisor",
+        "role": "AI Expert",
         "company": "CEO at TryBlend.ai",
         "image": "/assets/Marc.jpeg"
       },
       {
         "name": "Neelesh",
-        "role": "Marketing Advisor",
+        "role": "Marketing Expert",
         "company": "Marketing Manager at Nucleon Security",
         "image": "/assets/Neelesh.jpeg"
       }
