@@ -368,35 +368,22 @@ export const getPolicy = async () => {
   }
 };
 
-export const updatePolicy = async (id, interview) => {
+export const updatePolicy = async (id, policy) => {
   try {
     if (!db) throw new Error('Firebase not initialized');
     
-    const interviewRef = doc(db, COLLECTIONS.INTERVIEWS, id);
-    await updateDoc(interviewRef, {
-      ...interview,
+    const policyRef = doc(db, COLLECTIONS.POLICY, id);
+    await updateDoc(policyRef, {
+      ...policy,
       updatedAt: serverTimestamp()
     });
     
     return { success: true };
   } catch (error) {
-    console.log('Error updating interview:', error.message);
+    console.log('Error updating policy:', error.message);
     return { success: false, error: error.message };
   }
 };
-
-export const deletePolicy = async (id) => {
-  try {
-    if (!db) throw new Error('Firebase not initialized');
-    
-    await deleteDoc(doc(db, COLLECTIONS.INTERVIEWS, id));
-    return { success: true };
-  } catch (error) {
-    console.log('Error deleting interview:', error.message);
-    return { success: false, error: error.message };
-  }
-};
-
 // ===== Visitor Tracking Functions =====
 
 export const trackPageVisit = async (visitorId, isFirstVisit, isNewSession) => {

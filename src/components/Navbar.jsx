@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,13 +17,42 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Team', href: '#team' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Home', href: '#home', type: 'hash' },
+    { name: 'About Us', href: '#about', type: 'hash' },
+    { name: 'Services', href: '#services', type: 'hash' },
+    { name: 'Team', href: '#team', type: 'hash' },
+    { name: 'Testimonials', href: '#testimonials', type: 'hash' },
+    { name: 'Privacy Policy', href: '/privacy', type: 'route' },
   ];
+
+  const handleNavClick = (e, item) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+
+    if (item.type === 'route') {
+      // Navigate to different route
+      navigate(item.href);
+    } else {
+      // Handle hash navigation
+      if (location.pathname !== '/') {
+        // If not on homepage, navigate to homepage first
+        navigate('/');
+        // Wait for navigation, then scroll
+        setTimeout(() => {
+          const element = document.querySelector(item.href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        // Already on homepage, just scroll
+        const element = document.querySelector(item.href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   return (
     <motion.nav
@@ -36,19 +68,19 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo + Coming Soon - Left */}
           <div className="flex items-center space-x-3 flex-shrink-0">
-            <motion.a
-              href="#home"
-              className="flex items-center"
+            <motion.button
+              onClick={() => navigate('/')}
+              className="flex items-center cursor-pointer bg-transparent border-none p-0"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <img
-                src="assets/logo.png"
+                src="/assets/logo.png"
                 alt="Conversy AI"
                 className="h-8 sm:h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                 style={{ filter: 'drop-shadow(0 0 15px rgba(110, 231, 255, 0.15))' }}
               />
-            </motion.a>
+            </motion.button>
             <span className="hidden md:inline-block px-3 py-1.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-xs text-white font-medium whitespace-nowrap">
               Coming soon 2026
             </span>
@@ -57,23 +89,23 @@ const Navbar = () => {
           {/* Desktop Navigation - Center */}
           <div className="hidden md:flex items-center justify-center flex-1 space-x-1">
             {navItems.map((item) => (
-              <motion.a
+              <motion.button
                 key={item.name}
-                href={item.href}
-                className="px-3 py-2 rounded-lg text-white hover:text-brand-primary transition-colors duration-200 font-medium text-sm"
+                onClick={(e) => handleNavClick(e, item)}
+                className="px-3 py-2 rounded-lg text-white hover:text-brand-primary transition-colors duration-200 font-medium text-sm bg-transparent border-none cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item.name}
-              </motion.a>
+              </motion.button>
             ))}
           </div>
 
           {/* Desktop CTA - Right */}
           <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
-            <motion.a
-              href="#waitlist"
-              className="px-5 py-2.5 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-white font-bold hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 text-sm whitespace-nowrap"
+            <motion.button
+              onClick={(e) => handleNavClick(e, { href: '#waitlist', type: 'hash' })}
+              className="px-5 py-2.5 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-white font-bold hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 text-sm whitespace-nowrap border-none cursor-pointer"
               animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
@@ -91,7 +123,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               Join waitlist
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Mobile menu button */}
@@ -129,22 +161,20 @@ const Navbar = () => {
       >
         <div className="px-4 pt-2 pb-4 space-y-2">
           {navItems.map((item) => (
-            <a
+            <button
               key={item.name}
-              href={item.href}
-              className="block px-4 py-3 rounded-lg text-white hover:text-brand-primary hover:bg-brand-bg/50 transition-colors font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, item)}
+              className="block w-full text-left px-4 py-3 rounded-lg text-white hover:text-brand-primary hover:bg-brand-bg/50 transition-colors font-medium bg-transparent border-none cursor-pointer"
             >
               {item.name}
-            </a>
+            </button>
           ))}
-          <a
-            href="#waitlist"
-            className="block px-4 py-3 mt-2 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-lg text-white font-bold text-center animate-pulse-slow"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button
+            onClick={(e) => handleNavClick(e, { href: '#waitlist', type: 'hash' })}
+            className="block w-full px-4 py-3 mt-2 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-lg text-white font-bold text-center animate-pulse-slow border-none cursor-pointer"
           >
             Join waitlist
-          </a>
+          </button>
         </div>
       </motion.div>
     </motion.nav>

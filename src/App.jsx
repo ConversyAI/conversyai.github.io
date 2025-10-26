@@ -67,7 +67,23 @@ function App() {
         <Route path="/admin" element={<Admin />} />
 
          {/* Admin Panel Route */}
-        <Route path="/privacy" element={<PrivacyPolicy/>} />
+        <Route path="/privacy" element={
+            <div className="relative min-h-screen bg-brand-bg text-brand-text">
+              {/* Animated Space Background */}
+              <AnimatedBackground />
+
+              {/* Navigation */}
+              <Navbar />
+
+              {/* Main Content */}
+              <main className="relative z-10">
+                <PrivacyPolicy />
+              </main>
+
+              {/* Footer */}
+              <Footer />
+            </div>
+          } />
 
         {/* Main Website Route */}
         <Route
