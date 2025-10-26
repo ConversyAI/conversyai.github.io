@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 import Hero from './components/Hero';
+import FeatureCards from './components/FeatureCards';
 import Stats from './components/Stats';
 import About from './components/About';
 import Services from './components/Services';
@@ -99,9 +100,10 @@ function App() {
               {/* Main Content */}
               <main className="relative z-10">
                 <Hero />
+                <FeatureCards />
+                <Services />
                 <Stats />
                 <About />
-                <Services />
                 <Testimonials />
                 <Team />
                 <Waitlist />

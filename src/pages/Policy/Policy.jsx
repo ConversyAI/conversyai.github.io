@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "markdown-to-jsx";
 import { getPolicy } from "../../firebase"; // adjust path as needed
 
 export default function Policy() {
@@ -53,8 +53,8 @@ export default function Policy() {
     );
 
   return (
-    <div className="prose prose-invert max-w-3xl mx-auto py-16 px-4 text-brand-text">
-      <ReactMarkdown>{policy}</ReactMarkdown>
+    <div className="markdown max-w-3xl mx-auto py-16 px-4 text-brand-text">
+      <Markdown>{policy}</Markdown>
     </div>
   );
 }

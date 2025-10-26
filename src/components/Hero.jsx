@@ -44,6 +44,9 @@ const Hero = () => {
     { src: 'assets/telegram-icon.svg', alt: 'Telegram' },
     { src: 'assets/wa-whatsapp-icon.svg', alt: 'WhatsApp' },
     { src: 'assets/google-calendar-icon.svg', alt: 'Google Calendar' },
+    { src: 'assets/gmail.png', alt: 'Gmail' },
+    { src: 'assets/map.png', alt: 'Google Maps' },
+    { src: 'assets/excel.png', alt: 'Microsoft Excel' },
   ];
 
   return (
@@ -137,10 +140,10 @@ const Hero = () => {
                 src="assets/Logo SVG.svg"
                 alt="Conversy AI Bot"
                 className="relative z-10 w-36 h-36 sm:w-44 sm:h-44 md:w-56 md:h-56 object-contain"
-                style={{ filter: 'drop-shadow(0 0 30px rgba(110, 231, 255, 0.4))' }}
+                style={{ filter: 'drop-shadow(0 0 30px rgba(59, 130, 246, 0.4))' }}
                 whileHover={{
                   scale: 1.05,
-                  filter: 'drop-shadow(0 0 40px rgba(110, 231, 255, 0.6))',
+                  filter: 'drop-shadow(0 0 40px rgba(59, 130, 246, 0.6))',
                 }}
                 transition={{ duration: 0.3 }}
               />
@@ -161,17 +164,19 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Conversy AI text below logo */}
-          <motion.h1
+          {/* Conversy AI logo below main logo */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mt-6 leading-tight"
+            className="mt-6"
           >
-            <span className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_3s_ease_infinite]">
-              Conversy AI
-            </span>
-          </motion.h1>
+            <img
+              src="assets/ai.svg"
+              alt="Conversy AI"
+              className="h-16 sm:h-20 md:h-24 w-auto mx-auto"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Typing Animation Subheading */}
@@ -205,17 +210,33 @@ const Hero = () => {
           className="relative overflow-hidden mb-12"
         >
           <p className="text-white text-sm mb-6 font-medium">Integrates with your favorite tools</p>
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 mb-12">
-            {integrationIcons.map((icon, index) => (
-              <motion.img
-                key={index}
-                src={icon.src}
-                alt={icon.alt}
-                className="h-12 sm:h-14 md:h-16 w-auto"
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              />
-            ))}
+
+          {/* Gradient overlays for fade effect */}
+          <div className="absolute left-0 top-8 bottom-0 w-32 bg-gradient-to-r from-brand-bg to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-8 bottom-0 w-32 bg-gradient-to-l from-brand-bg to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling container */}
+          <div className="relative">
+            <div className="flex gap-8 md:gap-12 animate-scroll-left items-center">
+              {/* First set of icons */}
+              {integrationIcons.map((icon, index) => (
+                <img
+                  key={`first-${index}`}
+                  src={icon.src}
+                  alt={icon.alt}
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                />
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {integrationIcons.map((icon, index) => (
+                <img
+                  key={`second-${index}`}
+                  src={icon.src}
+                  alt={icon.alt}
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
 
