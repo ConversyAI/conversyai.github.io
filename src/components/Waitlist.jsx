@@ -52,14 +52,51 @@ const Waitlist = () => {
 
         setTimeout(() => {
           if (googleFormUrl) {
-            // Open the Google Form
-            window.open(googleFormUrl, '_blank');
+            // Try to open the Google Form
+            const newWindow = window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
 
-            // Show completion message
-            setStatus({
-              type: 'success',
-              message: '✅ Thank you! Please complete the Google Form in the new tab to finish your waitlist registration.',
-            });
+            // Check if popup was blocked
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+              // Popup blocked - show link
+              setStatus({
+                type: 'success',
+                message: (
+                  <div>
+                    ✅ Almost done! If the Google Form did not open automatically,{' '}
+                    <a
+                      href={googleFormUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline font-bold hover:text-brand-primary"
+                    >
+                      please click here
+                    </a>
+                  </div>
+                ),
+              });
+            } else {
+              // Popup opened successfully
+              setStatus({
+                type: 'success',
+                message: (
+                  <div>
+                    ✅ Thank you! Please complete the Google Form in the new tab to finish your waitlist registration.
+                    <br />
+                    <span className="text-xs opacity-75">
+                      If the form did not open automatically,{' '}
+                      <a
+                        href={googleFormUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:text-brand-primary"
+                      >
+                        click here
+                      </a>
+                    </span>
+                  </div>
+                ),
+              });
+            }
           } else {
             console.error('Google Form URL not configured in siteConfig');
             setStatus({
@@ -71,7 +108,7 @@ const Waitlist = () => {
           // Reset form
           setFormData({ name: '', email: '' });
           setIsSubmitting(false);
-        }, 1000);
+        }, 500);
       } else {
         // More detailed error message
         console.error('Waitlist error:', result.error);
@@ -175,7 +212,7 @@ const Waitlist = () => {
                 {[
                   'Priority access to beta features',
                   'Exclusive onboarding support',
-                  'Lifetime discount on premium plans',
+                  '3 months free access to premium plans',
                   'Direct line to our product team',
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start gap-2">

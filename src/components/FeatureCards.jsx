@@ -89,15 +89,14 @@ const FeatureCards = () => {
 
               {/* Card that drops down from the line */}
               <motion.div
-                initial={{ y: 0, scaleY: 0, opacity: 0 }}
-                whileInView={{ y: 0, scaleY: 1, opacity: 1 }}
+                initial={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}
+                whileInView={{ clipPath: 'inset(0 0 0% 0)', opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{
-                  duration: 0.3,
+                  duration: 0.25,
                   delay: 0.2,
-                  ease: "easeOut"
+                  ease: [0.4, 0, 0.2, 1]
                 }}
-                style={{ transformOrigin: 'top center' }}
                 className="relative h-full bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-2xl p-6 hover:border-brand-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/10 overflow-hidden group flex flex-col"
               >
                 {/* Gradient top border */}
