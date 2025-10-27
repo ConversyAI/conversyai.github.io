@@ -123,10 +123,10 @@ const Team = () => {
           className="text-center mb-12"
         >
           <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-4 text-brand-text">
-            Advisory Panel
+            Expert Network
           </h3>
           <p className="text-brand-muted text-base max-w-2xl mx-auto">
-            Guided by industry leaders and innovators
+            Supported by industry leaders and innovators
           </p>
         </motion.div>
 
