@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { getStats } from '../firebase';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [pageViews, setPageViews] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -14,6 +16,18 @@ const Navbar = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const stats = await getStats();
+        setPageViews(stats.totalPageViews || 0);
+      } catch (error) {
+        console.log('Error fetching page views:', error);
+      }
+    };
+    fetchStats();
   }, []);
 
   const navItems = [
@@ -103,6 +117,29 @@ const Navbar = () => {
 
           {/* Desktop CTA - Right */}
           <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
+            {/* Page Views Counter */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center space-x-2 px-4 py-2 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full"
+            >
+              <svg
+                className="w-4 h-4 text-brand-primary"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <span className="text-white font-medium text-sm">
+                {pageViews.toLocaleString()}
+              </span>
+            </motion.div>
+
             <motion.button
               onClick={(e) => handleNavClick(e, { href: '#waitlist', type: 'hash' })}
               className="px-5 py-2.5 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-white font-bold hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 text-sm whitespace-nowrap border-none cursor-pointer"
