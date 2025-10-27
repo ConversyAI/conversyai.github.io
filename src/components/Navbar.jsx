@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getStats } from '../firebase';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [pageViews, setPageViews] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,18 +14,6 @@ const Navbar = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const stats = await getStats();
-        setPageViews(stats.totalPageViews || 0);
-      } catch (error) {
-        console.log('Error fetching page views:', error);
-      }
-    };
-    fetchStats();
   }, []);
 
   const navItems = [
@@ -83,22 +69,9 @@ const Navbar = () => {
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo + Coming Soon - Left */}
-          <div className="flex items-center space-x-3 flex-shrink-0">
-            <motion.button
-              onClick={() => navigate('/')}
-              className="flex items-center cursor-pointer bg-transparent border-none p-0"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <img
-                src="/assets/logo.png"
-                alt="Conversy AI"
-                className="h-8 sm:h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                style={{ filter: 'drop-shadow(0 0 15px rgba(110, 231, 255, 0.15))' }}
-              />
-            </motion.button>
-            <span className="hidden md:inline-block px-3 py-1.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-xs text-white font-medium whitespace-nowrap">
+          {/* Coming Soon - Left */}
+          <div className="flex items-center flex-shrink-0">
+            <span className="px-3 py-1.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-xs text-white font-medium whitespace-nowrap">
               Coming soon 2026
             </span>
           </div>
@@ -120,29 +93,6 @@ const Navbar = () => {
 
           {/* Desktop CTA - Right */}
           <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
-            {/* Page Views Counter */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-2 px-4 py-2 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full"
-            >
-              <svg
-                className="w-4 h-4 text-brand-primary"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              <span className="text-white font-medium text-base">
-                {pageViews.toLocaleString()}
-              </span>
-            </motion.div>
-
             <motion.button
               onClick={(e) => handleNavClick(e, { href: '#waitlist', type: 'hash' })}
               className="px-5 py-2.5 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-white font-bold hover:shadow-lg hover:shadow-brand-primary/50 transition-all duration-200 text-base whitespace-nowrap border-none cursor-pointer"
@@ -166,31 +116,8 @@ const Navbar = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Page Views Counter + Menu Button */}
-          <div className="flex md:hidden items-center space-x-2">
-            {/* Mobile Page Views Counter */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-1.5 px-3 py-1.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full"
-            >
-              <svg
-                className="w-3.5 h-3.5 text-brand-primary"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              <span className="text-white font-medium text-xs">
-                {pageViews.toLocaleString()}
-              </span>
-            </motion.div>
-
+          {/* Mobile Menu Button */}
+          <div className="flex md:hidden items-center">
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
