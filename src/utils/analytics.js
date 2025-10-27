@@ -59,11 +59,28 @@ export const isNewSession = () => {
 };
 
 /**
+ * Check if running in production environment
+ */
+const isProduction = () => {
+  return import.meta.env.PROD &&
+         (window.location.hostname === 'conversyai.github.io' ||
+          window.location.hostname === 'conversy.ai' ||
+          !window.location.hostname.includes('localhost'));
+};
+
+/**
  * Track unique visitor and page view
  * This function is non-blocking and will not throw errors
+ * Only tracks in production environment
  */
 export const trackVisitor = async () => {
   try {
+    // Skip tracking in development
+    if (!isProduction()) {
+      console.log('Analytics tracking disabled in development environment');
+      return null;
+    }
+
     const visitorId = await getVisitorId();
     const now = Date.now();
     const isFirst = isFirstVisit();
