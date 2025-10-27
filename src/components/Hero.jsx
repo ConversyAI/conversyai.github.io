@@ -224,7 +224,15 @@ const Hero = () => {
                   key={`first-${index}`}
                   src={icon.src}
                   alt={icon.alt}
-                  className="h-10 sm:h-12 md:h-14 w-auto object-contain flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                  className="h-8 sm:h-10 md:h-11 w-auto object-contain flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    outline: 'none',
+                    boxShadow: 'none',
+                    filter: icon.src.endsWith('.png') ? 'brightness(1.1) contrast(1.1)' : 'none',
+                    mixBlendMode: icon.src.endsWith('.png') ? 'screen' : 'normal'
+                  }}
                 />
               ))}
               {/* Duplicate set for seamless loop */}
@@ -233,7 +241,15 @@ const Hero = () => {
                   key={`second-${index}`}
                   src={icon.src}
                   alt={icon.alt}
-                  className="h-10 sm:h-12 md:h-14 w-auto object-contain flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                  className="h-8 sm:h-10 md:h-11 w-auto object-contain flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    outline: 'none',
+                    boxShadow: 'none',
+                    filter: icon.src.endsWith('.png') ? 'brightness(1.1) contrast(1.1)' : 'none',
+                    mixBlendMode: icon.src.endsWith('.png') ? 'screen' : 'normal'
+                  }}
                 />
               ))}
             </div>
