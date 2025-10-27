@@ -1,5 +1,29 @@
+import { useNavigate, useLocation } from 'react-router-dom';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId) => {
+    // If we're not on the home page, navigate there first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   return (
     <footer className="relative py-12 px-4 sm:px-6 lg:px-8 border-t border-brand-primary/10">
@@ -7,11 +31,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/assets/logo.png" alt="Conversy AI" className="h-10 w-auto" />
-              <span className="text-2xl font-extrabold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Conversy AI
-              </span>
+            <div className="flex items-center gap-4 mb-4">
+              <img src="assets/Logo SVG.svg" alt="Conversy AI" className="h-16 w-auto" />
+              <img src="assets/ai.svg" alt="Conversy AI" className="-ml-4 h-8 w-auto" />
             </div>
             <p className="text-brand-muted mb-4">
               AI Business agent for service bookings & product sales from spreadsheet to live chatbot in minutes.
@@ -58,24 +80,36 @@ const Footer = () => {
             <h3 className="text-brand-text font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-brand-muted hover:text-brand-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('home')}
+                  className="text-brand-muted hover:text-brand-primary transition-colors text-left w-full"
+                >
                   Home
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#about" className="text-brand-muted hover:text-brand-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="text-brand-muted hover:text-brand-primary transition-colors text-left w-full"
+                >
                   About Us
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#services" className="text-brand-muted hover:text-brand-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="text-brand-muted hover:text-brand-primary transition-colors text-left w-full"
+                >
                   Services
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#team" className="text-brand-muted hover:text-brand-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('team')}
+                  className="text-brand-muted hover:text-brand-primary transition-colors text-left w-full"
+                >
                   Team
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -85,14 +119,17 @@ const Footer = () => {
             <h3 className="text-brand-text font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-brand-muted">
               <li>
-                <a href="mailto:hello@conversyai.com" className="hover:text-brand-primary transition-colors">
+                <a href="mailto:coreteam@conversyai.com" className="hover:text-brand-primary transition-colors">
                  coreteam@conversyai.com
                 </a>
               </li>
               <li>
-                <a href="#waitlist" className="hover:text-brand-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('waitlist')}
+                  className="hover:text-brand-primary transition-colors text-left"
+                >
                   Join Waitlist
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -104,12 +141,18 @@ const Footer = () => {
             © {currentYear} Conversy AI. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-brand-muted hover:text-brand-primary transition-colors">
+            <button
+              onClick={() => navigate('/privacy')}
+              className="text-brand-muted hover:text-brand-primary transition-colors"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="text-brand-muted hover:text-brand-primary transition-colors">
+            </button>
+            <button
+              onClick={() => navigate('/terms')}
+              className="text-brand-muted hover:text-brand-primary transition-colors"
+            >
               Terms of Service
-            </a>
+            </button>
           </div>
         </div>
       </div>

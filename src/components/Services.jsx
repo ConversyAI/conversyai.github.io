@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import siteConfig from '../config/siteConfig.json';
+import { fadeInUp, staggerContainer, staggerItem, defaultViewport } from '../utils/scrollAnimations';
 
 const Services = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   // Icon mapping for each service type
   const iconMap = {
@@ -49,10 +48,9 @@ const Services = () => {
     <section id="services" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          {...fadeInUp}
+          whileInView="animate"
+          viewport={defaultViewport}
           className="text-center mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
@@ -63,13 +61,16 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          {...staggerContainer}
+          whileInView="animate"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {services.map((service, index) => (
             <motion.div
               key={service.id || index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={staggerItem}
               className="group"
             >
               <div className="h-full bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-2xl p-8 hover:border-brand-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/10 relative overflow-hidden">
@@ -105,7 +106,7 @@ const Services = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
