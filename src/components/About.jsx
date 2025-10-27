@@ -92,9 +92,7 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-brand-text mb-4">Our Mission</h3>
             <p className="text-brand-muted leading-relaxed">
-              To empower every small business, entrepreneur, and digital brand with an intelligent, always-on assistant that turns conversations into meaningful connections, measurable impact, and sustainable growth - no coding, no complexity, just results.
-              To democratize AI-powered business automation and help every business turn conversations
-              into conversions effortlessly.
+              To empower every small business and entrepreneur with an intelligent, always-on assistant that transforms conversations into growth — no coding, no complexity, just results. Conversy AI democratizes business automation so anyone can turn conversations into conversions effortlessly.
             </p>
           </motion.div>
 
