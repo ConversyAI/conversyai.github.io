@@ -31,11 +31,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/assets/logo.png" alt="Conversy AI" className="h-10 w-auto" />
-              <span className="text-2xl font-extrabold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Conversy AI
-              </span>
+            <div className="flex items-center gap-4 mb-4">
+              <img src="assets/Logo SVG.svg" alt="Conversy AI" className="h-16 w-auto" />
+              <img src="assets/ai.svg" alt="Conversy AI" className="-ml-4 h-8 w-auto" />
             </div>
             <p className="text-brand-muted mb-4">
               AI Business agent for service bookings & product sales from spreadsheet to live chatbot in minutes.
