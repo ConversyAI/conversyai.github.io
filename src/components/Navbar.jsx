@@ -48,23 +48,26 @@ const Navbar = () => {
       navigate(item.href);
     } else {
       // Handle hash navigation
-      if (location.pathname !== '/') {
-        // If not on homepage, navigate to homepage first
-        navigate('/');
-        // Wait for navigation, then scroll
-        setTimeout(() => {
+      // Add delay for mobile menu to close first
+      setTimeout(() => {
+        if (location.pathname !== '/') {
+          // If not on homepage, navigate to homepage first
+          navigate('/');
+          // Wait for navigation, then scroll
+          setTimeout(() => {
+            const element = document.querySelector(item.href);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 100);
+        } else {
+          // Already on homepage, just scroll
           const element = document.querySelector(item.href);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
-        }, 100);
-      } else {
-        // Already on homepage, just scroll
-        const element = document.querySelector(item.href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
         }
-      }
+      }, 300);
     }
   };
 
