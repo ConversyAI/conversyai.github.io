@@ -69,7 +69,7 @@ function App() {
 
          {/* Admin Panel Route */}
         <Route path="/privacy" element={
-            <div className="relative min-h-screen bg-brand-bg text-brand-text">
+            <div className="relative min-h-screen bg-brand-bg text-brand-text overflow-x-hidden">
               {/* Animated Space Background */}
               <AnimatedBackground />
 
@@ -77,7 +77,7 @@ function App() {
               <Navbar />
 
               {/* Main Content */}
-              <main className="relative z-10">
+              <main className="relative z-10 overflow-x-hidden">
                 <PrivacyPolicy />
               </main>
 
@@ -90,7 +90,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="relative min-h-screen bg-brand-bg text-brand-text">
+            <div className="relative min-h-screen bg-brand-bg text-brand-text overflow-x-hidden">
               {/* Animated Space Background */}
               <AnimatedBackground />
 
@@ -98,7 +98,7 @@ function App() {
               <Navbar />
 
               {/* Main Content */}
-              <main className="relative z-10">
+              <main className="relative z-10 overflow-x-hidden">
                 <Hero />
                 <FeatureCards />
                 <Services />
