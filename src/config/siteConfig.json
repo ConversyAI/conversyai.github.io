@@ -112,7 +112,7 @@
     "detailedFeatures": [
       {
         "id": "ai-chatbot",
-        "title": "AI Chatbot",
+        "title": "Agentic Chatbot",
         "description": "Intelligent AI Busines Agent that handles customer queries, product recommendations, and service bookings 24/7.",
         "icon": "chat",
         "features": [
