@@ -7,13 +7,26 @@ const WelcomeOverlay = () => {
   // ========================================
   
   // Show overlay on every page load (true) or once per session (false)
-  const SHOW_ON_EVERY_LOAD = true; // 👈 Change to false for production
+  const SHOW_ON_EVERY_LOAD = false; // 👈 Change to false for production
   
   // Enable/Disable Features:
   const ENABLE_CLICK_BUTTON = true;        // 👈 true = Show button, false = Skip button
   const ENABLE_ANIMATED_OVERLAY = true;    // 👈 true = Show "Welcome to Future of Business", false = Skip
-  const ENABLE_VOICE = false;               // 👈 true = Play voice, false = Silent
+  const ENABLE_VOICE = false;              // 👈 true = Play voice, false = Silent
   
+  // Timing Controls (in milliseconds):
+  const OVERLAY_DURATION = 1500;           // 👈 How long to show overlay (if voice disabled). Default: 3000ms (3 seconds)
+  const DELAY_AFTER_VOICE = 500;           // 👈 Delay after voice ends before closing. Default: 500ms (0.5 seconds)
+
+  // ========================================
+  // VOICE TIMING CONTROLS
+  // ========================================
+  // Adjust timing and pacing of the speech playback
+  const VOICE_START_DELAY = 500;  // Delay before speech starts after click
+  const VOICE_RATE = 0.9;         // Speed: 0.1 (slow) to 10 (fast)
+  const VOICE_PITCH = 1.0;        // Pitch: 0 (low) to 2 (high)
+  const VOICE_VOLUME = 0.3;       // Volume: 0 (mute) to 1 (max)
+  // ========================================
   // ========================================
 
   // Check session storage immediately to prevent flash
@@ -42,9 +55,9 @@ const WelcomeOverlay = () => {
         const utterance = new SpeechSynthesisUtterance('Welcome to the Future of Business');
         
         // ===== VOICE SETTINGS - CUSTOMIZE HERE =====
-        utterance.rate = 0.9;    // Speed: 0.1 (slow) to 10 (fast), default 1
-        utterance.pitch = 1.0;   // Pitch: 0 (low) to 2 (high), default 1  
-        utterance.volume = 0.3; // Volume: 0 (mute) to 1 (max), default 1
+        utterance.rate = VOICE_RATE;
+        utterance.pitch = VOICE_PITCH;
+        utterance.volume = VOICE_VOLUME;
         // ===========================================
         
         // Try to use a better voice if available
@@ -75,7 +88,7 @@ const WelcomeOverlay = () => {
               if (!SHOW_ON_EVERY_LOAD) {
                 sessionStorage.setItem('welcomeOverlayShown', 'true');
               }
-            }, 500); // Small delay after speech ends
+            }, DELAY_AFTER_VOICE); // Configurable delay after speech ends
           }
         };
         
@@ -86,7 +99,7 @@ const WelcomeOverlay = () => {
           } catch (error) {
             console.error('❌ Failed to speak:', error);
           }
-        }, 500);
+        }, VOICE_START_DELAY);
       };
 
       // Load voices (some browsers need this)
@@ -106,7 +119,7 @@ const WelcomeOverlay = () => {
         if (!SHOW_ON_EVERY_LOAD) {
           sessionStorage.setItem('welcomeOverlayShown', 'true');
         }
-      }, 3000); // 3 seconds to see the animation
+      }, OVERLAY_DURATION); // Configurable duration to see the animation
       
       return () => clearTimeout(timer);
     }
