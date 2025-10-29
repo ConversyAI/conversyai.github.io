@@ -11,7 +11,7 @@ const WelcomeOverlay = () => {
   
   // Enable/Disable Features:
   const ENABLE_CLICK_BUTTON = true;        // 👈 true = Show button, false = Skip button
-  const ENABLE_ANIMATED_OVERLAY = true;    // 👈 true = Show "Welcome to Future of Business", false = Skip
+  const ENABLE_ANIMATED_OVERLAY = false;    // 👈 true = Show "Welcome to Future of Business", false = Skip
   const ENABLE_VOICE = false;              // 👈 true = Play voice, false = Silent
   
   // Timing Controls (in milliseconds):
@@ -150,12 +150,16 @@ const WelcomeOverlay = () => {
   // Auto-close overlay if animated overlay is disabled
   useEffect(() => {
     if (!ENABLE_ANIMATED_OVERLAY && !showButton) {
+      // Close immediately when button is clicked and overlay is disabled
       setIsVisible(false);
       if (!SHOW_ON_EVERY_LOAD) {
         sessionStorage.setItem('welcomeOverlayShown', 'true');
       }
     }
   }, [ENABLE_ANIMATED_OVERLAY, showButton, SHOW_ON_EVERY_LOAD]);
+
+  // Also prevent rendering the animated overlay content if disabled
+  const shouldShowAnimatedContent = ENABLE_ANIMATED_OVERLAY && !showButton;
 
   return (
     <AnimatePresence>
@@ -196,37 +200,70 @@ const WelcomeOverlay = () => {
 
           {/* Main content */}
           <div className="relative z-10 text-center px-4">
-            {showButton ? (
+            {showButton && ENABLE_CLICK_BUTTON ? (
               /* Click to Enter Button */
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.button
-                  onClick={handleEnter}
-                  className="group relative px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-white font-bold text-lg overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Step into the future of your business
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-white/20"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </motion.button>
+                <div className="flex flex-col items-center gap-6">
+                  {/* Animated text above button */}
+                  <motion.h2
+                    className="text-3xl sm:text-4xl md:text-5xl font-extrabold"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <motion.span
+                      className="bg-gradient-to-r from-brand-secondary via-brand-primary to-brand-secondary bg-clip-text text-transparent"
+                      style={{
+                        backgroundSize: '200% auto',
+                        animation: 'gradient-shift 3s ease infinite',
+                        textShadow: '0 0 40px rgba(94, 129, 244, 0.5)',
+                      }}
+                      animate={{
+                        textShadow: [
+                          '0 0 20px rgba(94, 129, 244, 0.5)',
+                          '0 0 40px rgba(94, 129, 244, 0.8)',
+                          '0 0 20px rgba(94, 129, 244, 0.5)',
+                        ],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      Step into the future of your business
+                    </motion.span>
+                  </motion.h2>
+
+                  {/* Button */}
+                  <motion.button
+                    onClick={handleEnter}
+                    className="group relative px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full text-white font-bold text-lg overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      Jump
+                      <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-white/20"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  </motion.button>
+                </div>
               </motion.div>
-            ) : (
+            ) : shouldShowAnimatedContent ? (
               /* Original Animated Content */
               <>
                 {/* Glowing orb effect behind text */}
@@ -311,7 +348,7 @@ const WelcomeOverlay = () => {
                   ))}
                 </motion.div>
               </>
-            )}
+            ) : null}
           </div>
 
           {/* Bottom accent line */}
