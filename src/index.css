@@ -161,6 +161,12 @@
   .dot-pattern {
     background-size: 20px 20px;
   }
+  
+  /* Ensure text wraps properly on mobile */
+  body {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

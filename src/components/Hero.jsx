@@ -50,16 +50,16 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-32">
-      <div className="max-w-5xl mx-auto text-center">
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-2 sm:px-6 lg:px-8 pt-32">
+      <div className="max-w-5xl mx-auto text-center w-full">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-block mb-8"
+          className="inline-block mb-8 px-2"
         >
-          <span className="px-5 py-2.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-base text-white font-medium">
+          <span className="px-3 py-2 sm:px-5 sm:py-2.5 bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/30 rounded-full text-xs sm:text-sm md:text-base text-white font-medium break-words">
             We back your agentic future
           </span>
         </motion.div>
@@ -184,9 +184,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-xl sm:text-2xl md:text-3xl text-white font-bold mb-6 h-16 sm:h-20 flex items-center justify-center"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-bold mb-6 min-h-[4rem] sm:min-h-[5rem] flex items-center justify-center px-1 sm:px-4 w-full max-w-[96vw] mx-auto"
         >
-          <span className="font-bold">
+          <span className="font-bold break-words text-center w-full" style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>
             {displayedText}
             <span className="animate-pulse">|</span>
           </span>
@@ -197,7 +197,8 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-base sm:text-lg md:text-xl text-white max-w-4xl mx-auto mb-10 font-light"
+          className="text-sm sm:text-base md:text-lg lg:text-xl text-white w-full max-w-[96vw] sm:max-w-4xl mx-auto mb-10 font-light px-2 sm:px-6 break-words overflow-wrap-anywhere leading-relaxed"
+          style={{ wordBreak: 'break-word', overflowWrap: 'anywhere', hyphens: 'auto' }}
         >
           Turn your documents, spreadsheets, and workflows into a live Agentic Business Chatbot in minutes.
         </motion.p>
