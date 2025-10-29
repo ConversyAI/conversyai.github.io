@@ -113,13 +113,14 @@
       {
         "id": "ai-chatbot",
         "title": "Agentic Chatbot",
-        "description": "Intelligent AI Busines Agent that handles customer queries, product recommendations, and service bookings 24/7.",
+        "description": "Intelligent AI Business Agent that understands your business logic, tone, and workflows delivering personalized, human-like experiences across your website, WhatsApp, and social channels.",
         "icon": "chat",
         "features": [
           "Natural language processing",
           "Multi-language support",
           "Context-aware responses",
-          "Custom personality"
+          "Personalized responses based on business logic",
+          "Custom personality & workflows"
         ]
       },
       {

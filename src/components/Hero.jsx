@@ -200,7 +200,7 @@ const Hero = () => {
           className="text-sm sm:text-base md:text-lg lg:text-xl text-white w-full max-w-[96vw] sm:max-w-4xl mx-auto mb-10 font-light px-2 sm:px-6 break-words overflow-wrap-anywhere leading-relaxed"
           style={{ wordBreak: 'break-word', overflowWrap: 'anywhere', hyphens: 'auto' }}
         >
-          Turn your documents, spreadsheets, and workflows into a live Agentic Business Chatbot in minutes.
+          Turn your documents, spreadsheets, and workflows into a live Agentic Business Agent in minutes.
         </motion.p>
 
         {/* Integration Icons Carousel */}
