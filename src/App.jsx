@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 // Components
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
+import WelcomeOverlay from './components/WelcomeOverlay';
 import Hero from './components/Hero';
 import FeatureCards from './components/FeatureCards';
 import Stats from './components/Stats';
@@ -91,6 +92,9 @@ function App() {
           path="/"
           element={
             <div className="relative min-h-screen bg-brand-bg text-brand-text overflow-x-hidden">
+              {/* Welcome Overlay with Text-to-Speech */}
+              <WelcomeOverlay />
+
               {/* Animated Space Background */}
               <AnimatedBackground />
 
