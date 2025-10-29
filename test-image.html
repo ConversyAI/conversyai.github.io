@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Image Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #16213e;
+            border-radius: 10px;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #0f3460;
+            object-fit: cover;
+        }
+        .error {
+            color: #ff6b6b;
+        }
+        .success {
+            color: #51cf66;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Drive Image Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Original Google Drive Link</h2>
+        <p>URL: <code>https://drive.google.com/file/d/1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH/view?usp=sharing</code></p>
+        <img 
+            src="https://drive.google.com/file/d/1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH/view?usp=sharing" 
+            alt="Original Link"
+            onerror="document.getElementById('test1-status').innerHTML = '❌ Failed to load'"
+            onload="document.getElementById('test1-status').innerHTML = '✅ Loaded successfully'"
+        >
+        <p id="test1-status">Loading...</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Converted Direct Link (uc?export=view)</h2>
+        <p>URL: <code>https://drive.google.com/uc?export=view&id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH</code></p>
+        <img 
+            src="https://drive.google.com/uc?export=view&id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH" 
+            alt="Converted Link"
+            onerror="document.getElementById('test2-status').innerHTML = '❌ Failed to load'"
+            onload="document.getElementById('test2-status').innerHTML = '✅ Loaded successfully'"
+        >
+        <p id="test2-status">Loading...</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Alternative Format (thumbnail)</h2>
+        <p>URL: <code>https://drive.google.com/thumbnail?id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH</code></p>
+        <img 
+            src="https://drive.google.com/thumbnail?id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH" 
+            alt="Thumbnail Link"
+            onerror="document.getElementById('test3-status').innerHTML = '❌ Failed to load'"
+            onload="document.getElementById('test3-status').innerHTML = '✅ Loaded successfully'"
+        >
+        <p id="test3-status">Loading...</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Alternative Format (uc?id=)</h2>
+        <p>URL: <code>https://drive.google.com/uc?id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH</code></p>
+        <img 
+            src="https://drive.google.com/uc?id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH" 
+            alt="UC ID Link"
+            onerror="document.getElementById('test4-status').innerHTML = '❌ Failed to load'"
+            onload="document.getElementById('test4-status').innerHTML = '✅ Loaded successfully'"
+        >
+        <p id="test4-status">Loading...</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Open this file in your browser</li>
+            <li>Check which format successfully loads the image</li>
+            <li>If none work, the Google Drive file may not be publicly accessible</li>
+            <li>To fix: Right-click the file in Google Drive → Share → Change to "Anyone with the link"</li>
+        </ol>
+    </div>
+
+    <script>
+        console.log('Testing Google Drive image formats...');
+        console.log('Original link:', 'https://drive.google.com/file/d/1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH/view?usp=sharing');
+        console.log('Converted link:', 'https://drive.google.com/uc?export=view&id=1BiOL8HkfcsyYhxNGMG57vd4jU7X2NBqH');
+    </script>
+</body>
+</html>

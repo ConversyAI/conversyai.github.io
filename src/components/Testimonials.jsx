@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { getInterviews } from '../firebase';
 import siteConfig from '../config/siteConfig.json';
+import { convertToDirectImageUrl, getFallbackAvatar } from '../utils/imageUtils';
 
 const Testimonials = () => {
   // Use empty array initially, will be populated from Firebase or config
@@ -166,9 +167,12 @@ const Testimonials = () => {
                   {/* Author */}
                   <div className="flex items-center gap-4">
                     <img
-                      src={testimonials[currentIndex].image || `https://i.pravatar.cc/150?img=${currentIndex + 1}`}
+                      src={convertToDirectImageUrl(testimonials[currentIndex].image) || getFallbackAvatar(currentIndex + 1)}
                       alt={testimonials[currentIndex].name}
                       className="w-14 h-14 rounded-full border-2 border-brand-primary/30"
+                      onError={(e) => {
+                        e.target.src = getFallbackAvatar(currentIndex + 1);
+                      }}
                     />
                     <div>
                       <h4 className="text-brand-text font-bold text-lg">

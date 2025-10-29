@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { addInterview, updateInterview, deleteInterview } from '../../firebase';
 import toast from 'react-hot-toast';
+import { convertToDirectImageUrl, getFallbackAvatar } from '../../utils/imageUtils';
 
 const TestimonialsManager = ({ testimonials, onUpdate }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -161,14 +162,32 @@ const TestimonialsManager = ({ testimonials, onUpdate }) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-brand-text font-medium mb-2">Image URL (optional)</label>
+                  <label className="block text-brand-text font-medium mb-2">
+                    Image URL (optional)
+                    <span className="block text-xs text-brand-muted font-normal mt-1">
+                      Supports Google Drive links or direct image URLs
+                    </span>
+                  </label>
                   <input
                     type="url"
                     value={formData.image}
                     onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                     className="w-full px-4 py-3 bg-brand-bg border border-brand-primary/30 rounded-lg text-brand-text focus:outline-none focus:border-brand-primary"
-                    placeholder="https://example.com/photo.jpg"
+                    placeholder="https://drive.google.com/file/d/FILE_ID/view or https://example.com/photo.jpg"
                   />
+                  {formData.image && (
+                    <div className="mt-2">
+                      <p className="text-xs text-brand-muted mb-2">Preview:</p>
+                      <img
+                        src={convertToDirectImageUrl(formData.image)}
+                        alt="Preview"
+                        className="w-16 h-16 rounded-full border-2 border-brand-primary/30"
+                        onError={(e) => {
+                          e.target.src = getFallbackAvatar(1);
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex gap-3">
@@ -196,7 +215,14 @@ const TestimonialsManager = ({ testimonials, onUpdate }) => {
               <div className="flex items-start justify-between">
                 <div className="flex gap-4 flex-1">
                   {testimonial.image && (
-                    <img src={testimonial.image} alt={testimonial.name} className="w-16 h-16 rounded-full" />
+                    <img 
+                      src={convertToDirectImageUrl(testimonial.image)} 
+                      alt={testimonial.name} 
+                      className="w-16 h-16 rounded-full object-cover"
+                      onError={(e) => {
+                        e.target.src = getFallbackAvatar(1);
+                      }}
+                    />
                   )}
                   <div className="flex-1">
                     <h4 className="text-brand-text font-bold text-lg">{testimonial.name}</h4>
