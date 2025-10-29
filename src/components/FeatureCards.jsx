@@ -41,7 +41,7 @@ const FeatureCards = () => {
       ),
       title: 'Omnichannel Agent',
       subtitle: 'Launch your agent anywhere',
-      description: 'Share your unique chat link or connect your WhatsApp Business number — your customers can chat, book, and pay instantly on WhatsApp, Instagram, or your website.'
+      description: 'Share your unique chat link or connect your WhatsApp Business number. Your customers can chat, book, and pay instantly on WhatsApp, Instagram, or your website.'
     },
     {
       icon: (
