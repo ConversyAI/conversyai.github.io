@@ -27,8 +27,8 @@ const Team = () => {
           </p>
         </motion.div>
 
-        {/* Team Members Grid - 5 columns on xl screens, centered when odd number */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-24 justify-items-center">
+        {/* Team Members Grid - 4 columns on xl screens, centered when odd number */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-24 justify-items-center">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
