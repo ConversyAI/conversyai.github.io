@@ -44,7 +44,7 @@ const About = () => {
   ];
 
   const milestones = [
-  { year: 'December 2025', event: 'MVP Finalization & Private Beta' },
+  { year: 'January 2025', event: 'MVP Finalization & Private Beta' },
   { year: 'February 2026', event: 'MVP Launch (Conversy AI v1.0)' },
   { year: 'April 2026', event: '1000+ Early Adopters & First Paying Users' },
   { year: 'June 2026', event: 'Public Beta Launch & Growth to 10K Users' },
