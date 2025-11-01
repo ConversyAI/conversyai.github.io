@@ -29,7 +29,7 @@ const FeatureCards = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
         </svg>
       ),
-      title: 'Integrate Apps',
+      title: 'Connect Apps',
       subtitle: 'Connect your essential tools',
       description: 'Calendars, location, WhatsApp, payment gateways, and more. Everything works together automatically for a seamless experience.'
     },
@@ -41,7 +41,7 @@ const FeatureCards = () => {
       ),
       title: 'Omnichannel Agent',
       subtitle: 'Launch your agent anywhere',
-      description: 'Share your unique chat link or connect your WhatsApp Business number. Your customers can chat, book, and pay instantly on WhatsApp, Instagram, or your website.'
+      description: 'Share your unique chat link or create a WhatsApp/Telegram bot. Let customers chat, book, and pay instantly across WhatsApp, Instagram, or your website.'
     },
     {
       icon: (
