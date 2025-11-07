@@ -167,14 +167,15 @@
       },
       {
         "id": "spreadsheet-integration",
-        "title": "Spreadsheet Integration",
+        "title": "Spreadsheet/Database Integration",
         "description": "Connect your existing data from Google Sheets or Excel and go live in minutes without complex setup.",
         "icon": "spreadsheet",
         "features": [
-          "Google Sheets sync",
           "Excel compatibility",
-          "Auto data refresh",
-          "No-code setup"
+          "Google Sheets integration",
+          "Two-way data sync",
+          "Database connectivity",
+          "Auto data refresh"
         ]
       }
     ]
