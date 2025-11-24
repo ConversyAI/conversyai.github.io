@@ -27,8 +27,8 @@ const Team = () => {
           </p>
         </motion.div>
 
-        {/* Team Members Grid - 4 columns on xl screens, centered when odd number */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-24 justify-items-center">
+        {/* Team Members Grid - Single row with 5 columns */}
+        <div className="grid grid-cols-5 gap-8 mb-24 justify-items-center">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
@@ -39,11 +39,16 @@ const Team = () => {
             >
               <div className="bg-brand-panel/50 backdrop-blur-sm border border-brand-primary/20 rounded-2xl p-6 hover:border-brand-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/10 h-full flex flex-col">
                 {/* Image Container - Fixed height */}
-                <div className="relative mb-4 overflow-hidden rounded-xl h-64 flex-shrink-0">
+<div className="relative mb-4 overflow-hidden rounded-xl h-48 flex-shrink-0">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      objectPosition: member.name === 'Ajay Pradeep' || member.name === 'Cyril Rayan'
+                        ? '50% 0%'
+                        : '50% 15%'
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>

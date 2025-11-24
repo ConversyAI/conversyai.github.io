@@ -26,33 +26,41 @@
     "members": [
       {
         "name": "Jermiah Jerome",
-        "role": "Founder & CEO",
+        "role": "CEO & AI Engineer",
         "image": "/assets/jermiah.jpg",
-        "bio": "Former Assistant Product Manager at HSBC. NIT Trichy and Emlyon Business School graduate.",
+        "bio": "5+ years of experience in data and product management, with prior roles at BNP Paribas and HSBC.",
         "linkedin": "https://www.linkedin.com/in/jermiah-jerome/",
         "twitter": null
       },
       {
         "name": "Ajay Pradeep",
-        "role": "Co-Founder & CTO",
+        "role": "Head of Technology",
         "image": "/assets/Ajay.jpg",
-        "bio": "Built scalable systems at Lawyer Conveyance System",
+        "bio": "Full-stack engineer built scalable systems at Lawyer Conveyance System.",
         "linkedin": "https://www.linkedin.com/in/majaypradeep/",
         "twitter": null
       },
       {
+         "name": "Prajwal Dhiwar",
+        "role": "Head of AI and Cloud",
+        "image": "/assets/prajwal2.png",
+        "bio": "Serial founder with hands-on experience in building AI products.",
+        "linkedin": "https://www.linkedin.com/in/prajwal-dhiwar/",
+        "twitter": null
+      },
+      {
         "name": "Cyril Rayan",
-        "role": "Co-Founder & Head of Product Design and Marketing",
+        "role": "Head of Product",
         "image": "/assets/cyril.jpg",
-        "bio": "Product Marketing expert",
+        "bio": " 3+ years of experience designing SMB-facing SaaS products.",
         "linkedin": "https://www.linkedin.com/in/cyril-rayan-9b8432221/",
         "twitter": null
       },
       {
         "name": "Thamimul Ansari",
-        "role": "Founding Engineer - Full Stack",
+        "role": "Founding Engineer",
         "image": "/assets/Thamimul.jpg",
-        "bio": "Award-winning full-stack developer.",
+        "bio": "Award-winning full-stack developer with expertise in building scalable web applications.",
         "linkedin": "https://www.linkedin.com/in/thamimul-ansari-901177160/",
         "twitter": null
       }
