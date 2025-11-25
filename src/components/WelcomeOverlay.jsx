@@ -10,8 +10,8 @@ const WelcomeOverlay = () => {
   const SHOW_ON_EVERY_LOAD = false; // 👈 Change to false for production
   
   // Enable/Disable Features:
-  const ENABLE_CLICK_BUTTON = true;        // 👈 true = Show button, false = Skip button
-  const ENABLE_ANIMATED_OVERLAY = true;    // 👈 true = Show "Welcome to Future of Business", false = Skip
+  const ENABLE_CLICK_BUTTON = false;        // 👈 true = Show button, false = Skip button
+  const ENABLE_ANIMATED_OVERLAY = false;    // 👈 true = Show "Welcome to Future of Business", false = Skip
   const ENABLE_VOICE = false;              // 👈 true = Play voice, false = Silent
   
   // Timing Controls (in milliseconds):
