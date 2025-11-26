@@ -11,7 +11,17 @@ const FeatureCards = () => {
       ),
       title: 'Uploads',
       subtitle: 'Upload what you have',
-      description: 'Business documents, brochures, catalogs, price lists, website links, spreadsheets, or write manual details.'
+      description: 'Add business documents, brochures, catalogues, price lists, website links, spreadsheets, or write details manually. Your agent learns the essentials from your existing material.'
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v4a3 3 0 01-3 3z" />
+        </svg>
+      ),
+      title: 'Train by Voice',
+      subtitle: 'Teach with your voice',
+      description: 'Have a simple conversation with our voice agent. It asks the right questions, understands your business, and uses your answers or voice notes to build the foundation of your AI agent.'
     },
     {
       icon: (
@@ -20,8 +30,8 @@ const FeatureCards = () => {
         </svg>
       ),
       title: 'Train Your Agent',
-      subtitle: 'Teach your AI in minutes',
-      description: 'It understands your content and workflows to deliver accurate, personalized responses like a team member who knows your business inside out.'
+      subtitle: 'Train your AI in minutes',
+      description: 'Your agent learns from your content and workflows to give accurate and personalised responses, just like a team member who knows your business inside out.'
     },
     {
       icon: (
@@ -31,7 +41,7 @@ const FeatureCards = () => {
       ),
       title: 'Connect Apps',
       subtitle: 'Connect your essential tools',
-      description: 'Calendars, location, WhatsApp, payment gateways, and more. Everything works together automatically for a seamless experience.'
+      description: 'Integrate calendars, messaging platforms, payment systems, location services, and your everyday business apps. Everything syncs automatically so your operations run smoothly.'
     },
     {
       icon: (
@@ -41,7 +51,7 @@ const FeatureCards = () => {
       ),
       title: 'Omnichannel Agent',
       subtitle: 'Launch your agent anywhere',
-      description: 'Share your unique chat link or create a WhatsApp Agent. Let customers chat, book, and pay instantly across WhatsApp, Instagram, Telegram or your website.'
+      description: 'Share your unique chat link or deploy it as a WhatsApp agent. Let customers chat, book, and pay instantly across WhatsApp, Instagram, Telegram or your website.'
     },
     {
       icon: (
@@ -51,13 +61,13 @@ const FeatureCards = () => {
       ),
       title: 'Intelligent Dashboard',
       subtitle: 'Make smarter decisions',
-      description: 'Track conversations, payments, bookings, and insights in real time. Capture leads, understand clients, and get growth strategies all in one place.'
+      description: 'Track conversations, payments, bookings, and insights in real time. Capture leads, understand client needs, and get tailored growth strategy suggestions to help your business move forward from one place.'
     }
   ];
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         {/* Section Header */}
         <motion.div
           {...fadeInUp}
@@ -80,7 +90,7 @@ const FeatureCards = () => {
           {...staggerContainer}
           whileInView="animate"
           viewport={defaultViewport}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8"
         >
           {features.map((feature, index) => (
             <div key={index} className="relative h-full">
