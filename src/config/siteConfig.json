@@ -176,7 +176,7 @@
       {
         "id": "spreadsheet-integration",
         "title": "Spreadsheet/Database Integration",
-        "description": "Connect your existing data from Google Sheets or Excel and go live in minutes without complex setup.",
+        "description": "Connect your existing data from Google Sheets,Excel or Databases and go live in minutes without complex setup.",
         "icon": "spreadsheet",
         "features": [
           "Excel compatibility",
