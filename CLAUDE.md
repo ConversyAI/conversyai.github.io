@@ -35,18 +35,22 @@ npm run deploy
 ## Build and Deployment
 
 ### Local Development
+
 ```bash
 npm run dev  # Starts Vite dev server with HMR
 ```
 
 ### Production Build
+
 ```bash
 npm run build  # Outputs to dist/ directory
 npm run preview  # Preview built site before deployment
 ```
 
 ### Deploy to Production
+
 When ready to replace the live site on `main` branch:
+
 ```bash
 npm run build
 git checkout main
@@ -56,11 +60,12 @@ git commit -m "Deploy new React website"
 git push origin main
 ```
 
-**Note**: The `main` branch serves the live site at www.conversyai.com via GitHub Pages. Always build and test thoroughly before deploying.
+**Note**: The `main` branch serves the live site at [www.conversyai.com] via GitHub Pages. Always build and test thoroughly before deploying.
 
 ## Architecture
 
 ### Branch Strategy
+
 - `main`: Live production site (currently old static HTML)
 - `HomeSweetHome` / `new_version_static_page`: React app development
 - Work on development branches, merge to `main` when ready to go live
@@ -68,19 +73,21 @@ git push origin main
 ### Application Structure
 
 **Single Page Application (SPA)** with two routes:
+
 - `/` - Main landing page with scrollable sections
 - `/admin` - Admin dashboard for managing stats and content
 - `/privacy` - Privacy policy page
 
 **Main Page Flow** (App.jsx):
-```
+
+```bash
 Navbar (fixed) → Hero → FeatureCards → Services → Stats →
 About → Testimonials → Team → Waitlist → Footer
 ```
 
 ### Key Directories
 
-```
+```bash
 src/
 ├── App.jsx                    # Main router & page layout
 ├── main.jsx                   # React entry point
@@ -116,12 +123,14 @@ src/
 ### Firebase Integration
 
 **Firestore Collections**:
+
 - `waitlist` - Email submissions from the waitlist form
 - `stats/main` - Real-time counters (linkedinFollowers, uniqueVisitors, waitlistCount)
 - `visitors` - Unique visitor tracking via browser fingerprinting
 - `interviews` - Admin-managed interview data
 
 **Key Firebase Functions** (firebase.js):
+
 - `getStats()` - Fetch current stats from Firestore
 - `updateStats()` - Update specific stat fields
 - `addToWaitlist()` - Add email to waitlist collection
@@ -133,6 +142,7 @@ src/
 ### Configuration System
 
 **src/config/siteConfig.json** - Central configuration for:
+
 - Company info (name, tagline, email)
 - Social media links
 - Google Form URLs
@@ -146,6 +156,7 @@ Update this file instead of hardcoding content in components. Most components re
 ### Styling Architecture
 
 **Tailwind CSS 4** with custom theme:
+
 - Brand colors defined in tailwind.config.js:
   - `brand-bg`: #0b0f19 (main background)
   - `brand-panel`: #0d1220 (card backgrounds)
@@ -161,22 +172,27 @@ Update this file instead of hardcoding content in components. Most components re
 ## Important Implementation Details
 
 ### Path Aliases
+
 Vite configured with `@` alias pointing to `src/`:
+
 ```javascript
 import Component from '@/components/Component';
 ```
 
 ### Animation Libraries
+
 - **Framer Motion**: Used for page transitions and component animations
 - **react-countup**: Animated number counters in Stats section
 - **react-intersection-observer**: Trigger animations on scroll
 
 ### Visitor Tracking
+
 - Uses `@fingerprintjs/fingerprintjs` to generate unique visitor IDs
 - Non-blocking: runs in background 1s after page load
 - Stored in Firestore `visitors` collection with timestamp
 
 ### Waitlist Flow
+
 1. User submits name/email in Waitlist component
 2. Data saved to Firebase `waitlist` collection
 3. `stats/main` waitlistCount incremented
@@ -184,7 +200,9 @@ import Component from '@/components/Component';
 5. Toast notification confirms success
 
 ### Admin Panel
+
 Protected route at `/admin` with Firebase Auth:
+
 - Login with email/password
 - Manage stats (followers, visitors, waitlist count)
 - View submissions
@@ -193,6 +211,7 @@ Protected route at `/admin` with Firebase Auth:
 ## Testing and Quality
 
 ### Before Deployment Checklist
+
 - [ ] Test all sections load properly
 - [ ] Verify Firebase connections work
 - [ ] Check waitlist form submission flow
@@ -213,6 +232,7 @@ Protected route at `/admin` with Firebase Auth:
 ## Development Workflow
 
 ### Making Content Changes
+
 1. Edit `src/config/siteConfig.json` for text, links, team members
 2. Component-specific changes: Edit JSX files in `src/components/`
 3. Styling: Update Tailwind classes or `index.css`
@@ -220,12 +240,14 @@ Protected route at `/admin` with Firebase Auth:
 5. Commit to development branch
 
 ### Adding New Sections
+
 1. Create new component in `src/components/`
 2. Import and add to App.jsx in desired order
 3. Add navigation link to Navbar.jsx if needed
 4. Update content in siteConfig.json if applicable
 
 ### Modifying Firebase Data
+
 - Stats: Use Admin panel or directly update `stats/main` document
 - Waitlist: View submissions in Firebase Console
 - Security rules: Edit firestore.rules and publish via Firebase Console
