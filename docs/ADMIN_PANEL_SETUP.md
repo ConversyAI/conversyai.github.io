@@ -1,6 +1,6 @@
 # Admin Panel Setup Guide
 
-## ✅ Admin Panel Created!
+## ✅ Admin Panel Created'!'
 
 Your production-ready admin panel is complete with Firebase Authentication.
 
@@ -9,23 +9,27 @@ Your production-ready admin panel is complete with Firebase Authentication.
 ## 🎯 Features
 
 ### ✅ **Secure Login** with Firebase Authentication
+
 - Email/password login
 - Session management
 - Protected routes
 
 ### 📊 **Stats Manager**
+
 - Update LinkedIn followers count
 - Update LinkedIn page views
 - Update product interest count
 - View auto-tracked metrics (unique visitors, total page views, waitlist count)
 
 ### 💬 **Testimonials Manager**
+
 - Add new testimonials from Google Forms
 - Edit existing testimonials
 - Delete testimonials
 - Upload with name, role, company, rating, image
 
 ### 📋 **Waitlist Viewer**
+
 - View all waitlist submissions
 - Export to CSV
 - See signup dates and status
@@ -101,19 +105,21 @@ service cloud.firestore {
 ## 🚀 How to Access Admin Panel
 
 ### URL
-```
+
+```bash
 http://localhost:5173/admin          (Development)
 https://www.conversyai.com/admin     (Production)
 ```
 
 ### Login Credentials
+
 Use the email and password you created in Firebase Authentication.
 
 ---
 
 ## 👥 Adding More Admin Users
 
-### For Your Non-Technical Teammate:
+### For Your Non-Technical Teammate':'
 
 1. **Go to Firebase Console** → Your Project → **Authentication** → **Users**
 2. Click **"Add user"**
@@ -121,7 +127,8 @@ Use the email and password you created in Firebase Authentication.
 4. Share the credentials with them securely
 5. They can now login at `/admin`
 
-### To Remove Admin Access:
+### To Remove Admin Access':'
+
 1. Go to **Authentication** → **Users**
 2. Find the user
 3. Click **"⋮"** menu → **"Delete user"**
@@ -130,14 +137,16 @@ Use the email and password you created in Firebase Authentication.
 
 ## 📖 Admin Panel User Guide
 
-### For Your Teammate (Non-Technical):
+### For Your Teammate (Non-Technical)':'
 
 #### 1. **Login**
+
 - Go to `www.conversyai.com/admin`
 - Enter your email and password
 - Click "Sign In"
 
 #### 2. **Update Stats**
+
 - Click **"Stats"** tab
 - Update numbers:
   - **LinkedIn Followers**: Your LinkedIn follower count
@@ -147,6 +156,7 @@ Use the email and password you created in Firebase Authentication.
 - Changes appear on website immediately!
 
 #### 3. **Add Testimonials** (from Google Forms)
+
 - Click **"Testimonials"** tab
 - Click **"+ Add Testimonial"**
 - Fill in the form:
@@ -158,23 +168,26 @@ Use the email and password you created in Firebase Authentication.
 - Click **"Add Testimonial"**
 
 #### 4. **Edit/Delete Testimonials**
+
 - Click **"Testimonials"** tab
 - Find the testimonial
 - Click **"Edit"** to modify or **"Delete"** to remove
 
 #### 5. **View Waitlist**
+
 - Click **"Waitlist"** tab
 - See all signups
 - Click **"Export to CSV"** to download the list
 
 #### 6. **Logout**
+
 - Click **"Logout"** button in top right
 
 ---
 
 ## 🔄 Workflow: Adding Testimonials from Google Forms
 
-### Recommended Process:
+### Recommended Process':'
 
 1. **User fills your Google Form** with feedback
 2. **You review** the response in Google Forms
@@ -196,6 +209,7 @@ Use the email and password you created in Firebase Authentication.
 ## 🛠️ Admin Panel Features
 
 ### Stats Manager
+
 - **What it shows**:
   - Unique Visitors (auto-tracked)
   - Total Page Views (auto-tracked)
@@ -208,12 +222,14 @@ Use the email and password you created in Firebase Authentication.
   - Product Interest count
 
 ### Testimonials Manager
+
 - Add new testimonials
 - Edit existing ones
 - Delete testimonials
 - All changes appear immediately on website
 
 ### Waitlist Viewer
+
 - View all waitlist signups
 - See email, name, date
 - Export to CSV for email campaigns
@@ -233,34 +249,42 @@ Use the email and password you created in Firebase Authentication.
 ## 🐛 Troubleshooting
 
 ### Can't Login
+
 **Issue**: "Login failed" error
 
 **Solutions**:
+
 1. Check email and password are correct
 2. Verify user exists in Firebase Console → Authentication → Users
 3. Make sure Firebase Authentication is enabled
 4. Check browser console for errors
 
 ### Stats Not Updating
+
 **Issue**: Stats don't change after clicking "Update"
 
 **Solutions**:
+
 1. Check Firestore security rules allow writes for authenticated users
 2. Check browser console for errors
 3. Verify Firebase config in `src/firebase.js` is correct
 
 ### Testimonials Not Showing
+
 **Issue**: Added testimonial doesn't appear on website
 
 **Solutions**:
+
 1. Check Firestore security rules allow reads
 2. Refresh the main website
 3. Check browser console on main site for errors
 
 ### Admin Panel Not Loading
+
 **Issue**: `/admin` page shows blank or error
 
 **Solutions**:
+
 1. Run `npm install` to ensure all dependencies are installed
 2. Check Firebase config is set up correctly
 3. Build the project: `npm run build`
@@ -270,6 +294,7 @@ Use the email and password you created in Firebase Authentication.
 ## 📱 Mobile Access
 
 The admin panel is **fully responsive**! Your teammate can:
+
 - ✅ Login from phone/tablet
 - ✅ Update stats on mobile
 - ✅ Add testimonials from anywhere
@@ -290,6 +315,7 @@ The admin panel is **fully responsive**! Your teammate can:
 ## 🎓 Video Tutorial (Optional)
 
 You can record a quick screen recording showing:
+
 1. How to login
 2. How to update stats
 3. How to add a testimonial
@@ -313,6 +339,7 @@ Share it with your teammate!
 ## 🆘 Support
 
 If your teammate has questions, they can:
+
 1. Check this guide
 2. Contact you (the admin who set it up)
 3. Check Firebase Console for user management
